@@ -1,0 +1,10 @@
+{
+  "$schema": "node_modules/lerna/schemas/lerna-schema.json",
+  "useNx": true,
+  "npmClient": "pnpm",
+  "useWorkspaces": true,
+  "version": "independent",
+  "packages": [
+    "packages/*"
+  ]
+}

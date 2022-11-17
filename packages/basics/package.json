@@ -1,0 +1,35 @@
+{
+  "name": "@hemi-component/basics",
+  "version": "1.0.0",
+  "description": "> TODO: description",
+  "author": "hemi <1830720944@qq.com>",
+  "homepage": "",
+  "license": "ISC",
+  "main": "dist/index.js",
+  "module": "es/index.js",
+    "typings": "es/index.d.ts",
+    "files": [
+      "lib",
+      "es"
+    ],
+  "directories": {
+    "src": "src",
+    "test": "__tests__"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmmirror.com/"
+  },
+  "dependencies": {
+    "@babel/runtime": "^7.14.0"
+  },
+  "devDependencies": {
+    "@types/classnames": "^2.2.11",
+    "@types/react": "^16.14.2",
+    "@types/react-dom": "^16.9.9",
+    "father-build": "^1.19.1",
+    "babel-plugin-import": "^1.1.1"
+  },
+  "scripts": {
+    "test": "node ./__tests__/@hemi-component/basics.test.js"
+  }
+}
