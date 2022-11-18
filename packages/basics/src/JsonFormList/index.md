@@ -2,7 +2,7 @@
 title: JsonFormList 动态增加/删除表单
 group:
   title: 基础组件
-  path: /basis
+  path: /basic
 nav:
   title: 组件库
   path: /basics
@@ -17,7 +17,7 @@ nav:
 
 ```tsx
 import React from 'react';
-import { Form, Input, Button, Space, Select } from 'antd';
+import { Form, Input, Button, InputNumber } from 'antd';
 import { JsonFormList } from '@hemi-component/basics';
 export default () => {
   const [form] = Form.useForm();
@@ -46,9 +46,17 @@ export default () => {
   const handleChange = () => {
     //form.setFieldsValue({ sights: [] });
   };
+
   const initValues = [
     { type: 'input', name: 'start', label: '最小值' },
-    { type: 'input', name: 'end', label: '用户银行卡号', initValue: '' },
+    {
+      type: 'custom',
+      name: 'end',
+      label: '用户银行卡号',
+      initValue: '',
+      customRender: <InputNumber style={{ width: '100%' }} />,
+      rules: [{ required: false }],
+    },
   ];
   return (
     <>

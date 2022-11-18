@@ -1,8 +1,8 @@
 ---
-title: 文本省略 | TextEllipsis
+title: TextEllipsis 文本省略
 group:
   title: 基础组件
-  path: /basis
+  path: /basic
 nav:
   title: 组件库
   path: /basics

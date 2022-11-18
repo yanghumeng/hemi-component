@@ -10,6 +10,7 @@ interface FormItemProps {
   label: string;
   initValue: string;
   rules: {}[];
+  customRender?: React.ReactNode;
 }
 
 interface TypeProps {
@@ -40,7 +41,11 @@ const JsonFormList = (props: TypeProps) => {
                     key={index}
                     initialValue={item.initValue}
                   >
-                    {item.type === 'text' ? item.initValue : <Input />}
+                    {item.type == 'custom' ? (
+                      item.customRender
+                    ) : (
+                      <Input placeholder={`请输入${item.label}`} />
+                    )}
                   </Form.Item>
                 ))}
               </Col>
