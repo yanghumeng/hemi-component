@@ -20,9 +20,6 @@ const codeSlice = (str: string, num: number) => {
     } else {
       realLength += 2;
     }
-    // if (num - realLength === 1 && !(charCode >= 0 && charCode <= 128)) {
-    //   return code;
-    // }
     if (realLength < num) {
       code += str[i];
     } else {

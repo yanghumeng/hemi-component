@@ -2,14 +2,12 @@ import { Form, Input, Button, Row, Col } from 'antd';
 import { MinusCircleOutlined, PlusOutlined } from '@ant-design/icons';
 import React from 'react';
 
-const initRules = [{ required: true, message: '字段必填！' }];
-
 interface FormItemProps {
-  type: string;
+  type?: string;
   name: string;
   label: string;
-  initValue: string;
-  rules: {}[];
+  initValue?: string;
+  rules?: {}[];
   customRender?: React.ReactNode;
 }
 
@@ -20,24 +18,26 @@ interface TypeProps {
   name: string;
   /**自定义添加文案 */
   title?: string;
+  /**外层样式 */
+  style?: React.CSSProperties;
 }
 
 const JsonFormList = (props: TypeProps) => {
-  const { initValues = [], name, title } = props;
+  const { initValues = [], name, title, style = {} } = props;
 
   return (
     <Form.List name={name}>
       {(fields, { add, remove }) => (
-        <>
+        <div style={style}>
           {fields.map((field) => (
-            <Row>
+            <Row key={field.key}>
               <Col span={22}>
                 {initValues.map((item, index) => (
                   <Form.Item
                     {...field}
                     label={item.label}
                     name={[field.name, item.name]}
-                    rules={item.rules || initRules}
+                    rules={item?.rules}
                     key={index}
                     initialValue={item.initValue}
                   >
@@ -70,7 +70,7 @@ const JsonFormList = (props: TypeProps) => {
               </Button>
             </Col>
           </Row>
-        </>
+        </div>
       )}
     </Form.List>
   );

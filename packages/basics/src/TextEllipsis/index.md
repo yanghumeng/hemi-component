@@ -1,19 +1,20 @@
 ---
 title: TextEllipsis 文本省略
 group:
-  title: 基础组件
   path: /basic
 nav:
-  title: 组件库
+  title: 基础组件
   path: /basics
   order: 2
 ---
 
-## TextEllipsis 
+# TextEllipsis 多行文本省略
 
 多行文本省略
 
-- 默认：自动检测浏览器是否支持 css3 的文本省略号，使用 css 来实现多行溢出显示省略号不使用 css，可以设置`useCss`属性为`false` Demo:
+- 默认：自动检测浏览器是否支持 css3 的文本省略号，使用 css 来实现多行溢出显示省略号；不使用 css，可以设置`useCss`属性为`false`
+
+## 代码演示
 
 ```tsx
 import React, { useState } from 'react';
@@ -59,4 +60,13 @@ export default () => {
 };
 ```
 
-<API src="./index.tsx"></API>
+## API
+
+| 属性名       | 描述                    | 类型            | 默认值 |
+| ------------ | ----------------------- | --------------- | ------ |
+| value        | 值                      | `string`        | 空     |
+| useCss       | 是否使用 CSS 实现省略号 | `boolean`       | `true` |
+| line         | 显示的行数              | `number`        | `1`    |
+| showTooltip  | 是否展示文字提示        | `boolean`       | `true` |
+| tooltipProps | 文字提示样式            | `TooltipProps`  | `{}`   |
+| style        | 外部样式                | `CSSProperties` | `{}`   |
