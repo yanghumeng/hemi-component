@@ -199,10 +199,10 @@ export default function UploadPicture(props: InputUploadProps & UploadProps) {
   };
   /** 上传图片的文案 */
   const uploadButton = (
-    <>
+    <div>
       <PlusOutlined />
       <div style={{ marginTop: 8 }}>{title || '图片上传'}</div>
-    </>
+    </div>
   );
 
   return (

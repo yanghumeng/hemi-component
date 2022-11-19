@@ -6,7 +6,7 @@
     "moduleResolution": "node",
     "jsx": "react",
     "esModuleInterop": true,
-    "types": ["node", "global"],
+    "types": ["global"],
     "typeRoots": ["./node_modules/@types", "./typings"],
     "strict": true,
     "skipLibCheck": true,
