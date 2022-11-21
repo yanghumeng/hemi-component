@@ -20,41 +20,35 @@ import { Form, Input, Button, InputNumber } from 'antd';
 import { JsonFormList } from '@hemi-component/basics';
 export default () => {
   const [form] = Form.useForm();
-  const areas = [
-    { label: 'Beijing', value: 'Beijing' },
-    { label: 'Shanghai', value: 'Shanghai' },
-  ];
-  const formItemLayoutWithOutLabel = {
+
+  const formItemLayout = {
     labelCol: {
       xs: 24,
-      sm: 8,
-      md: 8,
-      lg: 8,
+      sm: 4,
+      md: 4,
     },
     wrapperCol: {
       xs: 24,
-      sm: 16,
-      md: 16,
-      lg: 16,
+      sm: 20,
+      md: 20,
     },
   };
   const onFinish = (values: any) => {
     console.log('Received values of form:', values);
   };
 
-  const handleChange = () => {
-    //form.setFieldsValue({ sights: [] });
-  };
-
   const initValues = [
-    { type: 'input', name: 'start', label: '最小值' },
+    {
+      type: 'input',
+      name: 'start',
+      label: '最小值',
+      rules: [{ required: true, message: '字段必填' }],
+    },
     {
       type: 'custom',
-      name: 'end',
-      label: '用户银行卡号',
-      initValue: '',
+      name: 'yhkh',
+      label: '用户银行卡',
       customRender: <InputNumber placeholder="请输入" style={{ width: '100%' }} />,
-      rules: [{ required: true, message: '字段必填' }],
     },
   ];
   return (
@@ -63,17 +57,37 @@ export default () => {
         form={form}
         labelWrap
         name="dynamic_form_nest_item"
-        initialValues={{ jsonformlist: [{}] }}
+        initialValues={{ jsonformlist: [{}], jsonlist: [{}] }}
         onFinish={onFinish}
-        {...formItemLayoutWithOutLabel}
+        {...formItemLayout}
         autoComplete="off"
       >
-        <JsonFormList
-          name="jsonformlist"
-          initValues={initValues}
-          style={{ marginBottom: '10px' }}
-        ></JsonFormList>
-        <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
+        <Form.Item label="默认项" colon={false}>
+          <JsonFormList
+            name="jsonlist"
+            initValues={initValues}
+            style={{ padding: '10px', backgroundColor: '#f5f5f5' }}
+            layout={formItemLayout}
+          ></JsonFormList>
+        </Form.Item>
+        <Form.Item label="自定义添加项" colon={false}>
+          <JsonFormList
+            name="jsonformlist"
+            initValues={initValues}
+            style={{ marginBottom: '10px' }}
+            layout={formItemLayout}
+            customAdd={() => {
+              const list = form.getFieldValue('jsonformlist');
+              console.log(list);
+              const nextList = list.concat({ yhkh: '123' });
+              form.setFieldsValue({
+                jsonformlist: nextList,
+              });
+            }}
+            itemNumber={1}
+          ></JsonFormList>
+        </Form.Item>
+        <Form.Item wrapperCol={{ offset: 8, span: 16 }} style={{ marginTop: '10px' }}>
           <Button type="primary" htmlType="submit">
             Submit
           </Button>
