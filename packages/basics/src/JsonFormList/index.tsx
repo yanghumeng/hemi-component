@@ -23,7 +23,7 @@ interface TypeProps {
   /**自定义添加项 */
   customAdd?: () => void;
   /**布局 */
-  layout?: any;
+  layout?: object;
   /**保留的项数 */
   itemNumber?: number;
 }

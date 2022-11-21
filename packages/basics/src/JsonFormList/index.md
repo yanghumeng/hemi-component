@@ -12,6 +12,11 @@ nav:
 
 动态增加/删除表单组件
 
+## 注意
+
+- `customAdd`属性可以自定义添加项时的逻辑处理，具体用法可以参考示例
+- `FormItemProps`中的`customRender`属性可以是用户自定义的组件，可以参考示例代码
+
 ## 代码演示
 
 ```tsx
@@ -66,7 +71,7 @@ export default () => {
           <JsonFormList
             name="jsonlist"
             initValues={initValues}
-            style={{ padding: '10px', backgroundColor: '#f5f5f5' }}
+            style={{ padding: '10px', paddingBottom: '0', backgroundColor: '#f5f5f5' }}
             layout={formItemLayout}
           ></JsonFormList>
         </Form.Item>
@@ -74,11 +79,9 @@ export default () => {
           <JsonFormList
             name="jsonformlist"
             initValues={initValues}
-            style={{ marginBottom: '10px' }}
             layout={formItemLayout}
             customAdd={() => {
               const list = form.getFieldValue('jsonformlist');
-              console.log(list);
               const nextList = list.concat({ yhkh: '123' });
               form.setFieldsValue({
                 jsonformlist: nextList,
@@ -87,7 +90,7 @@ export default () => {
             itemNumber={1}
           ></JsonFormList>
         </Form.Item>
-        <Form.Item wrapperCol={{ offset: 8, span: 16 }} style={{ marginTop: '10px' }}>
+        <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
           <Button type="primary" htmlType="submit">
             Submit
           </Button>
@@ -109,4 +112,4 @@ export default () => {
 | label | Form.Item 的标题 | `string` | `必选` |
 | initValue | 初始值 | `string` | 空 |
 | rules | 校验规则 | `{}[]` | 不校验 |
-| customRender | 自定义组件 | `ReactNode` | 空 |
+| customRender | 自定义 Form.Item 的组件 | `ReactNode` | 空 |
