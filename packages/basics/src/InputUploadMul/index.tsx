@@ -41,7 +41,7 @@ export default function UploadPicture(props: InputUploadProps & UploadProps) {
   useEffect(() => {
     setFileList(props?.fileList ? props.fileList : []);
     setResults(props?.fileList ? props.fileList : []);
-  }, []);
+  }, [props?.fileList]);
 
   useEffect(() => {
     onChange && onChange(results);
