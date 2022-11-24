@@ -10,7 +10,7 @@ interface DescribeProps extends DescriptionsProps {
   itemList: DescribeItem[];
   extra?: ReactNode;
 }
-const Describe = (props: DescribeProps) => {
+const SchemaDescribe = (props: DescribeProps) => {
   const { itemList, extra } = props;
   return (
     <div>
@@ -48,4 +48,4 @@ const Describe = (props: DescribeProps) => {
   );
 };
 
-export default Describe;
+export default SchemaDescribe;
