@@ -105,7 +105,7 @@ const TextEllipsis = ({
   useEffect(() => {
     setText(value);
     adjustValue();
-  }, [value]);
+  }, [value, isUseCss]);
   useEffect(() => {
     if (!!((useCss && window.CSS && window.CSS.supports) || false)) {
       let supportsFlex = CSS.supports('display', '-webkit-box');
@@ -145,7 +145,9 @@ const TextEllipsis = ({
   return (
     <div ref={parentEle} style={isUseCss ? styleByCss : Style}>
       {isUseCss ? (
-        <Tooltip title={visible && showTooltip ? value : ''}>{value}</Tooltip>
+        <Tooltip title={visible && showTooltip ? value : ''}>
+          <div>{value}</div>
+        </Tooltip>
       ) : (
         <AutoTooltip
           {...(isExceed && showTooltip ? { title: value, ...tooltipProps } : ({} as any))}

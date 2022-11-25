@@ -1,5 +1,5 @@
 ---
-title: 剪切板上传图片(支持多张) | InputUploadMul
+title: InputUploadMul 剪切板上传图片(支持多张)
 nav:
   path: /basics
 group:
@@ -7,7 +7,7 @@ group:
   path: /upload
 ---
 
-## 剪切板上传图片(支持多张) | InputUploadMul
+# InputUploadMul 剪切板上传图片(支持多张)
 
 Demo:
 
@@ -32,7 +32,9 @@ import { InputUploadMul } from '@hemi-component/basics';
 import { Form, Input, Button } from 'antd';
 
 const request = (params?: object): Promise<string> => {
-  return new Promise((resolve,reject)=>{return resolve()})
+  return new Promise((resolve, reject) => {
+    return resolve();
+  });
 };
 const onChange = (res: any) => {
   console.log(res);

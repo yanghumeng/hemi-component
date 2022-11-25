@@ -28,9 +28,10 @@ export default () => {
   return (
     <>
       <h2>不使用css3：</h2>
+      <h3>无省略号时：</h3>
       <div
         style={{
-          height: '100px',
+          height: '80px',
           width: `200px`,
           overflow: `hidden`,
           fontSize: 12,
@@ -39,6 +40,20 @@ export default () => {
         <TextEllipsis
           useCss={false}
           value="这是一个长文本这是一个长文本这是一个长文本这是一个长文本这是一个长文本这是一个长文本这是一个长文本"
+        />
+      </div>
+      <h3>显示省略号时：</h3>
+      <div
+        style={{
+          height: '50px',
+          width: `200px`,
+          overflow: `hidden`,
+          fontSize: 12,
+        }}
+      >
+        <TextEllipsis
+          useCss={false}
+          value="这是一个长文本这是一个长文本这是一个长文本这是一个长文本这是一个长文本这是一个长文本这是一个长文这是"
         />
       </div>
       <hr />
