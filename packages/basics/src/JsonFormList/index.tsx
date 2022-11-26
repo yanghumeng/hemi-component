@@ -21,7 +21,7 @@ interface TypeProps {
   /**外层样式 */
   style?: React.CSSProperties;
   /**自定义添加项 */
-  customAdd?: () => void;
+  customAdd?: (param: any) => React.MouseEventHandler;
   /**布局 */
   layout?: object;
   /**保留的项数 */
@@ -78,7 +78,7 @@ const JsonFormList = (props: TypeProps) => {
             <Button
               type="dashed"
               style={{ marginTop: '10px' }}
-              onClick={props?.customAdd || (() => add())}
+              onClick={props.customAdd?.(add) || (() => add())}
               block
               icon={<PlusOutlined />}
             >

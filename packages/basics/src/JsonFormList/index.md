@@ -80,12 +80,14 @@ export default () => {
             name="jsonformlist"
             initValues={initValues}
             layout={formItemLayout}
-            customAdd={() => {
-              const list = form.getFieldValue('jsonformlist');
-              const nextList = list.concat({ yhkh: '123' });
-              form.setFieldsValue({
-                jsonformlist: nextList,
-              });
+            customAdd={(add) => {
+              console.log(add);
+              // const list = form.getFieldValue('jsonformlist');
+              // const nextList = list.concat({ yhkh: '123' });
+              // form.setFieldsValue({
+              //   jsonformlist: nextList,
+              // });
+              return add;
             }}
             itemNumber={1}
           ></JsonFormList>
