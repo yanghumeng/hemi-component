@@ -3,8 +3,6 @@
   "useNx": true,
   "npmClient": "pnpm",
   "useWorkspaces": true,
-  "version": "independent",
-  "packages": [
-    "packages/*"
-  ]
+  "version": "1.0.0",
+  "packages": ["packages/*"]
 }
