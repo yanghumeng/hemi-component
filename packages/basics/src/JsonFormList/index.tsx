@@ -20,7 +20,7 @@ interface TypeProps {
   title?: string;
   /**外层样式 */
   style?: React.CSSProperties;
-  /**自定义添加项 */
+  /**自定义添加项,接收一个函数参数，返回这个函数，函数用法与`FormList`的add函数一致 */
   customAdd?: (param: any) => React.MouseEventHandler;
   /**布局 */
   layout?: object;
@@ -37,8 +37,8 @@ const JsonFormList = (props: TypeProps) => {
         <>
           <div style={style}>
             {fields.map((field, index) => (
-              <Row key={field.key}>
-                <Col span={22}>
+              <Row key={field.key} wrap={false}>
+                <Col flex="auto">
                   {initValues.map((item, index) => (
                     <Form.Item
                       {...field}
@@ -57,7 +57,7 @@ const JsonFormList = (props: TypeProps) => {
                     </Form.Item>
                   ))}
                 </Col>
-                <Col span={2}>
+                <Col flex="40px">
                   {index + 1 > itemNumber ? (
                     <MinusCircleOutlined
                       style={{
@@ -78,7 +78,7 @@ const JsonFormList = (props: TypeProps) => {
             <Button
               type="dashed"
               style={{ marginTop: '10px' }}
-              onClick={props.customAdd?.(add) || (() => add())}
+              onClick={(props?.customAdd && (() => props.customAdd?.(add))) || (() => add())}
               block
               icon={<PlusOutlined />}
             >
