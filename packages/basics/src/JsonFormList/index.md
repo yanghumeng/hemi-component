@@ -62,7 +62,6 @@ export default () => {
         form={form}
         labelWrap
         name="dynamic_form_nest_item"
-        initialValues={{ jsonformlist: [{}], jsonlist: [{}] }}
         onFinish={onFinish}
         {...formItemLayout}
         autoComplete="off"
