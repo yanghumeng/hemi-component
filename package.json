@@ -6,7 +6,7 @@
     "release": "node ./scripts/check-local-commit.js && cross-env UMI_ENV=prod father-build && lerna exec npx tsc-alias && lerna publish from-package",
     "release:beta": "git push --follow-tags && cross-env UMI_ENV=dev father-build && lerna exec npx tsc-alias && lerna publish from-package --dist-tag beta",
     "start": "dumi dev",
-    "docs:build:test": "dumi build",
+    "docs:build:test": "cross-env UMI_ENV=devDocs dumi build",
     "docs:build": "cross-env UMI_ENV=prod dumi build",
     "docs:deploy": "gh-pages -d docs-dist",
     "build": "father build",
