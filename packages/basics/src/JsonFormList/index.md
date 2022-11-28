@@ -20,6 +20,7 @@ nav:
 ## 代码演示
 
 ```tsx
+{% raw %}
 import React from 'react';
 import { Form, Input, Button, InputNumber } from 'antd';
 import { JsonFormList } from '@hemi-component/basics';
@@ -94,6 +95,7 @@ export default () => {
     </>
   );
 };
+{% endraw %}
 ```
 
 <API src="./index.tsx"></API>

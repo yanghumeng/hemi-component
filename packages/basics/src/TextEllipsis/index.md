@@ -17,6 +17,7 @@ nav:
 ## 代码演示
 
 ```tsx
+{% raw %}
 import React, { useState } from 'react';
 import { TextEllipsis } from '@hemi-component/basics';
 
@@ -73,6 +74,7 @@ export default () => {
     </>
   );
 };
+{% endraw %}
 ```
 
 ## API
