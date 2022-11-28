@@ -20,7 +20,6 @@ nav:
 ## 代码演示
 
 ```tsx
-{% raw %}
 import React, { useState, useEffect } from 'react';
 import { Form, Button, InputNumber, Image } from 'antd';
 import { SchemaDescribe } from '@hemi-component/basics';
@@ -87,7 +86,6 @@ export default () => {
     </>
   );
 };
-{% endraw %}
 ```
 
 ## API

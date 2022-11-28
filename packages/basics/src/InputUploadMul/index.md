@@ -27,7 +27,6 @@ Demo:
   ```
 
 ```tsx
-{% raw %}
 import React from 'react';
 import { InputUploadMul } from '@hemi-component/basics';
 import { Form, Input, Button } from 'antd';
@@ -77,7 +76,6 @@ export default () => {
     </Form>
   );
 };
-{% endraw %}
 ```
 
 <API src='./index.tsx'></API>
