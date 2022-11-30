@@ -52,7 +52,7 @@ export default () => {
       <Form.Item label="上传一张" name="one">
         <InputUploadMul inputRequest={request} onChange={onChange} />
       </Form.Item>
-      <Form.Item label="上传2张" name="mul">
+      <Form.Item label="上传多张" name="mul">
         <InputUploadMul
           multiple={true}
           len={2}
