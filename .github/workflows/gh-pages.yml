@@ -15,6 +15,5 @@ jobs:
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: gh-pages
+          github_token: ${{ secrets.hemi-component }}
           folder: ./docs-dist
