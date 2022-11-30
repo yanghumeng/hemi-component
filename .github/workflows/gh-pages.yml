@@ -16,4 +16,4 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.HEMI_COMPONENT }}
-          folder: ./docs-dist
+          publish_dir: ./docs-dist
