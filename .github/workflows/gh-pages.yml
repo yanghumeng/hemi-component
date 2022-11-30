@@ -10,8 +10,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - run: cnpm install
-      - run: cnpm run docs:build:test
+      - run: yarn
+      - run: yarn docs:build:test
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
