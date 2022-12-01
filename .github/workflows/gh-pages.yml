@@ -1,0 +1,19 @@
+name: github pages
+
+on:
+  push:
+    branches:
+      - test-docs # default branch
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: yarn
+      - run: yarn docs:build:test
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.HEMI_COMPONENT }}
+          publish_dir: ./docs-dist

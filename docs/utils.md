@@ -1,5 +1,5 @@
 ---
-title: 方法/组件封装介绍
+title: 介绍
 nav:
   title: utils方法
   path: /utils
