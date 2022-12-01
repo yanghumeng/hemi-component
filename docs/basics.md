@@ -1,5 +1,5 @@
 ---
-title: 组件封装介绍
+title: 介绍
 nav:
   title: 基础组件
   path: /basics
