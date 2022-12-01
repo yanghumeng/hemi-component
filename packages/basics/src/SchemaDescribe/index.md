@@ -1,11 +1,10 @@
 ---
 title: SchemaDescribe 描述
-group:
-  path: /basic
 nav:
-  title: 基础组件
   path: /basics
-  order: 2
+group:
+  title: 基础组件
+  path: /basic
 ---
 
 # SchemaDescribe 描述
