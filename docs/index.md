@@ -18,4 +18,18 @@ features:
 footer: Open-source MIT Licensed | Copyright © 2020<br />Powered by [dumi](https://d.umijs.org)
 ---
 
-## Hello hemi-component!
+## 1. 使用按需打包，需要使用 `babel-plugin-import`
+
+```js
+// umi config ，参考https://umijs.org/config/
+{
+ ...,
+ extraBabelPlugins: [
+      [
+        'import',
+        { libraryName: '@hemi-component/basics', libraryDirectory: 'es', camel2DashComponentName: false },
+        '@hemi-component/basics'
+      ],
+    ],
+  }
+```
