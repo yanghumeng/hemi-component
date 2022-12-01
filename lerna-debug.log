@@ -1,0 +1,14 @@
+0 silly argv {
+0 silly argv   _: [ 'create' ],
+0 silly argv   lernaVersion: '5.6.2',
+0 silly argv   '$0': 'D:\\nodejs\\node_global\\node_modules\\lerna\\cli.js',
+0 silly argv   name: 'packages/utils'
+0 silly argv }
+1 notice cli v5.6.2
+2 verbose rootPath F:\VSCode_workspace\hemi-component
+3 verbose packageConfigs Package manager 'pnpm' detected. Resolving packages using 'pnpm-workspace.yaml'.
+4 verbose packageConfigs Package manager 'pnpm' detected. Resolving packages using 'pnpm-workspace.yaml'.
+5 verbose packageConfigs Package manager 'pnpm' detected. Resolving packages using 'pnpm-workspace.yaml'.
+6 error TypeError: Cannot read property 'toLocaleLowerCase' of undefined
+6 error     at camelCase (F:\VSCode_workspace\hemi-component\node_modules\.pnpm\yargs-parser@20.2.4\node_modules\yargs-parser\build\index.cjs:8:15)
+6 error     at CreateCommand.initialize (F:\VSCode_workspace\hemi-component\node_modules\.pnpm\@lerna+create@5.6.2\node_modules\@lerna\create\index.js:62:22)
