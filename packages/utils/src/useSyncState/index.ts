@@ -1,17 +1,17 @@
 import { useEffect, useState, useRef } from 'react';
-const useSyncState = (state: any) => {
-  const cbRef: { current: any } = useRef();
-  const [data, setData] = useState(state);
+const useSyncState = (param: any) => {
+  const dataRef: { current: any } = useRef();
+  const [data, setData] = useState(param);
 
   useEffect(() => {
-    cbRef.current && cbRef.current(data);
+    dataRef?.current(data);
   }, [data]);
 
   return [
     data,
-    (val: any, callback: any) => {
-      cbRef.current = callback;
-      setData(val);
+    (payload: any, callback: any) => {
+      dataRef.current = callback;
+      setData(payload);
     },
   ];
 };
