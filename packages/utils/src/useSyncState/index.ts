@@ -4,7 +4,7 @@ const useSyncState = (param: any) => {
   const [data, setData] = useState(param);
 
   useEffect(() => {
-    dataRef?.current(data);
+    dataRef.current?.(data);
   }, [data]);
 
   return [
