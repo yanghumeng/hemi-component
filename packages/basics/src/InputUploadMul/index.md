@@ -9,11 +9,9 @@ group:
 
 # InputUploadMul 剪切板上传图片(支持多张)
 
-Demo:
-
 - `inputRequest`关键词是必填,返回一个 promise，具体下列参考例子
 
-注意:
+### 注意:
 
 - `fileList`是回显图片列表，status 值必填（最好为 success），res 值是图片的唯一标识值，格式：
   ```json
@@ -25,6 +23,8 @@ Demo:
             }
           ]}
   ```
+
+## 代码演示
 
 ```tsx
 import React from 'react';
@@ -52,7 +52,7 @@ export default () => {
       <Form.Item label="上传一张" name="one">
         <InputUploadMul inputRequest={request} onChange={onChange} />
       </Form.Item>
-      <Form.Item label="上传2张" name="mul">
+      <Form.Item label="上传多张" name="mul">
         <InputUploadMul
           multiple={true}
           len={2}

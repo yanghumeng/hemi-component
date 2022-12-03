@@ -1,11 +1,10 @@
 ---
 title: JsonFormList 动态增加/删除表单
-group:
-  path: /basic
 nav:
-  title: 基础组件
   path: /basics
-  order: 2
+group:
+  title: 基础组件
+  path: /basic
 ---
 
 # JsonFormList 动态增加/删除表单

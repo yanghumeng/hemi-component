@@ -1,17 +1,17 @@
 {
   "name": "@hemi-component/basics",
-  "version": "1.0.0",
+  "version": "1.0.1-alpha.0",
   "description": "> TODO: description",
   "author": "hemi <1830720944@qq.com>",
   "homepage": "",
   "license": "ISC",
   "main": "dist/index.js",
   "module": "es/index.js",
-    "typings": "es/index.d.ts",
-    "files": [
-      "lib",
-      "es"
-    ],
+  "typings": "es/index.d.ts",
+  "files": [
+    "lib",
+    "es"
+  ],
   "directories": {
     "src": "src",
     "test": "__tests__"
@@ -23,8 +23,8 @@
     "@types/classnames": "^2.2.11",
     "@types/react": "^16.14.2",
     "@types/react-dom": "^16.9.9",
-    "father-build": "^1.19.1",
-    "babel-plugin-import": "^1.1.1"
+    "babel-plugin-import": "^1.1.1",
+    "father-build": "^1.19.1"
   },
   "scripts": {
     "test": "node ./__tests__/@hemi-component/basics.test.js"
