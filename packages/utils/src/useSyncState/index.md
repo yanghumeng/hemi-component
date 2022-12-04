@@ -19,13 +19,25 @@ export default () => {
   const [dataT, setDataT] = useState(0);
   const handleAdd = () => {
     let temp = data;
-    setData(++temp, (data) => setDataT(data));
+    setData(++temp, (data) => {
+      alertMsg();
+    });
+  };
+  const handleAddT = () => {
+    let temp = dataT;
+    setDataT(++temp);
+    alertMsgT();
+  };
+  const alertMsg = () => {
+    alert(data);
+  };
+  const alertMsgT = () => {
+    alert(dataT);
   };
   return (
     <div>
-      <div>{data}</div>
-      <div>{dataT}</div>
-      <button onClick={handleAdd}>add</button>
+      <button onClick={handleAdd}>show</button>
+      <button onClick={handleAddT}>showT</button>
     </div>
   );
 };

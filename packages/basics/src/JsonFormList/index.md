@@ -70,7 +70,7 @@ export default () => {
           <JsonFormList
             name="jsonlist"
             initValues={initValues}
-            style={{ padding: '10px', paddingBottom: '0', backgroundColor: '#f5f5f5' }}
+            style={{ paddingTop: '10px', marginBottom: '10px', backgroundColor: '#f5f5f5' }}
             layout={formItemLayout}
           ></JsonFormList>
         </Form.Item>

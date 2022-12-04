@@ -73,10 +73,10 @@ export default () => {
       <Image
         width={200}
         style={{ display: 'none' }}
-        src="https://dm-img-test.duomai.com/20220909174300_m6ke0676so.jpg"
+        src="https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png"
         preview={{
           visible,
-          src: 'https://dm-img-test.duomai.com/20220909174300_m6ke0676so.jpg',
+          src: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
           onVisibleChange: (value) => {
             setVisible(value);
           },

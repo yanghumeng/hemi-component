@@ -8,14 +8,14 @@
   "main": "dist/index.js",
   "module": "es/index.js",
   "typings": "es/index.d.ts",
-  "files": [
-    "lib",
-    "es"
-  ],
   "directories": {
     "src": "src",
     "test": "__tests__"
   },
+  "files": [
+    "lib",
+    "es"
+  ],
   "dependencies": {
     "@babel/runtime": "^7.14.0"
   },
