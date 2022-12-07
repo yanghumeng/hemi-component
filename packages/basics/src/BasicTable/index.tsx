@@ -1,6 +1,6 @@
 // UseTable
 import React, { useEffect, useState } from 'react';
-import { Card, Table } from 'antd';
+import { Card, FormInstance, Table, TableProps } from 'antd';
 import SearchForm from '../SearchForm';
 import './index.less';
 
@@ -12,13 +12,27 @@ import './index.less';
  * @params {boolean} disableNewBtn 禁用新增按钮
  * @params {false | SearchTypes} search 禁用新增按钮
  */
-const BasicTable = (props: any) => {
-  const { request, tableProps, showNewBtn, search } = props;
+interface tableProps extends TableProps<any> {
+  formRef?: FormInstance;
+  rowSelection?: {
+    selectedList?: Array<any>;
+    onChange?: (selectedRowKeys: Array<any>, selectedRows: Array<any>) => void;
+  };
+  request: (params?: any, sorter?: any) => Promise<any>;
+  isSearch?: boolean;
+  pagination?: any;
+  expressionAt?: any;
+  toolBarRender?: React.ReactNode[];
+}
+
+const BasicTable = (props: tableProps) => {
+  const { request, pagination, expressionAt, toolBarRender, isSearch = true } = props;
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState([]);
   const [sorter, setSorter] = useState({});
   const [params, setParams] = useState({ current: 1, pageSize: 50 });
   const [total, setTotal] = useState(0);
+  const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>([]);
 
   const getData = () => {
     setLoading(true);
@@ -53,22 +67,40 @@ const BasicTable = (props: any) => {
     setParams(temp);
   };
   useEffect(() => {
+    setSelectedRowKeys(props?.rowSelection?.selectedList || []);
+  }, []);
+
+  useEffect(() => {
     getData();
   }, [params]);
-
+  const onSelectChange = (newSelectedRowKeys: React.Key[], selectedRows: any) => {
+    setSelectedRowKeys(newSelectedRowKeys);
+    props?.rowSelection?.onChange?.(newSelectedRowKeys, selectedRows);
+  };
+  const rowSelectionS = {
+    selectedRowKeys,
+    onChange: onSelectChange,
+  };
   return (
     <Card>
-      {search && <SearchForm getData={handleSearch} columns={tableProps?.columns} />}
-      {showNewBtn}
+      {isSearch && (
+        <SearchForm
+          formRef={props?.formRef}
+          getData={handleSearch}
+          columns={expressionAt?.columns}
+        />
+      )}
+      {toolBarRender}
       <Table
-        rowKey={(record) => record.id}
+        rowKey={props?.rowKey}
         loading={loading}
+        rowSelection={props?.rowSelection && rowSelectionS}
         /* 通过新申明将默认项覆盖 */
-        pagination={{ ...paginationProps, ...tableProps?.paginationProps }}
         style={{ marginTop: 20 }}
         dataSource={data}
+        pagination={{ ...paginationProps, ...pagination }}
         /* 放最后方便对上面的props覆盖 */
-        {...tableProps}
+        {...expressionAt}
         onChange={handleChangeTable}
       />
     </Card>
@@ -76,10 +108,10 @@ const BasicTable = (props: any) => {
 };
 
 // 添加默认值
-BasicTable.defaultProps = {
-  showNewBtn: true,
-  disableNewBtn: false,
-  search: true,
-};
+// BasicTable.defaultProps = {
+//   showNewBtn: true,
+//   disableNewBtn: false,
+//   search: true,
+// };
 
 export default BasicTable;

@@ -8,7 +8,7 @@ const FormItem = Form.Item;
 const SearchForm = (props: any) => {
   const [paramExpand, setParamExpand] = useState(false);
   const { getData, columns } = props;
-  const [form] = Form.useForm();
+  const [form] = props?.formRef || Form.useForm();
   const formItemLayout = {
     labelCol: { span: 8 },
     wrapperCol: { span: 16 },
@@ -19,7 +19,7 @@ const SearchForm = (props: any) => {
   };
 
   const handleSearch = (value?: any) => {
-    form.validateFields().then((values) => {
+    form.validateFields().then((values: any) => {
       getData({ ...values, ...value });
     });
   };

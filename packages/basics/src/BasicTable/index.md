@@ -59,15 +59,23 @@ const Demo = (props) => {
 
   return (
     <BasicTable
+      rowKey="id"
       request={async (params, sorter) => {
-        console.log(params, sorter);
         await sleep(2);
-        return Promise.resolve({ total: 100, data: [{}, {}, {}, {}, {}, {}] });
+        return Promise.resolve({
+          total: 100,
+          data: [{ id: 0 }, { id: 1 }, { id: 2 }, { id: 3 }, { id: 4 }, { id: 5 }],
+        });
       }}
-      tableProps={{
+      rowSelection={{
+        onChange: (newSelectedRowKeys: React.Key[], selectedRows: any) => {
+          console.log('selectedRowKeys changed: ', newSelectedRowKeys, selectedRows);
+        },
+      }}
+      pagination={{ size: 'small' }}
+      expressionAt={{
         columns,
         bordered: true,
-        paginationProps: { pageSizeOptions: ['2', '10'], size: 'small' },
       }}
     />
   );
