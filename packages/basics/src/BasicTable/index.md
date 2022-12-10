@@ -13,10 +13,11 @@ group:
 
 ```tsx
 import React, { useState } from 'react';
-import { Select } from 'antd';
+import { Select, DatePicker } from 'antd';
 import { BasicTable } from '@hemi-component/basics';
 
 const { Option } = Select;
+const { RangePicker } = DatePicker;
 async function sleep(n) {
   return new Promise((resolve) =>
     setTimeout(() => {
@@ -33,19 +34,32 @@ const Demo = (props) => {
       dataIndex: 'id',
       searchIndex: '自定义字段',
       searchTitle: '自定义头',
+      hideTable: true,
       renderSearchItem: () => {
         // 自定义搜索fromItem
         return (
           <Select>
-            <Option value="1">s</Option>
-            <Option value="2">2</Option>
+            <Option value="1">选项1</Option>
+            <Option value="2">选项2</Option>
           </Select>
         );
       },
     },
     {
-      title: '用户id',
-      dataIndex: 'userId',
+      title: '用户',
+      dataIndex: 'userName',
+      hideTable: true,
+    },
+    {
+      title: '日期',
+      dataIndex: 'date',
+      renderSearchItem: () => {
+        // 自定义搜索fromItem
+        return <RangePicker />;
+      },
+      render: (val) => {
+        return <span>起始日期：{val}</span>;
+      },
     },
     {
       title: '公司名称',
@@ -59,12 +73,21 @@ const Demo = (props) => {
 
   return (
     <BasicTable
+      linenum={2}
       rowKey="id"
       request={async (params, sorter) => {
-        await sleep(2);
+        console.log(params);
+        await sleep(1);
         return Promise.resolve({
           total: 100,
-          data: [{ id: 0 }, { id: 1 }, { id: 2 }, { id: 3 }, { id: 4 }, { id: 5 }],
+          data: [
+            { id: 0, tenantChineseName: 'XXXXXX', userName: '张三1', date: '2022-1-2' },
+            { id: 1, tenantChineseName: 'XXXXXX', userName: '张三2', date: '2022-1-2' },
+            { id: 2, tenantChineseName: 'XXXXXX', userName: '张三3', date: '2022-1-2' },
+            { id: 3, tenantChineseName: 'XXXXXX', userName: '张三4', date: '2022-1-2' },
+            { id: 4, tenantChineseName: 'XXXXXX', userName: '张三5', date: '2022-1-2' },
+            { id: 5, tenantChineseName: 'XXXXXX', userName: '张三6', date: '2022-1-2' },
+          ],
         });
       }}
       rowSelection={{
@@ -83,3 +106,5 @@ const Demo = (props) => {
 
 export default Demo;
 ```
+
+<API src='./index.tsx'></API>

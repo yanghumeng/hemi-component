@@ -58,7 +58,7 @@ const JsonFormList = (props: TypeProps) => {
                   ))}
                 </Col>
                 <Col flex="40px">
-                  {index + 1 > itemNumber ? (
+                  {fields.length > itemNumber ? (
                     <MinusCircleOutlined
                       style={{
                         fontSize: '20px',

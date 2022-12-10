@@ -13,6 +13,7 @@ import './index.less';
  * @params {false | SearchTypes} search 禁用新增按钮
  */
 interface tableProps extends TableProps<any> {
+  linenum?: number;
   formRef?: FormInstance;
   rowSelection?: {
     selectedList?: Array<any>;
@@ -85,6 +86,7 @@ const BasicTable = (props: tableProps) => {
     <Card>
       {isSearch && (
         <SearchForm
+          linenum={props?.linenum}
           formRef={props?.formRef}
           getData={handleSearch}
           columns={expressionAt?.columns}
@@ -101,6 +103,7 @@ const BasicTable = (props: tableProps) => {
         pagination={{ ...paginationProps, ...pagination }}
         /* 放最后方便对上面的props覆盖 */
         {...expressionAt}
+        columns={expressionAt.columns.filter((item: any) => !item?.hideTable)}
         onChange={handleChangeTable}
       />
     </Card>

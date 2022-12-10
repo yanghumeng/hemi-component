@@ -7,7 +7,7 @@ const FormItem = Form.Item;
 
 const SearchForm = (props: any) => {
   const [paramExpand, setParamExpand] = useState(false);
-  const { getData, columns } = props;
+  const { getData, columns, linenum = 2 } = props;
   const [form] = props?.formRef || Form.useForm();
   const formItemLayout = {
     labelCol: { span: 8 },
@@ -51,7 +51,9 @@ const SearchForm = (props: any) => {
               hideSearch || (
                 <Col md={6} sm={24} key={index}>
                   <FormItem label={item?.searchTitle || item?.title} name={item?.dataIndex}>
-                    {(item?.searchIndex || item?.dataIndex) && <Input placeholder="请输入" />}
+                    {(item?.searchIndex || item?.dataIndex) && (
+                      <Input placeholder={item?.placeholder || '请输入'} autoComplete="off" />
+                    )}
                   </FormItem>
                 </Col>
               )
@@ -63,16 +65,19 @@ const SearchForm = (props: any) => {
 
   return (
     <Form form={form} {...formItemLayout} onFinish={handleSearch}>
-      <Row gutter={10} justify="end">
+      <Row gutter={6}>
         {/* 展开前默认取n项，展开后显示全部。通过children进行dom渲染 */}
         {paramExpand
           ? renderFormItem()?.props?.children.map((item: any) => item)
           : renderFormItem()
-              ?.props?.children?.slice(0, 3)
+              ?.props?.children?.slice(0, linenum * 4 - 1)
               ?.map((item: any) => item)}
-        <Col md={paramExpand ? 24 : 6} sm={24} style={{ lineHeight: '40px' }}>
-          <div style={{ display: 'flex', justifyContent: 'end' }}>
-            {renderFormItem()?.props?.children.length > 3 && (
+        <Col
+          md={columns.length <= linenum * 4 - 1 || paramExpand ? 24 - (columns.length % 4) * 6 : 6}
+          sm={24}
+        >
+          <div style={{ display: 'flex', justifyContent: 'end', lineHeight: '40px' }}>
+            {renderFormItem()?.props?.children.length > linenum * 4 - 1 && (
               <a
                 style={{ marginRight: '20px' }}
                 onClick={() => {
