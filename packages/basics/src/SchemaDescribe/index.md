@@ -27,19 +27,23 @@ export default () => {
   const [visible, setVisible] = useState(false);
   const itemList = [
     {
-      type: 'text',
       name: 'first',
-      label: '第一个',
+      label: '默认文本',
     },
     {
+      type: 'input',
       name: 'th',
-      label: '默认输入框',
+      label: '输入框',
     },
     {
-      name: 'th',
+      name: 'th2',
       label: '自定义组件',
       rules: [{ required: true, message: '字段必填' }],
       customRender: <InputNumber placeholder="请输入" style={{ width: '100%' }} />,
+    },
+    {
+      name: 'th2',
+      label: '自定义组件',
     },
   ];
   useEffect(() => {
@@ -53,7 +57,8 @@ export default () => {
       <Form form={form} size="small" onFinish={onFinish}>
         <div>当有额外组件</div>
         <SchemaDescribe
-          style={{ background: '#eee' }}
+          style={{ backgroundColor: '#f5f5f5' }}
+          labelStyle={{ justifyContent: 'flex-end', minWidth: 100 }}
           itemList={itemList}
           column={2}
           extraComponents={
@@ -63,7 +68,7 @@ export default () => {
           }
         />
         <div>当无额外组件</div>
-        <SchemaDescribe style={{ background: '#eee' }} itemList={itemList} column={2} />
+        <SchemaDescribe fillLine={true} bordered itemList={itemList} />
         <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
           <Button type="primary" htmlType="submit">
             Submit

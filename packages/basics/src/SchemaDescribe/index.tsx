@@ -1,17 +1,20 @@
-import React, { ReactNode } from 'react';
+import React, { ReactNode, useEffect, useState } from 'react';
 import { Descriptions, DescriptionsProps, Input, Form, FormItemProps, Row, Col } from 'antd';
 import styleScoped from './index.less';
 
 interface DescribeItemProps extends FormItemProps {
   type?: string;
   customRender?: ReactNode;
+  span?: number;
 }
 interface DescribeProps extends DescriptionsProps {
-  itemList?: DescribeItemProps[];
+  itemList: DescribeItemProps[];
   extraComponents?: ReactNode;
+  fillLine?: boolean;
 }
 const SchemaDescribe = (props: DescribeProps) => {
-  const { itemList, extraComponents } = props;
+  const { itemList, extraComponents, column = 3, fillLine = false } = props;
+
   return (
     <div>
       <Row className={styleScoped['antrow']} style={props?.style}>
@@ -19,23 +22,37 @@ const SchemaDescribe = (props: DescribeProps) => {
           <Descriptions size="small" {...props} style={{}}>
             {itemList?.map((item, index) => {
               return (
-                <Descriptions.Item key={index}>
+                <Descriptions.Item
+                  span={item?.span}
+                  label={
+                    item?.rules ? (
+                      <>
+                        <span className={styleScoped['itemrequired']}>* </span>
+                        {item.label}
+                      </>
+                    ) : (
+                      item.label
+                    )
+                  }
+                  key={index}
+                  className={styleScoped['antdescriptionsitem']}
+                >
                   <Form.Item
                     className={styleScoped['antformitem']}
                     name={item.name}
-                    label={item.label}
                     rules={item?.rules}
                   >
                     {item?.customRender ||
-                      (item?.type == 'text' ? (
-                        <Input bordered={false} readOnly={true}></Input>
-                      ) : (
+                      (item?.type == 'input' ? (
                         <Input placeholder={`请输入${item.label}`}></Input>
+                      ) : (
+                        <Input bordered={false} readOnly={true}></Input>
                       ))}
                   </Form.Item>
                 </Descriptions.Item>
               );
             })}
+            {itemList.length % parseInt(column + '') != 0 && fillLine && <div />}
           </Descriptions>
         </Col>
         {extraComponents && (
