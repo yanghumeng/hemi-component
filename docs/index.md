@@ -18,7 +18,7 @@ features:
 footer: Open-source MIT Licensed | Copyright © 2020<br />Powered by [dumi](https://d.umijs.org)
 ---
 
-## 1. 此项目是自动化不是在 GitHub.Pages 上的
+## 1. 此项目是自动化部署在 GitHub.Pages 上的
 
 - 部署触发是在 push 到 test-docs 或 release-docs 分支时，执行
 

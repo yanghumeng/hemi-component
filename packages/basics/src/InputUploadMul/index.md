@@ -17,7 +17,7 @@ group:
   ```json
   fileList={[
             {
-              url: "https://dm-img-test.duomai.com/20220909174300_m6ke0676so.jpg",
+              url: "https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png",
               res: "图片标识",
               status: "success",
             }
@@ -58,7 +58,7 @@ export default () => {
           len={2}
           fileList={[
             {
-              url: 'https://dm-img-test.duomai.com/20220909174300_m6ke0676so.jpg',
+              url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
               res: '图片标识',
               status: 'success',
             },

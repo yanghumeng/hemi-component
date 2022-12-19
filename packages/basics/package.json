@@ -1,6 +1,6 @@
 {
   "name": "@hemi-component/basics",
-  "version": "1.0.1-alpha.0",
+  "version": "1.0.1-alpha.1",
   "description": "> TODO: description",
   "author": "hemi <1830720944@qq.com>",
   "homepage": "",
@@ -8,14 +8,14 @@
   "main": "dist/index.js",
   "module": "es/index.js",
   "typings": "es/index.d.ts",
-  "files": [
-    "lib",
-    "es"
-  ],
   "directories": {
     "src": "src",
     "test": "__tests__"
   },
+  "files": [
+    "lib",
+    "es"
+  ],
   "dependencies": {
     "@babel/runtime": "^7.14.0"
   },

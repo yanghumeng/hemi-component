@@ -1,6 +1,6 @@
 {
   "name": "@hemi-component/utils",
-  "version": "1.0.1-alpha.0",
+  "version": "1.0.1-alpha.1",
   "description": "> TODO: description",
   "author": "hemi <1830720944@qq.com>",
   "homepage": "https://github.com/yanghumeng/hemi-component#readme",
@@ -10,12 +10,6 @@
   "directories": {
     "src": "src",
     "test": "__tests__"
-  },
-  "files": [
-    "lib"
-  ],
-  "publishConfig": {
-    "registry": "http://192.168.1.30:4873/"
   },
   "repository": {
     "type": "git",

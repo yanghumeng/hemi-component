@@ -35,8 +35,8 @@ const JsonFormList = (props: TypeProps) => {
     <Form.List name={name}>
       {(fields, { add, remove }) => (
         <>
-          <div style={style}>
-            {fields.map((field, index) => (
+          {fields.map((field, index) => (
+            <div style={style}>
               <Row key={field.key} wrap={false}>
                 <Col flex="auto">
                   {initValues.map((item, index) => (
@@ -58,7 +58,7 @@ const JsonFormList = (props: TypeProps) => {
                   ))}
                 </Col>
                 <Col flex="40px">
-                  {index + 1 > itemNumber ? (
+                  {fields.length > itemNumber ? (
                     <MinusCircleOutlined
                       style={{
                         fontSize: '20px',
@@ -72,12 +72,12 @@ const JsonFormList = (props: TypeProps) => {
                   ) : null}
                 </Col>
               </Row>
-            ))}
-          </div>
+            </div>
+          ))}
+
           <Row>
             <Button
               type="dashed"
-              style={{ marginTop: '10px' }}
               onClick={(props?.customAdd && (() => props.customAdd?.(add))) || (() => add())}
               block
               icon={<PlusOutlined />}

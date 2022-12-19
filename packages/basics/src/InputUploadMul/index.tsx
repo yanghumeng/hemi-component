@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Upload, Modal, Input, UploadFile } from 'antd';
+import { Upload, Modal, Input, UploadFile, Image } from 'antd';
 import cloneDeep from 'lodash/cloneDeep';
 import { PlusOutlined, LoadingOutlined } from '@ant-design/icons';
 import { message } from 'antd';
@@ -22,20 +22,13 @@ export interface InputUploadProps extends UploadProps {
   modalWidth?: number;
 }
 export default function UploadPicture(props: InputUploadProps & UploadProps) {
-  const {
-    len = 1,
-    modalWidth = 800,
-    onChange,
-    title,
-    inputStyle = {},
-    imgStyle = { maxHeight: '700px', overflow: 'auto' },
-  } = props;
+  const { len = 1, onChange, title, inputStyle = {} } = props;
   const { inputRequest } = props;
   const [fileList, setFileList] = useState<Array<UploadFile>>([]);
   const [results, setResults] = useState<any>([]);
   const [previewVisible, setPreviewVisible] = useState(false);
   const [previewImage, setPreViewImage] = useState();
-  const [previewTitle, setPreviewTitle] = useState('预览');
+  const [scaleStep, setScaleStep] = useState(0.5);
   const [inputValue, setInputValue] = useState<string>();
   const [uploading, setuploading] = useState(false);
   useEffect(() => {
@@ -228,19 +221,19 @@ export default function UploadPicture(props: InputUploadProps & UploadProps) {
       >
         {fileList.length >= len ? null : uploadButton}
       </Upload>
-      <Modal
-        visible={previewVisible}
-        title={previewTitle}
-        width={modalWidth}
-        footer={null}
-        onCancel={() => {
-          setPreviewVisible(false);
+      <Image
+        width={200}
+        style={{ display: 'none' }}
+        src={previewImage}
+        preview={{
+          visible: previewVisible,
+          scaleStep,
+          src: previewImage,
+          onVisibleChange: (value) => {
+            setPreviewVisible(value);
+          },
         }}
-      >
-        <div style={imgStyle}>
-          <img alt="example" style={{ width: '100%' }} src={previewImage} />
-        </div>
-      </Modal>
+      />
     </>
   );
 }
