@@ -26,7 +26,7 @@ interface tableProps extends TableProps<any> {
   toolBarRender?: React.ReactNode[];
 }
 
-const BasicTable = (props: tableProps) => {
+const CurdTable = (props: tableProps) => {
   const { request, pagination, expressionAt, toolBarRender, isSearch = true } = props;
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState([]);
@@ -110,11 +110,4 @@ const BasicTable = (props: tableProps) => {
   );
 };
 
-// 添加默认值
-// BasicTable.defaultProps = {
-//   showNewBtn: true,
-//   disableNewBtn: false,
-//   search: true,
-// };
-
-export default BasicTable;
+export default CurdTable;
