@@ -13,7 +13,7 @@ group:
 
 ## 注意
 
-- `type`属性值为 text 值时表示为纯文本展示，没有 `type` 属性时默认为 input 组件
+- `type`属性值为 input 值时表示为输入框，没有 `type` 属性时默认为文本
 - 其他额外属性可以参考 [antdesign](https://4x-ant-design.antgroup.com/components/descriptions-cn) 官网的 Descriptions 组件 [Descriptions](https://4x-ant-design.antgroup.com/components/descriptions-cn/#API)API
 
 ## 代码演示
@@ -40,10 +40,6 @@ export default () => {
       label: '自定义组件',
       rules: [{ required: true, message: '字段必填' }],
       customRender: <InputNumber placeholder="请输入" style={{ width: '100%' }} />,
-    },
-    {
-      name: 'th2',
-      label: '自定义组件',
     },
   ];
   useEffect(() => {
@@ -104,7 +100,7 @@ export default () => {
 
 ### DescribeItemProps
 
-| 属性名       | 描述             | 类型         | 默认值 |
-| ------------ | ---------------- | ------------ | ------ |
-| type         | 列表项的类型     | `text`或不传 | 空     |
-| customRender | 表单的自定义组件 | `ReactNode`  | 空     |
+| 属性名 | 描述 | 类型 | 默认值 |
+| --- | --- | --- | --- |
+| type | 列表项的类型,默认是文本显示，`type`指定为 input 时时输入框 | `input`或不传 | 空 |
+| customRender | 表单的自定义组件 | `ReactNode` | 空 |

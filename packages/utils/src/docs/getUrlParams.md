@@ -7,7 +7,11 @@ group:
   path: /function
 ---
 
-路由参数提取 parseParam(url: string) 这里将方法返回的对象转化为 json 格式了
+# getUrlParams 描述
+
+路由参数提取 `getUrlParams(url: string)` 这里将方法返回一个 json 对象
+
+## 代码演示
 
 ```tsx
 import React from 'react';
