@@ -22,6 +22,11 @@ export function getUrlParams(url: string, key?: string) {
   }
 }
 
+/**
+ * 大写金额
+ * @param num 值
+ * @returns
+ */
 export function digitUppercase(num: string | number) {
   const fraction = ['角', '分'];
   const digit = ['零', '壹', '贰', '叁', '肆', '伍', '陆', '柒', '捌', '玖'];
