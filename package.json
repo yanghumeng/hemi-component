@@ -49,8 +49,12 @@
       "@commitlint/config-conventional"
     ]
   },
+  "cz-customizable": {
+    "config": ".cz-config.js"
+  },
   "husky": {
     "hooks": {
+      "pre-commit": "lint-staged",
       "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
     }
   },
