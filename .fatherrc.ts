@@ -1,10 +1,7 @@
 export default {
   // more father 4 config: https://github.com/umijs/father-next/blob/master/docs/config.md
   cjs: 'rollup',
-  esm: {
-    type: 'babel',
-    importLibToEs: true,
-  },
+  esm: 'babel',
   cssModules: true,
   extraBabelPlugins: [
     [
