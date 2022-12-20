@@ -1,6 +1,6 @@
 export default {
   // more father 4 config: https://github.com/umijs/father-next/blob/master/docs/config.md
-  cjs: 'rollup',
+  cjs: false,
   esm: 'babel',
   cssModules: true,
   extraBabelPlugins: [
@@ -18,7 +18,7 @@ export default {
         root: ['./'],
         extensions: ['.js', '.jsx', '.tsx'],
         alias: {
-          '@basics@': '@dm-component-next/basics/es',
+          '@basics@': '@hemi-component/basics/es',
         },
       },
     ],
