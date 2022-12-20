@@ -6,8 +6,9 @@
   "homepage": "https://github.com/yanghumeng/hemi-component#readme",
   "license": "ISC",
   "main": "dist/index.js",
+  "private": false,
   "module": "es/index.js",
-  "typings": "es/index.d.ts",
+  "typings": "dist/index.d.ts",
   "publishConfig": {
     "access": "public"
   },
@@ -20,7 +21,7 @@
     "url": "git+https://github.com/yanghumeng/hemi-component.git"
   },
   "files": [
-    "lib",
+    "dist",
     "es"
   ],
   "scripts": {
@@ -29,5 +30,5 @@
   "bugs": {
     "url": "https://github.com/yanghumeng/hemi-component/issues"
   },
-  "gitHead": "192811bd094c0d7c2038bba7161da9c4693cf9b5"
+  "gitHead": "75f231cc9e603165ae744d9e3ec2555b1906e94d"
 }

@@ -5,9 +5,10 @@
   "author": "hemi <1830720944@qq.com>",
   "homepage": "",
   "license": "ISC",
+  "private": false,
   "main": "dist/index.js",
   "module": "es/index.js",
-  "typings": "es/index.d.ts",
+  "typings": "dist/index.d.ts",
   "publishConfig": {
     "access": "public"
   },
@@ -16,7 +17,7 @@
     "test": "__tests__"
   },
   "files": [
-    "lib",
+    "dist",
     "es"
   ],
   "peerDependencies": {
@@ -64,5 +65,5 @@
   "scripts": {
     "test": "node ./__tests__/@hemi-component/basics.test.js"
   },
-  "gitHead": "192811bd094c0d7c2038bba7161da9c4693cf9b5"
+  "gitHead": "75f231cc9e603165ae744d9e3ec2555b1906e94d"
 }
