@@ -29,5 +29,5 @@
   "scripts": {
     "test": "node ./__tests__/@hemi-component/basics.test.js"
   },
-  "gitHead": "56be363000ad0e53f78e1ba8349c472ee39133a4"
+  "gitHead": "192811bd094c0d7c2038bba7161da9c4693cf9b5"
 }
