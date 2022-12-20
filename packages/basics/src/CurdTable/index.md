@@ -13,7 +13,7 @@ group:
 
 ```tsx
 import React, { useState } from 'react';
-import { Select, DatePicker } from 'antd';
+import { Select, DatePicker, Button, Space } from 'antd';
 import { CurdTable } from '@hemi-component/basics';
 
 const { Option } = Select;
@@ -27,7 +27,12 @@ async function sleep(n) {
 }
 const Demo = (props) => {
   const [dataSource, setDataSource] = useState([]);
-
+  const toolBarRender = (
+    <Space>
+      <Button type="primary">新建</Button>
+      <Button>导出</Button>
+    </Space>
+  );
   const columns = [
     {
       title: 'id',
@@ -76,6 +81,7 @@ const Demo = (props) => {
     <CurdTable
       linenum={2}
       rowKey="id"
+      toolBarRender={toolBarRender}
       request={async (params, sorter) => {
         console.log(params, sorter);
         await sleep(1);

@@ -18,14 +18,19 @@ group:
 
 ## 代码演示
 
+### 基本使用
+
 ```tsx
-import React, { useState, useEffect } from 'react';
-import { Form, Button, InputNumber, Image, Select } from 'antd';
+import React, { useEffect } from 'react';
+import { Form, InputNumber, Select } from 'antd';
 import { SchemaDescribe } from '@hemi-component/basics';
 export default () => {
   const [form] = Form.useForm();
-  const [visible, setVisible] = useState(false);
   const itemList = [
+    {
+      name: 'first',
+      label: '默认文本',
+    },
     {
       name: 'first',
       label: '默认文本',
@@ -39,6 +44,40 @@ export default () => {
       label: '默认长文本长文本',
     },
   ];
+  useEffect(() => {
+    form.setFieldsValue({
+      first: '默认文本显示',
+      last: '这是一个很长的文本，为了验证最后这是一个很长的文本，为了验证最后一个元素是否独占剩余空间这是一个很长的文本，为了验证最后一个元素是否独占剩余空间一个元素是否独占剩余空间',
+    });
+  }, []);
+  const onFinish = (value) => {
+    console.log(value);
+  };
+  return (
+    <>
+      <Form form={form} size="small" onFinish={onFinish}>
+        <h2>无额外组件</h2>
+        <SchemaDescribe itemList={itemList} />
+        <br />
+
+        <h2>标题字右对齐</h2>
+        <SchemaDescribe labelAlign="right" itemList={itemList} />
+        <br />
+        <h2>最后一个元素充满剩余空间</h2>
+        <SchemaDescribe fillLine={true} itemList={itemList} />
+      </Form>
+    </>
+  );
+};
+```
+
+### 自定义组件
+
+```tsx
+import React from 'react';
+import { InputNumber, Image, Select } from 'antd';
+import { SchemaDescribe } from '@hemi-component/basics';
+export default () => {
   const customList = [
     {
       type: 'input',
@@ -63,19 +102,60 @@ export default () => {
       ),
     },
   ];
+
+  return (
+    <>
+      <SchemaDescribe itemList={customList} />
+    </>
+  );
+};
+```
+
+### 额外组件
+
+```tsx
+import React, { useState, useEffect } from 'react';
+import { Form, Button, InputNumber, Image, Select } from 'antd';
+import { SchemaDescribe } from '@hemi-component/basics';
+export default () => {
+  const [form] = Form.useForm();
+  const [visible, setVisible] = useState(false);
+  const itemList = [
+    {
+      name: 'first',
+      label: '默认文本',
+    },
+    {
+      name: 'first2',
+      label: '默认文本',
+    },
+    {
+      name: 'last',
+      label: '默认长文本长文本',
+    },
+    {
+      name: 'first',
+      label: '默认文本',
+    },
+    {
+      name: 'first2',
+      label: '默认文本',
+    },
+    {
+      name: 'last',
+      label: '默认长文本长文本',
+    },
+  ];
   useEffect(() => {
     form.setFieldsValue({
       first: '默认文本显示',
-      last: '这是一个很长的文本，为了验证最后这是一个很长的文本，为了验证最后一个元素是否独占剩余空间这是一个很长的文本，为了验证最后一个元素是否独占剩余空间一个元素是否独占剩余空间',
+      first2: '默认文本显示2',
+      last: '这是一个文本',
     });
   }, []);
-  const onFinish = (value) => {
-    console.log(value);
-  };
   return (
     <>
-      <Form form={form} size="small" onFinish={onFinish}>
-        <h2>有额外组件</h2>
+      <Form form={form} size="small">
         <SchemaDescribe
           itemList={itemList}
           extraComponents={
@@ -84,23 +164,6 @@ export default () => {
             </Button>
           }
         />
-        <br />
-        <h2>无额外组件</h2>
-        <SchemaDescribe itemList={itemList} />
-        <br />
-
-        <h2>有边框</h2>
-        <SchemaDescribe bordered itemList={itemList} />
-        <br />
-
-        <h2>标题字右对齐</h2>
-        <SchemaDescribe labelAlign="right" itemList={itemList} />
-        <br />
-        <h2>自定义组件</h2>
-        <SchemaDescribe labelAlign="right" itemList={customList} />
-        <br />
-        <h2>最后一个元素充满剩余空间</h2>
-        <SchemaDescribe fillLine={true} itemList={itemList} />
       </Form>
       <Image
         width={200}
