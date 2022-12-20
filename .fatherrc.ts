@@ -4,7 +4,6 @@ export default {
   esm: {
     transformer: 'babel',
   },
-  cssModules: true,
   extraBabelPlugins: [
     [
       'import',
