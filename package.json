@@ -29,6 +29,9 @@
     "src/[!.]*",
     "dist"
   ],
+  "publishConfig": {
+    "access": "public"
+  },
   "main": "dist/index.ts",
   "module": "src/index.ts",
   "typings": "dist/index.d.ts",

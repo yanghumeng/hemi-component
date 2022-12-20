@@ -9,6 +9,7 @@ node_modules
 /package-lock.json
 
 # production
+/lib
 /es
 /docs-dist
 
