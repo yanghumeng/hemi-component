@@ -98,7 +98,7 @@ const Demo = (props) => {
         });
       }}
       rowSelection={{
-        onChange: (newSelectedRowKeys: React.Key[], selectedRows: any) => {
+        onChange: (newSelectedRowKeys: any, selectedRows: any) => {
           console.log('selectedRowKeys changed: ', newSelectedRowKeys, selectedRows);
         },
       }}
