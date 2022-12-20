@@ -13,7 +13,7 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 import React from 'react';
 import styleScoped from "./index.less";
-import TextArea from 'antd/lib/input/TextArea';
+import TextArea from "antd/es/input/TextArea";
 var SchemaDescribe = function SchemaDescribe(props) {
   var itemList = props.itemList,
     extraComponents = props.extraComponents,
