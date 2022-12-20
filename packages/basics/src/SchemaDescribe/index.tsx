@@ -56,7 +56,7 @@ const SchemaDescribe = (props: DescribeProps) => {
                 </Descriptions.Item>
               );
             })}
-            {fillLine ? '' : <div />}
+            {itemList.length % parseInt(column + '') == 0 || fillLine ? '' : <div />}
           </Descriptions>
         </Col>
         {extraComponents && (

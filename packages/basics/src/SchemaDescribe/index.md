@@ -35,10 +35,6 @@ export default () => {
       label: '默认文本',
     },
     {
-      name: 'first',
-      label: '默认文本',
-    },
-    {
       name: 'last',
       label: '默认长文本长文本',
     },
