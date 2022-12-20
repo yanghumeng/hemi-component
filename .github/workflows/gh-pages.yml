@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - test-docs # default branch
+      - release-docs
 
 jobs:
   deploy:
