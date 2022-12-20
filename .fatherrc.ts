@@ -1,7 +1,10 @@
 export default {
   // more father 4 config: https://github.com/umijs/father-next/blob/master/docs/config.md
-  cjs: false,
-  esm: 'babel',
+  cjs: { type: 'babel', lazy: true },
+  esm: {
+    type: 'babel',
+    //importLibToEs: true,
+  },
   cssModules: true,
   extraBabelPlugins: [
     [
