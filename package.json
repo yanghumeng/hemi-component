@@ -54,6 +54,12 @@
       "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
     }
   },
+  "peerDependencies": {
+    "@ant-design/icons": "^4.8.0",
+    "antd": "^4.23.6",
+    "moment": "^2.29.1",
+    "react": "^16.12.0"
+  },
   "dependencies": {
     "@ant-design/icons": "^4.8.0",
     "antd": "^4.23.6",
