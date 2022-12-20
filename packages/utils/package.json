@@ -15,6 +15,10 @@
     "type": "git",
     "url": "git+https://github.com/yanghumeng/hemi-component.git"
   },
+  "files": [
+    "lib",
+    "es"
+  ],
   "scripts": {
     "test": "node ./__tests__/utils.test.js"
   },
