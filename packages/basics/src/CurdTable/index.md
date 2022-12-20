@@ -1,5 +1,5 @@
 ---
-title: BasicTable 表格
+title: CurdTable 表格
 nav:
   path: /basics
 group:
