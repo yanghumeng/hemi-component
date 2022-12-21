@@ -9,7 +9,8 @@
   "module": "es/index.js",
   "typings": "dist/index.d.ts",
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
   },
   "directories": {
     "src": "src",
@@ -65,5 +66,5 @@
   "scripts": {
     "test": "node ./__tests__/@hemi-component/basics.test.js"
   },
-  "gitHead": "4009e4f3f89686cc39d2fcd31b1527cffaa24277"
+  "gitHead": "6c5121d1228acf76e928119e579383721f533078"
 }

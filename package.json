@@ -1,6 +1,7 @@
 {
   "private": false,
   "name": "hemi-component",
+  "version": "1.0.2",
   "scripts": {
     "release": "cross-env UMI_ENV=prod father-build && lerna exec npx tsc-alias && lerna publish from-package",
     "release:beta": "git push --follow-tags && cross-env UMI_ENV=dev father-build && lerna exec npx tsc-alias && lerna publish from-package --dist-tag beta",
@@ -27,7 +28,8 @@
   },
   "files": [
     "src/[!.]*",
-    "lib"
+    "lib",
+    "dist"
   ],
   "publishConfig": {
     "access": "public"
