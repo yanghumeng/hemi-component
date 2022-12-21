@@ -1,13 +1,13 @@
 {
   "name": "@hemi-component/basics",
-  "version": "1.0.3-alpha.0",
+  "version": "1.0.3-alpha.1",
   "description": "> TODO: description",
   "author": "hemi <1830720944@qq.com>",
   "homepage": "",
   "license": "ISC",
-  "main": "dist/index.js",
+  "main": "lib/index.js",
   "module": "es/index.js",
-  "typings": "es/index.d.ts",
+  "typings": "lib/index.d.ts",
   "publishConfig": {
     "access": "public"
   },
@@ -16,6 +16,7 @@
     "test": "__tests__"
   },
   "files": [
+    "dist",
     "lib",
     "es"
   ],
@@ -64,5 +65,5 @@
   "scripts": {
     "test": "node ./__tests__/@hemi-component/basics.test.js"
   },
-  "gitHead": "192811bd094c0d7c2038bba7161da9c4693cf9b5"
+  "gitHead": "4009e4f3f89686cc39d2fcd31b1527cffaa24277"
 }
