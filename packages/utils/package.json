@@ -5,10 +5,10 @@
   "author": "hemi <1830720944@qq.com>",
   "homepage": "https://github.com/yanghumeng/hemi-component#readme",
   "license": "ISC",
-  "main": "dist/index.js",
+  "main": "lib/index.js",
   "private": false,
   "module": "es/index.js",
-  "typings": "dist/index.d.ts",
+  "typings": "lib/index.d.ts",
   "publishConfig": {
     "access": "public"
   },
@@ -30,5 +30,5 @@
   "bugs": {
     "url": "https://github.com/yanghumeng/hemi-component/issues"
   },
-  "gitHead": "75f231cc9e603165ae744d9e3ec2555b1906e94d"
+  "gitHead": "4009e4f3f89686cc39d2fcd31b1527cffaa24277"
 }

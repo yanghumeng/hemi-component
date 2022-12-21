@@ -27,14 +27,14 @@
   },
   "files": [
     "src/[!.]*",
-    "dist"
+    "lib"
   ],
   "publishConfig": {
     "access": "public"
   },
-  "main": "dist/index.ts",
+  "main": "lib/index.ts",
   "module": "src/index.ts",
-  "typings": "dist/index.d.ts",
+  "typings": "lib/index.d.ts",
   "gitHooks": {
     "pre-commit": "lint-staged"
   },
