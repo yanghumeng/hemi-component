@@ -6,7 +6,6 @@
   "homepage": "https://github.com/yanghumeng/hemi-component#readme",
   "license": "ISC",
   "main": "lib/index.js",
-  "private": false,
   "module": "es/index.js",
   "typings": "lib/index.d.ts",
   "publishConfig": {
@@ -22,6 +21,7 @@
   },
   "files": [
     "dist",
+    "lib",
     "es"
   ],
   "scripts": {
