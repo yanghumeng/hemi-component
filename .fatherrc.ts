@@ -2,12 +2,12 @@ import builtins from 'builtin-modules';
 import commonjs from '@rollup/plugin-commonjs';
 export default {
   // more father 4 config: https://github.com/umijs/father-next/blob/master/docs/config.md
-  extraExternals: builtins,
-  cssModules: true,
+  // extraExternals: builtins,
+  // cssModules: true,
   cjs: { transformer: 'babel' },
   esm: {
     transformer: 'babel',
-    importLibToEs: true,
+    // importLibToEs: true,
   },
   // typescriptOpts: {
   //   // https://github.com/ezolenko/rollup-plugin-typescript2/issues/201
