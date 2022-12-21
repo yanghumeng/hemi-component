@@ -5,9 +5,9 @@
   "author": "hemi <1830720944@qq.com>",
   "homepage": "https://github.com/yanghumeng/hemi-component#readme",
   "license": "ISC",
-  "main": "dist/index.js",
+  "main": "lib/index.js",
   "module": "es/index.js",
-  "typings": "dist/index.d.ts",
+  "typings": "lib/index.d.ts",
   "publishConfig": {
     "access": "public",
     "registry": "https://registry.npmjs.org/"
