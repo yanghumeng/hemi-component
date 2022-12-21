@@ -1,4 +1,4 @@
-import React, { ReactNode, useEffect, useState } from 'react';
+import React, { ReactNode } from 'react';
 import { Descriptions, DescriptionsProps, Input, Form, FormItemProps, Row, Col } from 'antd';
 import styleScoped from './index.less';
 import TextArea from 'antd/lib/input/TextArea';
