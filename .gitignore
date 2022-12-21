@@ -9,9 +9,10 @@ node_modules
 /package-lock.json
 
 # production
-/lib
-/es
-/docs-dist
+lib
+es
+docs-dist
+dist
 
 # misc
 .DS_Store
