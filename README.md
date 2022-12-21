@@ -41,13 +41,26 @@ $ npm run build
 ```js
 // umi config ，参考https://umijs.org/config/
 {
- ...,
  extraBabelPlugins: [
       [
         'import',
         { libraryName: '@hemi-component/basics', libraryDirectory: 'es', camel2DashComponentName: false },
         '@hemi-component/basics'
       ],
+    ],
+  }
+```
+
+## 样式不生效
+
+如果样式不生效，可以配置`extraBabelIncludes`
+
+```js
+  // umi config参考https://v3.umijs.org/zh-CN/config#extrababelincludes
+  {
+     extraBabelIncludes: [
+      '@dm-component-next/basics',
+      '@dm-component-next/utils',
     ],
   }
 ```
