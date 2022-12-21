@@ -19,7 +19,7 @@
     "lv:patch:change-alpha": "lerna version prepatch --conventional-prerelease",
     "lv:patch:change-stable": "lerna version patch --conventional-graduate",
     "lv:alpha": "lerna version prerelease",
-    "lv:unknown": "git fetch origin master:master && git fetch origin test:test && node ./scripts/lerna-gitflow.js",
+    "lv:unknown": "git fetch origin release:release && git fetch origin test:test && node ./scripts/lerna-gitflow.js",
     "prettier": "prettier --write \"**/*.{js,jsx,tsx,ts,less,md,json}\"",
     "test": "umi-test",
     "test:coverage": "umi-test --coverage",
