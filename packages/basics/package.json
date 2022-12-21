@@ -66,5 +66,5 @@
   "scripts": {
     "test": "node ./__tests__/@hemi-component/basics.test.js"
   },
-  "gitHead": "6c5121d1228acf76e928119e579383721f533078"
+  "gitHead": "5294ac78835d746107fc360cb3f9692ef5132315"
 }
