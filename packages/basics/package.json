@@ -1,32 +1,69 @@
 {
   "name": "@hemi-component/basics",
-  "version": "1.0.1-alpha.1",
+  "version": "1.0.3-alpha.2",
   "description": "> TODO: description",
   "author": "hemi <1830720944@qq.com>",
   "homepage": "",
   "license": "ISC",
-  "main": "dist/index.js",
+  "main": "lib/index.js",
   "module": "es/index.js",
-  "typings": "es/index.d.ts",
+  "typings": "lib/index.d.ts",
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
   "directories": {
     "src": "src",
     "test": "__tests__"
   },
   "files": [
+    "dist",
     "lib",
     "es"
   ],
+  "peerDependencies": {
+    "@ant-design/icons": "^4.8.0",
+    "antd": "^4.23.6",
+    "moment": "^2.29.1",
+    "react": "^16.12.0"
+  },
   "dependencies": {
-    "@babel/runtime": "^7.14.0"
+    "@ant-design/icons": "^4.8.0",
+    "@babel/runtime": "^7.14.0",
+    "antd": "^4.23.6",
+    "babel-plugin-import": "^1.13.5",
+    "react": "^16.12.0"
   },
   "devDependencies": {
+    "@ant-design/icons": "^4.8.0",
+    "@commitlint/cli": "^17.2.0",
+    "@commitlint/config-conventional": "^17.2.0",
+    "@testing-library/jest-dom": "^5.15.1",
+    "@testing-library/react": "^13.0.0",
     "@types/classnames": "^2.2.11",
+    "@types/jest": "^27.0.3",
     "@types/react": "^16.14.2",
     "@types/react-dom": "^16.9.9",
-    "babel-plugin-import": "^1.1.1",
-    "father-build": "^1.19.1"
+    "@umijs/fabric": "^2.8.1",
+    "@umijs/test": "^3.0.5",
+    "antd": "^4.23.6",
+    "babel-plugin-import": "^1.13.5",
+    "babel-plugin-module-resolver": "^4.1.0",
+    "builtin-modules": "^3.2.0",
+    "cross-env": "^7.0.3",
+    "dumi": "^1.1.0",
+    "father": "^4.0.0",
+    "gh-pages": "^3.0.0",
+    "husky": "^8.0.2",
+    "lerna": "^5.5.4",
+    "lint-staged": "^10.0.7",
+    "prettier": "^2.2.1",
+    "react": "~16.12.0",
+    "react-dom": "~16.12.0",
+    "yorkie": "^2.0.0"
   },
   "scripts": {
     "test": "node ./__tests__/@hemi-component/basics.test.js"
-  }
+  },
+  "gitHead": "2f3b6e008e0ef6b2fd0191218e37ea8ee6cded9d"
 }

@@ -1,12 +1,17 @@
 {
   "name": "@hemi-component/utils",
-  "version": "1.0.1-alpha.1",
+  "version": "1.0.3-alpha.2",
   "description": "> TODO: description",
   "author": "hemi <1830720944@qq.com>",
   "homepage": "https://github.com/yanghumeng/hemi-component#readme",
   "license": "ISC",
-  "main": "dist/index.js",
+  "main": "lib/index.js",
   "module": "es/index.js",
+  "typings": "lib/index.d.ts",
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
   "directories": {
     "src": "src",
     "test": "__tests__"
@@ -15,10 +20,16 @@
     "type": "git",
     "url": "git+https://github.com/yanghumeng/hemi-component.git"
   },
+  "files": [
+    "dist",
+    "lib",
+    "es"
+  ],
   "scripts": {
     "test": "node ./__tests__/utils.test.js"
   },
   "bugs": {
     "url": "https://github.com/yanghumeng/hemi-component/issues"
-  }
+  },
+  "gitHead": "2f3b6e008e0ef6b2fd0191218e37ea8ee6cded9d"
 }

@@ -13,7 +13,7 @@ group:
 
 ### 注意:
 
-- `fileList`是回显图片列表，status 值必填（最好为 success），res 值是图片的唯一标识值，格式：
+- `fileList`是回显图片列表，status 值必填（且必须为 success），res 值是图片的唯一标识值，格式：
   ```json
   fileList={[
             {

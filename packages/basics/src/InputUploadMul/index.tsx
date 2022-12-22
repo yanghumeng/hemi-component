@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Upload, Modal, Input, UploadFile, Image } from 'antd';
+import { Upload, Input, UploadFile, Image } from 'antd';
 import cloneDeep from 'lodash/cloneDeep';
 import { PlusOutlined, LoadingOutlined } from '@ant-design/icons';
 import { message } from 'antd';
