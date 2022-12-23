@@ -9,7 +9,7 @@ group:
 
 ## CurdTable 表格
 
-- 包含了自动分页的表格（支持后端分页）,通用的表格功能
+- 包含了自动分页的表格（支持后端分页）,通用的表格功能,可拆分
 
 ```tsx
 import React, { useState } from 'react';
