@@ -1,14 +1,52 @@
 0 silly argv {
-0 silly argv   _: [ 'create' ],
+0 silly argv   _: [ 'version' ],
+0 silly argv   yes: true,
+0 silly argv   y: true,
+0 silly argv   push: false,
+0 silly argv   'force-publish': true,
+0 silly argv   forcePublish: true,
 0 silly argv   lernaVersion: '5.6.2',
-0 silly argv   '$0': 'D:\\nodejs\\node_global\\node_modules\\lerna\\cli.js',
-0 silly argv   name: 'packages/utils'
+0 silly argv   '$0': 'node_modules\\lerna\\cli.js',
+0 silly argv   bump: 'v1.0.3-alpha.3'
 0 silly argv }
 1 notice cli v5.6.2
 2 verbose rootPath F:\VSCode_workspace\hemi-component
 3 verbose packageConfigs Package manager 'pnpm' detected. Resolving packages using 'pnpm-workspace.yaml'.
-4 verbose packageConfigs Package manager 'pnpm' detected. Resolving packages using 'pnpm-workspace.yaml'.
-5 verbose packageConfigs Package manager 'pnpm' detected. Resolving packages using 'pnpm-workspace.yaml'.
-6 error TypeError: Cannot read property 'toLocaleLowerCase' of undefined
-6 error     at camelCase (F:\VSCode_workspace\hemi-component\node_modules\.pnpm\yargs-parser@20.2.4\node_modules\yargs-parser\build\index.cjs:8:15)
-6 error     at CreateCommand.initialize (F:\VSCode_workspace\hemi-component\node_modules\.pnpm\@lerna+create@5.6.2\node_modules\@lerna\create\index.js:62:22)
+4 info current version 1.0.3-alpha.2
+5 silly isAnythingCommitted
+6 verbose isAnythingCommitted 1
+7 silly getCurrentBranch
+8 verbose currentBranch feature/v2.0.0
+9 silly hasTags
+10 verbose hasTags true
+11 silly git-describe.sync "v1.0.3-alpha.2-18-g9fd6c23" => {"lastTagName":"v1.0.3-alpha.2","lastVersion":"v1.0.3-alpha.2","refCount":"18","sha":"9fd6c23","isDirty":false}
+12 warn force-publish all packages
+13 info Assuming all packages changed
+14 verbose updated @hemi-component/basics
+15 verbose updated @hemi-component/utils
+16 info auto-confirmed
+17 info execute Skipping git push
+18 info execute Skipping releases
+19 silly lifecycle No script for "preversion" in "hemi-component", continuing
+20 silly lifecycle No script for "preversion" in "@hemi-component/basics", continuing
+21 silly lifecycle No script for "preversion" in "@hemi-component/utils", continuing
+22 verbose version @hemi-component/basics has no lockfile. Skipping lockfile update.
+23 verbose version @hemi-component/utils has no lockfile. Skipping lockfile update.
+24 silly lifecycle No script for "version" in "@hemi-component/basics", continuing
+25 silly lifecycle No script for "version" in "@hemi-component/utils", continuing
+26 verbose version Updating root pnpm-lock.yaml
+27 silly lifecycle No script for "version" in "hemi-component", continuing
+28 silly gitAdd [
+28 silly gitAdd   'packages/basics/package.json',
+28 silly gitAdd   'packages/utils/package.json',
+28 silly gitAdd   'lerna.json',
+28 silly gitAdd   'pnpm-lock.yaml'
+28 silly gitAdd ]
+29 silly gitCommit v1.0.3-alpha.3
+30 verbose git [ 'commit', '-m', 'v1.0.3-alpha.3' ]
+31 error Error: Command failed with exit code 1: git commit -m v1.0.3-alpha.3
+31 error not found: commitlint
+31 error husky - commit-msg hook exited with code 127 (error)
+31 error husky - command not found in PATH=/mingw64/libexec/git-core:/f/VSCode_workspace/hemi-component/node_modules/.bin:/d/nodejs/node_global/node_modules/pnpm/dist/node-gyp-bin:/f/VSCode_workspace/hemi-component/node_modules/.bin:/mingw64/bin:/usr/bin:/c/Users/yhm/bin:/e/java/jdk1.8/jdk1.8.0_152/bin:/c/ProgramData/Oracle/Java/javapath:/c/Windows/system32:/c/Windows:/c/Windows/System32/Wbem:/c/Windows/System32/WindowsPowerShell/v1.0:/c/Windows/System32/OpenSSH:/e/java/maven/maven-3.6.1/apache-maven-3.6.1/bin:/c/Users/yhm/nvmw/nodejs/v16.4.0:/e/java/tomcat/apache-tomcat-9.0.45/bin:/e/java/tomcat/apache-tomcat-9.0.45/lib:/d/OtherDev/mingw64/bin:/cmd:/d/nodejs/node_global:/d/mongodb-4.4.10/mongodb-win32-x86_64-windows-4.4.10/bin:/d/Tencent/微信web开发者工具/dll:/c/Users/yhm/.windows-build-tools/python27:/c/Users/yhm/AppData/Local/Microsoft/WindowsApps:/d/IntelliJ IDEA 2019.3.3/bin:/d/nodejs/node_global:/d/OtherDev/MinGW/bin:/d/WebStorm 2019.1.4/bin:/d/Microsoft VS Code/bin
+31 error     at makeError (F:\VSCode_workspace\hemi-component\node_modules\.pnpm\execa@5.1.1\node_modules\execa\lib\error.js:60:11)
+31 error     at handlePromise (F:\VSCode_workspace\hemi-component\node_modules\.pnpm\execa@5.1.1\node_modules\execa\index.js:118:26)
