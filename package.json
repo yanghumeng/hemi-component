@@ -75,6 +75,7 @@
     "react": "^16.12.0"
   },
   "devDependencies": {
+    "@babel/runtime": "^7.12.5",
     "@ant-design/icons": "^4.8.0",
     "@commitlint/cli": "^17.2.0",
     "@commitlint/config-conventional": "^17.2.0",
