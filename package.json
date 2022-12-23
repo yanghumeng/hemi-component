@@ -1,8 +1,8 @@
 {
   "name": "hemi-component",
   "scripts": {
-    "release": "cross-env UMI_ENV=prod father build && lerna exec npx tsc-alias && lerna publish from-package",
-    "release:beta": "git push --follow-tags && cross-env UMI_ENV=dev father build && lerna exec npx tsc-alias && lerna publish from-package --dist-tag beta",
+    "release": "cross-env UMI_ENV=prod father-build && lerna exec npx tsc-alias && lerna publish from-package",
+    "release:beta": "git push --follow-tags && cross-env UMI_ENV=dev father-build && lerna exec npx tsc-alias && lerna publish from-package --dist-tag beta",
     "start": "dumi dev",
     "docs:build:test": "dumi build",
     "docs:build": "dumi build",
@@ -95,7 +95,7 @@
     "builtin-modules": "^3.2.0",
     "cross-env": "^7.0.3",
     "dumi": "^1.1.0",
-    "father": "^4.0.0-rc.2",
+    "father-build": "1.20.5-2",
     "gh-pages": "^3.0.0",
     "husky": "^8.0.2",
     "lerna": "^5.5.4",
