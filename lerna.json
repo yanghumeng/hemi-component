@@ -59,11 +59,7 @@
     "commitUrlFormat": "{{host}}/{{owner}}/{{repository}}/commit/{{hash}}",
     "compareUrlFormat": "{{host}}/{{owner}}/{{repository}}/compare/{{previousTag}}...{{currentTag}}",
     "userUrlFormat": "{{host}}/{{user}}",
-    "issuePrefixes": [
-      "#"
-    ]
+    "issuePrefixes": ["#"]
   },
-  "packages": [
-    "packages/*"
-  ]
+  "packages": ["packages/*"]
 }
