@@ -1,7 +1,7 @@
 {
   "npmClient": "pnpm",
   "useWorkspaces": true,
-  "version": "1.0.3-alpha.2",
+  "version": "1.0.3-alpha.3",
   "changelogPreset": {
     "name": "conventionalcommits",
     "types": [
@@ -59,7 +59,11 @@
     "commitUrlFormat": "{{host}}/{{owner}}/{{repository}}/commit/{{hash}}",
     "compareUrlFormat": "{{host}}/{{owner}}/{{repository}}/compare/{{previousTag}}...{{currentTag}}",
     "userUrlFormat": "{{host}}/{{user}}",
-    "issuePrefixes": ["#"]
+    "issuePrefixes": [
+      "#"
+    ]
   },
-  "packages": ["packages/*"]
+  "packages": [
+    "packages/*"
+  ]
 }
