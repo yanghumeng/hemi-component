@@ -62,7 +62,7 @@ async function signTag() {
   const currVersion = await getLernaVersion();
   const testVersion = await getLatestVersion();
   const currBranch = await getCurrentBranch();
-  if (['master', 'test'].includes(currBranch)) {
+  if (['release', 'test'].includes(currBranch)) {
     console.log('\x1B[31m请在 feature 分支进行操作\x1B[0m');
     return Promise.reject(`请在 feature 分支进行操作`);
   }
