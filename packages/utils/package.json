@@ -3,7 +3,6 @@
   "version": "1.0.3-alpha.4",
   "description": "> TODO: description",
   "author": "hemi <1830720944@qq.com>",
-  "homepage": "https://github.com/yanghumeng/hemi-component#readme",
   "license": "ISC",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -16,10 +15,6 @@
     "src": "src",
     "test": "__tests__"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/yanghumeng/hemi-component.git"
-  },
   "files": [
     "dist",
     "lib",
@@ -27,9 +22,6 @@
   ],
   "scripts": {
     "test": "node ./__tests__/utils.test.js"
-  },
-  "bugs": {
-    "url": "https://github.com/yanghumeng/hemi-component/issues"
   },
   "gitHead": "2f3b6e008e0ef6b2fd0191218e37ea8ee6cded9d"
 }
