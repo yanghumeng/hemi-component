@@ -37,3 +37,16 @@ footer: Open-source MIT Licensed | Copyright © 2020<br />Powered by [dumi](http
     ],
   }
 ```
+
+## 3. 样式不生效
+
+如果样式不生效，可以配置`extraBabelIncludes`
+
+```js
+  // umi config参考https://v3.umijs.org/zh-CN/config#extrababelincludes
+  {
+     extraBabelIncludes: [
+      '@dm-component-next/basics'
+    ],
+  }
+```
