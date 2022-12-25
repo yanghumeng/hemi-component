@@ -76,7 +76,10 @@ const SearchForm = (props: any) => {
           md={columns.length <= linenum * 4 - 1 || paramExpand ? 24 - (columns.length % 4) * 6 : 6}
           sm={24}
         >
-          <div style={{ display: 'flex', justifyContent: 'end', lineHeight: '40px' }}>
+          {/* float属性是为了兼容·Edge浏览器不靠右显示的问题 */}
+          <div
+            style={{ display: 'flex', justifyContent: 'end', float: 'right', lineHeight: '40px' }}
+          >
             {renderFormItem()?.props?.children.length > linenum * 4 - 1 && (
               <a
                 style={{ marginRight: '20px' }}
