@@ -79,7 +79,7 @@ const Demo = (props) => {
 
   return (
     <CurdTable
-      linenum={2}
+      linenum={1}
       rowKey="id"
       toolBarRender={toolBarRender}
       request={async (params, sorter) => {

@@ -9,12 +9,12 @@ group:
 
 # SchemaDescribe 描述
 
-- 对描述列表传入一个 Json 格式的数组初始化
+- 对描述列表传入一个 Json 格式的数组初始化，并且可以使用表单组件
 
 ## 注意
 
 - `type`属性值为 input 值时表示为输入框，没有 `type` 属性时默认为文本
-- 其他额外属性可以参考 [antdesign](https://4x-ant-design.antgroup.com/components/descriptions-cn) 官网的 Descriptions 组件 [Descriptions](https://4x-ant-design.antgroup.com/components/descriptions-cn/#API)API
+- 更多属性可以参考 [antdesign](https://4x-ant-design.antgroup.com/components/descriptions-cn) 官网的 Descriptions 组件 [Descriptions](https://4x-ant-design.antgroup.com/components/descriptions-cn/#API)API
 
 ## 代码演示
 
@@ -111,7 +111,7 @@ export default () => {
 };
 ```
 
-### 额外组件
+### 额外组件&带边框
 
 ```tsx
 import React, { useState, useEffect } from 'react';

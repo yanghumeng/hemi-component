@@ -76,7 +76,6 @@ const CurdTable = (props: tableProps) => {
 
   // 分页默认逻辑，可修改
   const paginationProps = {
-    // showQuickJumper: true,
     showSizeChanger: true,
     total,
     showTotal: () => `共${total}条记录`,
