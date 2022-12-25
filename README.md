@@ -1,8 +1,6 @@
-Build library via `father`,
+## 文档
 
-```bash
-$ npm run build
-```
+- 组件库说明文档：https://yanghumeng.github.io/hemi-component/
 
 ## 自动化部署
 

@@ -1,11 +1,5 @@
 # `@hemi-component/basics`
 
-> TODO: description
+## 文档
 
-## Usage
-
-```
-const basics = require('@hemi-component/basics');
-
-// TODO: DEMONSTRATE API
-```
+- 组件库说明文档：https://yanghumeng.github.io/hemi-component/

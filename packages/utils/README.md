@@ -1,11 +1,5 @@
-# `utils`
+# `@hemi-component/utils`
 
-> TODO: description
+## 文档
 
-## Usage
-
-```
-const utils = require('utils');
-
-// TODO: DEMONSTRATE API
-```
+- 组件库说明文档：https://yanghumeng.github.io/hemi-component/
