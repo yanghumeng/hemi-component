@@ -2,6 +2,15 @@
   "npmClient": "pnpm",
   "useWorkspaces": true,
   "version": "1.0.3-alpha.4",
+  "command": {
+    "version": {
+      "conventionalCommits": true,
+      "message": "chore(release): publish %s"
+    },
+    "publish": {
+      "ignoreChanges": ["ignored-file", "*.md"]
+    }
+  },
   "changelogPreset": {
     "name": "conventionalcommits",
     "types": [
