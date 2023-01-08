@@ -33,7 +33,7 @@ import { Form, Input, Button } from 'antd';
 
 const request = (params?: object): Promise<string> => {
   return new Promise((resolve, reject) => {
-    return resolve();
+    return resolve({ msg: '成功' });
   });
 };
 const onChange = (res: any) => {

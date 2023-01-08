@@ -81,9 +81,10 @@ export default function UploadPicture(props: InputUploadProps & UploadProps) {
             formData.append('file', file);
             inputRequest(formData)
               .then((response: any) => {
-                if (response.f > 0) {
+                const data = response?.data || response;
+                if (data.code > 0) {
                   element.status = 'success';
-                  element.res = response.d;
+                  element.res = data.data;
                   setResults([...resultarr]);
                 } else {
                   element.status = 'error';
@@ -168,9 +169,9 @@ export default function UploadPicture(props: InputUploadProps & UploadProps) {
         inputRequest &&
           inputRequest(formData).then((res: any) => {
             const data = res?.data || res;
-            if (data && data?.f >= 1) {
+            if (data && data?.code > 0) {
               listItem.status = 'success';
-              listItem.res = data?.d;
+              listItem.res = data?.data;
               if (len === 1) {
                 setFileList([listItem]);
                 setResults([listItem]);

@@ -58,3 +58,24 @@ export function digitUppercase(num: string | number) {
       .replace(/^整$/, '零元整')
   );
 }
+
+/**
+ * 复制内容
+ * @param {String} value 需要复制的内容
+ */
+export function copyCot(value: any) {
+  try {
+    const el = document.createElement('textarea');
+    el.value = value;
+    el.setAttribute('readonly', '');
+    el.style.position = 'absolute';
+    el.style.left = '-9999px';
+    document.body.appendChild(el);
+    el.select();
+    document.execCommand('copy');
+    document.body.removeChild(el);
+    return true;
+  } catch (error) {
+    return false;
+  }
+}
