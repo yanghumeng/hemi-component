@@ -38,7 +38,7 @@ footer: Open-source MIT Licensed | Copyright © 2020<br />Powered by [dumi](http
   }
 ```
 
-## 3. 样式不生效
+## 3. 样式生效
 
 如果样式不生效，可以配置`extraBabelIncludes`
 
