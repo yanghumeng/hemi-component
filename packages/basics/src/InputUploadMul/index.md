@@ -30,10 +30,11 @@ group:
 import React from 'react';
 import { InputUploadMul } from '@hemi-component/basics';
 import { Form, Input, Button } from 'antd';
+import axios from 'axios';
 
 const request = (params?: object): Promise<string> => {
-  return new Promise((resolve, reject) => {
-    return resolve({ msg: '成功' });
+  return axios.post('https://cps-api.sk8s.cn/newgate/newcps/backend/file/upload', params, {
+    'Content-type': 'multipart/form-data',
   });
 };
 const onChange = (res: any) => {
@@ -50,11 +51,10 @@ export default () => {
   return (
     <Form name="basic" form={form} autoComplete="off" onFinish={onSubmit}>
       <Form.Item label="上传一张" name="one">
-        <InputUploadMul inputRequest={request} onChange={onChange} />
+        <InputUploadMul req={request} callback={onChange} />
       </Form.Item>
       <Form.Item label="上传多张" name="mul">
         <InputUploadMul
-          multiple={true}
           len={2}
           fileList={[
             {
@@ -64,8 +64,8 @@ export default () => {
             },
           ]}
           inputStyle={{ width: '500px' }}
-          inputRequest={request}
-          onChange={onChange}
+          req={request}
+          callback={onChange}
         />
       </Form.Item>
       <Form.Item>

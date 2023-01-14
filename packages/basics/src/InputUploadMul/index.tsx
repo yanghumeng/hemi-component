@@ -9,39 +9,28 @@ export interface InputUploadProps extends UploadProps {
   /**输入框样式 */
   inputStyle?: React.CSSProperties;
   /** input上传自定义接口  */
-  inputRequest: (param?: object) => Promise<any>;
-  /** 图片样式 */
-  imgStyle?: React.CSSProperties;
+  req: (param?: object) => Promise<any>;
   /** 可控数量,默认是上传一个*/
   len?: number;
   /**图片回显 */
   fileList?: Array<UploadFile>;
   /**上传控件的显示标题 */
   title?: string | React.ReactNode;
-  /**预览框的宽度 */
-  modalWidth?: number;
+  /**图片改变的回调 */
+  callback?: (param?: object) => void;
 }
 export default function UploadPicture(props: InputUploadProps & UploadProps) {
-  const { len = 1, onChange, title, inputStyle = {} } = props;
-  const { inputRequest } = props;
-  const [fileList, setFileList] = useState<Array<UploadFile>>([]);
-  const [results, setResults] = useState<any>([]);
+  const { len = 1, callback, title, inputStyle = {}, fileList = [] } = props;
+  const { req } = props;
+  const [newFileList, setNewFileList] = useState<any>(fileList);
   const [previewVisible, setPreviewVisible] = useState(false);
   const [previewImage, setPreViewImage] = useState();
   const [scaleStep, setScaleStep] = useState(0.5);
   const [inputValue, setInputValue] = useState<string>();
   const [uploading, setuploading] = useState(false);
   useEffect(() => {
-    setFileList(props?.fileList ? props.fileList : []);
-    setResults(props?.fileList ? props.fileList : []);
-  }, [props?.fileList]);
-
-  useEffect(() => {
-    onChange && onChange(results);
-    if (results.length == 0) {
-      setInputValue('');
-    }
-  }, [results]);
+    callback?.(newFileList);
+  }, [newFileList]);
 
   /** 文件转化成64位 */
   const getBase64 = (file: any) => {
@@ -56,78 +45,23 @@ export default function UploadPicture(props: InputUploadProps & UploadProps) {
   /** 图片预览 */
   const handlePreview = async (file: any) => {
     if (!file.url && !file.preview) {
-      file.preview = await getBase64(file.originFileObj);
+      file.preview = await file?.url;
     }
     setPreViewImage(file.url || file.preview);
     setPreviewVisible(true);
   };
-
-  /** 改变图片的回调 */
-  const handleChange = (info: any) => {
-    if (info.fileList.length <= len) {
-      let resultarr = info.fileList;
-      let oldarr = resultarr.filter(
-        (item: any) => item.status === 'done' || item.status === 'success',
-      );
-      if (oldarr.length == resultarr.length) {
-        for (let index = 0; index < resultarr.length; index++) {
-          let element = resultarr[index];
-          const { percent, status, name, type } = element;
-          if (status === 'done' && percent == 100) {
-            const file = new window.File([element], name, {
-              type: type,
-            });
-            const formData = new FormData();
-            formData.append('file', file);
-            inputRequest(formData)
-              .then((response: any) => {
-                const data = response?.data || response;
-                if (data.code > 0) {
-                  element.status = 'success';
-                  element.res = data.data;
-                  setResults([...resultarr]);
-                } else {
-                  element.status = 'error';
-                }
-              })
-              .catch(() => {
-                element.status = 'error';
-              });
-          }
-        }
-      }
-      if (info.file.status === 'removed') {
-        setResults([...resultarr]);
-      }
-      if (info.file.status === 'error') {
-        message.error('有文件上传失败,请重试');
-      }
-      resultarr = resultarr.filter((el: any) => el.status !== 'error');
-      setFileList([...resultarr]);
-    }
+  // 文件移出
+  const handleRemove = async (file: any) => {
+    let filelist = newFileList.filter((item: any) => item.uid != file.uid);
+    setNewFileList(filelist);
   };
-
-  /** 上传之前的回调 */
-  const beforeUpload = async (_: any, fileListU: any) => {
-    return !outLimit([...fileList, ...fileListU], len);
+  const customRequest = (e: any) => {
+    upload(e?.file);
   };
-  /**是否查出数量限制 */
-  const outLimit = (fileList: Array<any>, len: number) => {
-    if (fileList.length > len) {
-      message.warning(`文件数量限制${len}`);
-      return true;
-    }
-    return false;
-  };
-
   /** 粘贴快捷键的回调 */
-  const onPaste = async (e: any) => {
+  const onPaste = (e: any) => {
     if (uploading) {
       message.warning(`已有文件正在上传`);
-      return;
-    }
-    if (len >= 2 && fileList.length >= len) {
-      message.warning(`文件数量限制${len}`);
       return;
     }
     /** 获取剪切板的数据clipboardData */
@@ -153,43 +87,41 @@ export default function UploadPicture(props: InputUploadProps & UploadProps) {
       }
       /** 判断文件是否为图片 */
       if (item && item.kind === 'file' && item.type.match(/^image\//i)) {
-        setuploading(true);
         const imgItem = item.getAsFile();
-        const newFileList = cloneDeep(results);
-        const listItem = {
-          ...imgItem,
-          status: 'uploading',
-          url: await getBase64(imgItem),
-        };
         const file = new window.File([imgItem], imgItem.name, {
           type: imgItem.type,
         });
-        const formData = new FormData();
-        formData.append('file', file);
-        inputRequest &&
-          inputRequest(formData).then((res: any) => {
-            const data = res?.data || res;
-            if (data && data?.code > 0) {
-              listItem.status = 'success';
-              listItem.res = data?.data;
-              if (len === 1) {
-                setFileList([listItem]);
-                setResults([listItem]);
-                setuploading(false);
-                setInputValue(imgItem.name);
-                return;
-              }
-              setInputValue(imgItem.name);
-              newFileList.push(listItem);
-              setFileList(newFileList);
-              setResults(newFileList);
-            } else {
-              message.error('上传失败,请重试');
-            }
-            setuploading(false);
-          });
+        upload(file, 'onPaste');
       }
     }
+  };
+  const upload = async (file: File, type?: string) => {
+    if (len >= 2 && fileList.length >= len) {
+      message.warning(`文件数量限制${len}`);
+      return;
+    }
+    setuploading(true);
+    let element = { status: 'uploading', res: '', url: await getBase64(file) };
+    const formData = new FormData();
+    formData.append('file', file);
+    await req?.(formData)
+      .then((response: any) => {
+        const data = response?.data || response;
+        if (data.f > 0) {
+          element.status = 'success';
+          element.res = data;
+          len >= 2 ? setNewFileList([...newFileList, element]) : setNewFileList([element]);
+          if (type == 'onPaste') setInputValue(file.name);
+          setuploading(false);
+        } else {
+          message.error('上传失败,请重试');
+          setuploading(false);
+        }
+      })
+      .catch(() => {
+        message.error('上传失败,请重试');
+        setuploading(false);
+      });
   };
   /** 上传图片的文案 */
   const uploadButton = (
@@ -198,7 +130,6 @@ export default function UploadPicture(props: InputUploadProps & UploadProps) {
       <div style={{ marginTop: 8 }}>{title || '图片上传'}</div>
     </div>
   );
-
   return (
     <>
       <div style={{ marginBottom: '10px' }}>
@@ -214,13 +145,13 @@ export default function UploadPicture(props: InputUploadProps & UploadProps) {
       <Upload
         {...props}
         listType="picture-card"
-        fileList={fileList}
+        fileList={newFileList}
         onPreview={handlePreview}
-        onChange={handleChange}
-        beforeUpload={beforeUpload}
+        onRemove={handleRemove}
         maxCount={len}
+        customRequest={customRequest}
       >
-        {fileList.length >= len ? null : uploadButton}
+        {newFileList.length >= len ? null : uploadButton}
       </Upload>
       <Image
         width={200}
