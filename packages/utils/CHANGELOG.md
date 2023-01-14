@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.0-alpha.0](https://github.com/yanghumeng/hemi-component/compare/v1.0.3...v1.1.0-alpha.0) (2023-01-14)
+
+### ✨ Features | 新功能
+
+- 增加复制工具函数 ([16651bf](https://github.com/yanghumeng/hemi-component/commit/16651bfb2c212e668bee6385e2265e4f834a9dc1))
+
 ## [1.0.3](https://github.com/yanghumeng/hemi-component/compare/v1.0.3-alpha.4...v1.0.3) (2022-12-25)
 
 ### ✨ Features | 新功能

@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.0-alpha.0](https://github.com/yanghumeng/hemi-component/compare/v1.0.3...v1.1.0-alpha.0) (2023-01-14)
+
+### ✨ Features | 新功能
+
+- 部署分支触发 ([801790d](https://github.com/yanghumeng/hemi-component/commit/801790df388b47a4c5535a6eabea3de14dec3b14))
+- 可移动弹窗 ([6a59619](https://github.com/yanghumeng/hemi-component/commit/6a59619e1a647a808cba6ca12e6e2210cdab1ed4))
+- 文档更新 ([9718f56](https://github.com/yanghumeng/hemi-component/commit/9718f56fbdae124ae4f4e3fad93d51734871e9b9))
+- 优化剪贴板上传图片 ([62e5c97](https://github.com/yanghumeng/hemi-component/commit/62e5c973b8701762de35d371b5f9d33f2809b523))
+- 增加复制工具函数 ([16651bf](https://github.com/yanghumeng/hemi-component/commit/16651bfb2c212e668bee6385e2265e4f834a9dc1))
+- build ([c7498e8](https://github.com/yanghumeng/hemi-component/commit/c7498e8de450c5c5bd7accc341c545190bf7e425))
+- publicPath ([913f50f](https://github.com/yanghumeng/hemi-component/commit/913f50f73d76e9af609fe4c6dac47c56207248d7))
+- publicPath ([1f482ac](https://github.com/yanghumeng/hemi-component/commit/1f482ac484a9c52b4aae2e10bdbd3f319b644acf))
+
 ## [1.0.3](https://github.com/yanghumeng/hemi-component/compare/v1.0.3-alpha.4...v1.0.3) (2022-12-25)
 
 ### ✨ Features | 新功能
