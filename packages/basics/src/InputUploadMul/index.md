@@ -9,19 +9,24 @@ group:
 
 # InputUploadMul 剪切板上传图片(支持多张)
 
-- `inputRequest`关键词是必填,返回一个 promise，具体下列参考例子
+- `req`关键词是必填,返回一个 `promise`，具体下列参考例子
 
 ### 注意:
 
-- `fileList`是回显图片列表，status 值必填（且必须为 success），res 值是图片的唯一标识值，格式：
+- `fileList`是回显图片列表，res 值是图片的结果数据，格式：
   ```json
   fileList={[
             {
               url: "https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png",
-              res: "图片标识",
-              status: "success",
+              res: "结果数据",
             }
           ]}
+  ```
+- 接口对接的格式：判断图片上传成功的是如下格式：
+
+  ```json
+  //根据res属性的f值是否大于0来判断是否上传成功，大于0则将对象res返回，反之则提示失败
+    res: { "f": "大于0", "m": "信息", "d": "数据", "e": "其他信息" }
   ```
 
 ## 代码演示
@@ -33,7 +38,7 @@ import { Form, Input, Button } from 'antd';
 import axios from 'axios';
 
 const request = (params?: object): Promise<string> => {
-  return axios.post('https://cps-api.sk8s.cn/newgate/newcps/backend/file/upload', params, {
+  return axios.post('https://xxx.com/upload', params, {
     'Content-type': 'multipart/form-data',
   });
 };
@@ -59,8 +64,7 @@ export default () => {
           fileList={[
             {
               url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
-              res: '图片标识',
-              status: 'success',
+              res: { f: '1', m: '信息', d: '数据', e: '其他信息' },
             },
           ]}
           inputStyle={{ width: '500px' }}
