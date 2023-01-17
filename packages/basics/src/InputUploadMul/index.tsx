@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Upload, Input, UploadFile, Image } from 'antd';
 import { PlusOutlined, LoadingOutlined } from '@ant-design/icons';
 import { message } from 'antd';
@@ -21,7 +21,7 @@ export interface InputUploadProps extends UploadProps {
 export default function UploadPicture(props: InputUploadProps & UploadProps) {
   const { len = 1, callback, title, inputStyle = {}, fileList = [] } = props;
   const { req } = props;
-  const [newFileList, setNewFileList] = useState<any>(fileList);
+  const newFileList = useRef<any>(fileList);
   const [previewVisible, setPreviewVisible] = useState(false);
   const [previewImage, setPreViewImage] = useState();
   const [scaleStep, setScaleStep] = useState(0.5);
@@ -51,8 +51,9 @@ export default function UploadPicture(props: InputUploadProps & UploadProps) {
   };
   // 文件移出
   const handleRemove = async (file: any) => {
-    let filelist = newFileList.filter((item: any) => item.uid != file.uid);
-    setNewFileList(filelist);
+    let filelist = newFileList.current.filter((item: any) => item.uid != file.uid);
+    newFileList.current(filelist);
+    // setNewFileList(filelist);
   };
   const customRequest = (e: any) => {
     upload(e?.file);
@@ -109,7 +110,9 @@ export default function UploadPicture(props: InputUploadProps & UploadProps) {
         if (data.f > 0) {
           element.status = 'success';
           element.res = data;
-          len >= 2 ? setNewFileList([...newFileList, element]) : setNewFileList([element]);
+          len >= 2
+            ? newFileList.current([...newFileList?.current, element])
+            : newFileList.current([element]);
           if (type == 'onPaste') setInputValue(file.name);
           setuploading(false);
         } else {
@@ -144,13 +147,13 @@ export default function UploadPicture(props: InputUploadProps & UploadProps) {
       <Upload
         {...props}
         listType="picture-card"
-        fileList={newFileList}
+        fileList={newFileList.current}
         onPreview={handlePreview}
         onRemove={handleRemove}
         maxCount={len}
         customRequest={customRequest}
       >
-        {newFileList.length >= len ? null : uploadButton}
+        {newFileList?.current?.length >= len ? null : uploadButton}
       </Upload>
       <Image
         width={200}
