@@ -1,7 +1,6 @@
 // SearchForm
 import React, { useState } from 'react';
-import { Button, Col, Form, Input, Row } from 'antd';
-import { CaretUpOutlined, CaretDownOutlined } from '@ant-design/icons';
+import { Button, Col, Form, Input, Row, Space } from 'antd';
 
 const FormItem = Form.Item;
 
@@ -77,27 +76,21 @@ const SearchForm = (props: any) => {
           sm={24}
         >
           {/* float属性是为了兼容·Edge浏览器不靠右显示的问题 */}
-          <div
-            style={{ display: 'flex', justifyContent: 'end', float: 'right', lineHeight: '40px' }}
-          >
+          <Space style={{ float: 'right' }}>
             {renderFormItem()?.props?.children.length > linenum * 4 - 1 && (
               <a
-                style={{ marginRight: '20px' }}
                 onClick={() => {
                   setExpand(!paramExpand);
                 }}
               >
-                {paramExpand ? <CaretUpOutlined /> : <CaretDownOutlined />}
-                {paramExpand ? '收起' : '展开'}
+                {paramExpand ? '▲ 收起' : '▼ 展开'}
               </a>
             )}
             <Button type="primary" htmlType="submit">
               查询
             </Button>
-            <Button style={{ marginLeft: 8, marginRight: 8 }} onClick={handleFormReset}>
-              重置
-            </Button>
-          </div>
+            <Button onClick={handleFormReset}>重置</Button>
+          </Space>
         </Col>
       </Row>
     </Form>
