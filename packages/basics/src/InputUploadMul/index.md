@@ -38,7 +38,7 @@ import { Form, Input, Button } from 'antd';
 import axios from 'axios';
 
 const request = (params?: object): Promise<string> => {
-  return axios.post('https://xxx.com/upload', params, {
+  return axios.post('https://cps-api.sk8s.cn/newgate/newcps/backend/file/upload', params, {
     'Content-type': 'multipart/form-data',
   });
 };
@@ -60,6 +60,7 @@ export default () => {
       </Form.Item>
       <Form.Item label="上传多张" name="mul">
         <InputUploadMul
+          multiple="ture"
           len={2}
           fileList={[
             {
