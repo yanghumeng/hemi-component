@@ -21,6 +21,7 @@ export interface InputUploadProps extends UploadProps {
 export default function UploadPicture(props: InputUploadProps & UploadProps) {
   const { len = 1, callback, title, inputStyle = {}, fileList = [] } = props;
   const { req } = props;
+  const count = useRef(fileList.length || 0);
   const newFileList = useRef<any>(fileList || []);
   const [previewVisible, setPreviewVisible] = useState(false);
   const [previewImage, setPreViewImage] = useState();
@@ -54,10 +55,11 @@ export default function UploadPicture(props: InputUploadProps & UploadProps) {
   const handleRemove = async (file: any) => {
     let filelist = newFileList.current.filter((item: any) => item.uid != file.uid);
     newFileList.current = filelist;
+    count.current--;
     setResultList(newFileList.current);
   };
   const customRequest = (e: any) => {
-    upload(e.file);
+    ++count.current <= len && upload(e.file);
   };
   /** 粘贴快捷键的回调 */
   const onPaste = (e: any) => {
@@ -96,7 +98,7 @@ export default function UploadPicture(props: InputUploadProps & UploadProps) {
       }
     }
   };
-  const upload = (file: File, type?: string) => {
+  const upload = async (file: File, type?: string) => {
     if (len >= 2 && newFileList.current.length >= len) {
       message.warning(`文件数量限制${len}`);
       return;
@@ -104,7 +106,7 @@ export default function UploadPicture(props: InputUploadProps & UploadProps) {
     setuploading(true);
     const formData = new FormData();
     formData.append('file', file);
-    req?.(formData)
+    await req?.(formData)
       .then(async (response: any) => {
         let element = { status: 'uploading', res: '', url: await getBase64(file) };
         const data = response?.data || response;
