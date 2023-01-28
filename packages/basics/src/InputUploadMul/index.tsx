@@ -27,9 +27,10 @@ export default function UploadPicture(props: InputUploadProps & UploadProps) {
   const [scaleStep, setScaleStep] = useState(0.5);
   const [inputValue, setInputValue] = useState<string>();
   const [uploading, setuploading] = useState(false);
+  const [resultList, setResultList] = useState(fileList || []);
   useEffect(() => {
-    callback?.(newFileList.current);
-  }, [newFileList.current]);
+    callback?.(resultList);
+  }, [resultList]);
 
   /** 文件转化成64位 */
   const getBase64 = (file: any) => {
@@ -53,9 +54,10 @@ export default function UploadPicture(props: InputUploadProps & UploadProps) {
   const handleRemove = async (file: any) => {
     let filelist = newFileList.current.filter((item: any) => item.uid != file.uid);
     newFileList.current = filelist;
+    setResultList(newFileList.current);
   };
   const customRequest = (e: any) => {
-    upload(e?.file);
+    upload(e.file);
   };
   /** 粘贴快捷键的回调 */
   const onPaste = (e: any) => {
@@ -94,24 +96,25 @@ export default function UploadPicture(props: InputUploadProps & UploadProps) {
       }
     }
   };
-  const upload = async (file: File, type?: string) => {
-    if (len >= 2 && fileList.length >= len) {
+  const upload = (file: File, type?: string) => {
+    if (len >= 2 && newFileList.current.length >= len) {
       message.warning(`文件数量限制${len}`);
       return;
     }
     setuploading(true);
-    let element = { status: 'uploading', res: '', url: await getBase64(file) };
     const formData = new FormData();
     formData.append('file', file);
-    await req?.(formData)
-      .then((response: any) => {
+    req?.(formData)
+      .then(async (response: any) => {
+        let element = { status: 'uploading', res: '', url: await getBase64(file) };
         const data = response?.data || response;
         if (data?.f > 0) {
           element.status = 'success';
           element.res = data;
-          len > 1
-            ? (newFileList.current = [...newFileList?.current, element])
-            : (newFileList.current = [element]);
+          len === 1
+            ? (newFileList.current = [element])
+            : (newFileList.current = [...newFileList.current, element]);
+          setResultList(newFileList.current);
           if (type == 'onPaste') setInputValue(file.name);
           setuploading(false);
         } else {
@@ -146,7 +149,7 @@ export default function UploadPicture(props: InputUploadProps & UploadProps) {
       <Upload
         {...props}
         listType="picture-card"
-        fileList={newFileList.current}
+        fileList={resultList}
         onPreview={handlePreview}
         onRemove={handleRemove}
         maxCount={len}
