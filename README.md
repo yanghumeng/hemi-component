@@ -1,3 +1,21 @@
+lv:unknown
+
+# 0.1.0-alpha.0 => 0.1.0-alpha.1
+
+lv:alpha
+
+# 0.1.0 => 0.1.1
+
+lv:patch
+
+# 0.1.0 => 0.2.0
+
+lv:minor
+
+# 切换 alpha/stable
+
+#在组件库最新版本上（对应版本号位置）升一级,alpha(测试)stable(正式) lv:patch:change-alpha # 0.1.0 => 0.1.1-alpha.0 lv:patch:change-stable # 0.1.1-alpha.0 => 0.1.1 lv:minor:change-alpha # 0.1.0 => 0.2.0-alpha.0 lv:minor:change-stable # 0.2.0-alpha.0 => 0.2.0
+
 ## 文档
 
 - 组件库说明文档：https://yanghumeng.github.io/hemi-component/
