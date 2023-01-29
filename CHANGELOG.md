@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.0-alpha.1](https://github.com/yanghumeng/hemi-component/compare/v1.1.0-alpha.0...v1.1.0-alpha.1) (2023-01-29)
+
+### ✨ Features | 新功能
+
+- 更新上传组件文档 ([04c0a6e](https://github.com/yanghumeng/hemi-component/commit/04c0a6efedf7d3495c93da507f29ffa5f88e8732))
+- 还原开发分支的 publicPath 和 base ([60de394](https://github.com/yanghumeng/hemi-component/commit/60de3949f9a1a916b3004df60803c7ff5dd97653))
+- 剪贴板上传文件可以多选（存在页面更新问题） ([0feda92](https://github.com/yanghumeng/hemi-component/commit/0feda924fa35dc36c300944a805173b3c9975dec))
+- 解决图片上传选择多张异步问题|更新 publicPath 和 base ([ef93573](https://github.com/yanghumeng/hemi-component/commit/ef9357301ee0326de615e7528ab6b3c41257a6b2))
+- 修复页面更新问题 ([36d76b7](https://github.com/yanghumeng/hemi-component/commit/36d76b737c0bcfa3a51217c1edc8c6b6a7d6fc31))
+- 修改 publicPath 和 base&上传多图选择多张问题 ([fa3ec74](https://github.com/yanghumeng/hemi-component/commit/fa3ec746995fc2d686a62303dbb860d67466471d))
+- 优化 SearchForm 组件代码 ([8aab869](https://github.com/yanghumeng/hemi-component/commit/8aab8693e2ec43992cab3023d9b886a7a8e8c365))
+- install ([6a8582b](https://github.com/yanghumeng/hemi-component/commit/6a8582b1c09c9931cb89f232174de46f4a7245cb))
+
+### 🐞 Bug Fixes | Bug 修复
+
+- 修复选择多张超过指定数量还是能够正常上传问题 ([360dc61](https://github.com/yanghumeng/hemi-component/commit/360dc61b2ae7b0b25915ddd8cdc900820f22b6a7))
+
 ## [1.1.0-alpha.0](https://github.com/yanghumeng/hemi-component/compare/v1.0.3...v1.1.0-alpha.0) (2023-01-14)
 
 ### ✨ Features | 新功能
