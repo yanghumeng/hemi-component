@@ -107,6 +107,7 @@ const CurdTable = (props: tableProps) => {
     selectedRowKeys,
     onChange: onSelectChange,
   };
+  const innerHeight = window.innerHeight;
   return (
     <Card>
       {isSearch && (
@@ -115,15 +116,18 @@ const CurdTable = (props: tableProps) => {
           formRef={props?.formRef}
           getData={handleSearch}
           columns={expressionAt?.columns}
+          size={props?.size || 'small'}
         />
       )}
       {toolBarRender}
       <Table
         rowKey={props?.rowKey}
         loading={loading}
+        size={props?.size || 'small'}
         rowSelection={props?.rowSelection && rowSelectionS}
         /* 通过新申明将默认项覆盖 */
-        style={{ marginTop: 20 }}
+        scroll={{ y: innerHeight - 300 }}
+        style={{ marginTop: 20, ...props?.style }}
         dataSource={data}
         pagination={{ ...paginationProps, ...pagination }}
         /* 放最后方便对上面的props覆盖 */
