@@ -63,7 +63,7 @@ const SearchForm = (props: any) => {
   };
 
   return (
-    <Form form={form} {...formItemLayout} onFinish={handleSearch}>
+    <Form form={form} {...formItemLayout} onFinish={handleSearch} {...props}>
       <Row gutter={6}>
         {/* 展开前默认取n项，展开后显示全部。通过children进行dom渲染 */}
         {paramExpand
