@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.2-alpha.0](https://github.com/yanghumeng/hemi-component/compare/v1.1.1...v1.1.2-alpha.0) (2023-02-18)
+
+### ✨ Features | 新功能
+
+- 表格计算高度 ([2ff1a39](https://github.com/yanghumeng/hemi-component/commit/2ff1a397c8de5f3cf74fcdf9b8caa092c3a3e166))
+
+## [1.1.1](https://github.com/yanghumeng/hemi-component/compare/v1.1.1-alpha.0...v1.1.1) (2023-01-29)
+
+**Note:** Version bump only for package @hemi-component/basics
+
 ## [1.1.1-alpha.0](https://github.com/yanghumeng/hemi-component/compare/v1.1.0...v1.1.1-alpha.0) (2023-01-29)
 
 ### ✨ Features | 新功能
