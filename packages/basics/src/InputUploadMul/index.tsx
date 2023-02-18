@@ -25,7 +25,7 @@ export default function UploadPicture(props: InputUploadProps & UploadProps) {
   const newFileList = useRef<any>(fileList || []);
   const [previewVisible, setPreviewVisible] = useState(false);
   const [previewImage, setPreViewImage] = useState();
-  const [scaleStep, setScaleStep] = useState(0.5);
+  const scaleStep = 0.5;
   const [inputValue, setInputValue] = useState<string>();
   const [uploading, setuploading] = useState(false);
   const [resultList, setResultList] = useState(fileList || []);

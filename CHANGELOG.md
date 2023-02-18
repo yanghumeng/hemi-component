@@ -2,6 +2,32 @@
 
 All notable changes to this project will be documented in this file. See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.2-alpha.0](https://github.com/yanghumeng/hemi-component/compare/v1.1.1...v1.1.2-alpha.0) (2023-02-18)
+
+### ✨ Features | 新功能
+
+- 表格计算高度 ([2ff1a39](https://github.com/yanghumeng/hemi-component/commit/2ff1a397c8de5f3cf74fcdf9b8caa092c3a3e166))
+- 初始化 useState ([53fe39c](https://github.com/yanghumeng/hemi-component/commit/53fe39c5d3307ffc3617efee05bd5e0159e01e76))
+- 删除 usestaue 函数初始化 ([d9c82e8](https://github.com/yanghumeng/hemi-component/commit/d9c82e8b26ba3175a5c079cdb2ee9c58776f3de7))
+
+## [1.1.1](https://github.com/yanghumeng/hemi-component/compare/v1.1.1-alpha.0...v1.1.1) (2023-01-29)
+
+**Note:** Version bump only for package hemi-component
+
+## [1.1.1-alpha.0](https://github.com/yanghumeng/hemi-component/compare/v1.1.0...v1.1.1-alpha.0) (2023-01-29)
+
+### ✨ Features | 新功能
+
+- 命令更改 ([4cec94f](https://github.com/yanghumeng/hemi-component/commit/4cec94fd1f750df3b0dcb7f97ff34fc6cf9232cf))
+- 删除无用变量 ([4b17c44](https://github.com/yanghumeng/hemi-component/commit/4b17c44214d1e1857735bb9fe81cdea56d5fa75f))
+- readme 更新 ([ac15209](https://github.com/yanghumeng/hemi-component/commit/ac15209a96ed487db6bf4cb6d8ae8c6f5ac3c250))
+
+## [1.1.0](https://github.com/yanghumeng/hemi-component/compare/v1.1.0-alpha.1...v1.1.0) (2023-01-29)
+
+### ✨ Features | 新功能
+
+- 命令说明 ([f41df71](https://github.com/yanghumeng/hemi-component/commit/f41df7197dc1e5721bd032898cfaa779c3bd6275))
+
 ## [1.1.0-alpha.1](https://github.com/yanghumeng/hemi-component/compare/v1.1.0-alpha.0...v1.1.0-alpha.1) (2023-01-29)
 
 ### ✨ Features | 新功能
