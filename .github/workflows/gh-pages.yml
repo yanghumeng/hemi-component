@@ -16,7 +16,6 @@ jobs:
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
-        with:
           node-version: '14'
           cache: yarn
           github_token: ${{ secrets.HEMI_COMPONENT }}
