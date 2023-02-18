@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.2-alpha.1](https://github.com/yanghumeng/hemi-component/compare/v1.1.2-alpha.0...v1.1.2-alpha.1) (2023-02-18)
+
+### ✨ Features | 新功能
+
+- react 版本 ([1111af5](https://github.com/yanghumeng/hemi-component/commit/1111af58297e0e323985925e740910c9e581e8c8))
+
 ## [1.1.2-alpha.0](https://github.com/yanghumeng/hemi-component/compare/v1.1.1...v1.1.2-alpha.0) (2023-02-18)
 
 ### ✨ Features | 新功能
