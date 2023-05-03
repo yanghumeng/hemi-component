@@ -20,7 +20,7 @@ const SchemaDescribe = (props: DescribeProps) => {
   const labelstyle = labelAlign == 'right' ? { justifyContent: 'flex-end', width: '120px' } : {};
   return (
     <div>
-      <Row className={styleScoped['antrow']} style={props?.style}>
+      <Row className={styleScoped['ant-row']} style={props?.style}>
         <Col flex="auto">
           <Descriptions size="small" {...props} style={{}}>
             {itemList?.map((item, index) => {
@@ -30,7 +30,7 @@ const SchemaDescribe = (props: DescribeProps) => {
                   label={
                     item?.rules ? (
                       <>
-                        <span className={styleScoped['itemrequired']}>* </span>
+                        <span className={styleScoped['item-required']}>* </span>
                         {item.label}
                       </>
                     ) : (
@@ -38,11 +38,11 @@ const SchemaDescribe = (props: DescribeProps) => {
                     )
                   }
                   key={index}
-                  className={styleScoped['antdescriptionsitem']}
+                  className={styleScoped['ant-descriptions-item']}
                   labelStyle={{ ...labelstyle, ...props?.labelStyle }}
                 >
                   <Form.Item
-                    className={styleScoped['antformitem']}
+                    className={styleScoped['ant-formitem']}
                     name={item.name}
                     rules={item?.rules}
                   >
@@ -50,7 +50,7 @@ const SchemaDescribe = (props: DescribeProps) => {
                       (item?.type == 'input' ? (
                         <Input placeholder={`请输入${item.label}`}></Input>
                       ) : (
-                        <TextArea autoSize style={{ border: 0, padding: 0 }} />
+                        <TextArea autoSize style={{ border: 0, padding: 0, minHeight: 0 }} />
                       ))}
                   </Form.Item>
                 </Descriptions.Item>

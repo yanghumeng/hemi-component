@@ -7,7 +7,7 @@ const FormItem = Form.Item;
 const SearchForm = (props: any) => {
   const [paramExpand, setParamExpand] = useState(false);
   const { getData, columns, linenum = 2 } = props;
-  const [form] = props?.formRef || Form.useForm();
+  const [form] = [props?.formRef] || Form.useForm();
   const formItemLayout = {
     labelCol: { span: 8 },
     wrapperCol: { span: 16 },

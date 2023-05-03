@@ -13,7 +13,7 @@ group:
 
 ```tsx
 import React, { useState } from 'react';
-import { Select, DatePicker, Button, Space } from 'antd';
+import { Select, DatePicker, Button, Space, Form } from 'antd';
 import { CurdTable } from '@hemi-component/basics';
 
 const { Option } = Select;
@@ -25,6 +25,7 @@ async function sleep(n) {
     }, n * 1000),
   );
 }
+const [form] = Form.useForm();
 const Demo = (props) => {
   const [dataSource, setDataSource] = useState([]);
   const toolBarRender = (
@@ -81,6 +82,7 @@ const Demo = (props) => {
     <CurdTable
       linenum={1}
       rowKey="id"
+      formRef={form}
       toolBarRender={toolBarRender}
       request={async (params, sorter) => {
         console.log(params, sorter);
