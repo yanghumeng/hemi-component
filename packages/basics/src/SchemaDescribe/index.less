@@ -1,15 +1,20 @@
-.antformitem {
+.ant-formitem {
   margin: 0 !important;
   width: 100%;
 }
-.antrow {
+.ant-row {
   flex-flow: row nowrap !important;
 }
-.antdescriptionsitem {
+.ant-descriptions-item {
   padding-left: 20px !important;
+  :global {
+    .ant-descriptions-item-container {
+      align-items: center !important;
+    }
+  }
 }
 
-.itemrequired {
+.item-required {
   color: #ff4d4f;
   font-size: 14px;
   font-weight: bold;

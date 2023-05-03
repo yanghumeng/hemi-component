@@ -163,6 +163,7 @@ export default () => {
               查看图片
             </Button>
           }
+          bordered={true}
         />
       </Form>
       <Image
