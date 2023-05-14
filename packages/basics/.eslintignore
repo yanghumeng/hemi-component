@@ -1,0 +1,12 @@
+/lambda/
+/scripts
+/config
+.history
+public
+dist
+.umi
+mock
+!.eslintrc.js
+!.prettierrc.js
+!.stylelintrc.js
+!.umirc.ts
