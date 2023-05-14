@@ -14,6 +14,7 @@ const OverflowMenu = ({ items, onItemClick }: { items: any; onItemClick: any }) 
   const [visibleItems, setVisibleItems] = useState(items);
   const [showMoreButton, setShowMoreButton] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const handleResize = () => {
     let { offsetWidth: containerWidth } = (containerRef?.current || {}) as HTMLDivElement;
     const { offsetWidth: itemWidth } = (containerRef?.current?.querySelector('.menu-item') ||
@@ -37,7 +38,7 @@ const OverflowMenu = ({ items, onItemClick }: { items: any; onItemClick: any }) 
     handleResize();
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
-  }, [items]);
+  }, [handleResize, items]);
 
   const handleMoreClick = () => {
     setVisibleItems(items);
