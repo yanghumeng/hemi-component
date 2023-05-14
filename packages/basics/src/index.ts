@@ -4,4 +4,6 @@ export { default as InputUploadMul } from './InputUploadMul';
 export { default as SchemaDescribe } from './SchemaDescribe';
 export { default as CurdTable } from './CurdTable';
 export { default as DraggableModal } from './DraggableModal';
+export { default as OverflowMenu } from './OverflowMenu';
 export { default as Modal } from './Modal';
+export { default as LenovoSearch } from './LenovoSearch';
