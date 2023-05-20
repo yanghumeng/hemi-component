@@ -23,7 +23,7 @@ export default () => {
   }
   return (
     <>
-      <OverflowMenu items={items} onItemClick={handleItemClick}></OverflowMenu>
+      <OverflowMenu menuItems={items} onItemClick={handleItemClick}></OverflowMenu>
     </>
   );
 };
