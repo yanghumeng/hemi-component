@@ -1,92 +1,102 @@
-import type { ReactNode } from 'react';
-import React, { useCallback, useState } from 'react';
-import { AutoComplete, Button, Input } from 'antd';
-import { SearchOutlined } from '@ant-design/icons';
-import './index.less';
-export interface ILenovoSearchProps {
-  dataSource: string[];
-  placeHolder?: string;
-  suffix?: ReactNode | HTMLElement | boolean;
-  renderOption?: (title: string) => ReactNode | HTMLElement;
-  req: (param?: object | string) => void;
-  keyWordsCallBack: (value: string) => void;
-}
-export default function LenovoSearch(props: ILenovoSearchProps) {
-  const {
-    dataSource,
-    placeHolder,
-    suffix: suffixProps,
-    renderOption,
-    req,
-    keyWordsCallBack,
-  } = props;
-  const [inputValue, setInputValue] = useState('');
-  const [searchLoading] = useState(false);
-  const handleSearch = (value: React.SetStateAction<string>) => {
-    setInputValue(value);
-    req?.(value);
-  };
-  const suffix = suffixProps ? (
-    suffixProps
-  ) : (
-    <Button
-      type="primary"
-      icon={<SearchOutlined />}
-      onClick={() => handleSearch(inputValue)}
-      loading={searchLoading}
-    >
-      搜索
-    </Button>
-  );
-  const handleChange = useCallback(
-    (e: any) => {
-      const keywords = e.target.value;
-      setInputValue(keywords);
-      keyWordsCallBack?.(inputValue);
-    },
-    [inputValue, keyWordsCallBack],
-  );
+import React, { useState, useEffect, useRef } from 'react';
+import { Button, Input, List } from 'antd';
+import useOnBlur from '../../hooks/useOnBlur';
 
-  const renderItem = (title: string) => {
-    // 自定义联想条目的渲染内容
-    return (
-      renderOption?.(title) || (
-        <div style={{ color: '#fff' }}>
-          <span>
-            <SearchOutlined />
-            {` ${title}`}
-          </span>
-        </div>
-      )
-    );
+function SearchBox() {
+  const [keyword, setKeyword] = useState('');
+  const [results, setResults] = useState<string[]>([]);
+  const [selectedIdx, setSelectedIdx] = useState(-1);
+  const [isShowList, setIsShowList] = useState(false);
+  const blurRef = useRef(null);
+
+  const handleKeyWordSearch = (value?: React.SetStateAction<string>) => {
+    alert(value);
   };
-  const renderOptions = (data: any) => {
-    let res = [];
-    res = data.map((item: string) => {
-      const obj: any = {};
-      obj.label = renderItem(item);
-      obj.value = item;
-      return obj;
-    });
-    return res;
+
+  const handleItemSearch = (value: React.SetStateAction<string>) => {
+    setKeyword(value);
+    handleKeyWordSearch(value);
   };
+
+  useOnBlur(blurRef, {
+    outside: () => {
+      isShowList && setIsShowList(false);
+    },
+    inside: () => {
+      results.length > 0 && !isShowList && setIsShowList(true);
+    },
+  });
+
+  const handleKeyDown = (event: { key: string; preventDefault: () => void }) => {
+    if (event.key === 'ArrowUp') {
+      selectedIdx >= 0 && setSelectedIdx(selectedIdx - 1);
+      event.preventDefault();
+    } else if (event.key === 'ArrowDown') {
+      selectedIdx == results.length - 1 ? setSelectedIdx(-1) : setSelectedIdx(selectedIdx + 1);
+      event.preventDefault();
+    } else if (event.key === 'Enter') {
+      if (selectedIdx !== -1) {
+        setKeyword(results[selectedIdx]);
+      }
+      setIsShowList(false);
+    }
+  };
+  useEffect(() => {
+    if (!isShowList) {
+      setSelectedIdx(-1);
+    }
+  }, [isShowList]);
+  useEffect(() => {
+    console.log(keyword);
+    if (keyword.length > 0) {
+      setResults(['1', '2', ' 3']);
+      setIsShowList(true);
+    } else {
+      setIsShowList(false);
+      setResults([]);
+    }
+  }, [keyword]);
+  useEffect(() => {
+    if (results.length == 0) setIsShowList(false);
+  }, [results]);
+
   return (
-    <div className="box">
-      <div className="box-content">
-        <AutoComplete
-          style={{ width: '100%' }}
-          options={renderOptions(dataSource)}
-          onSelect={handleSearch}
-        >
-          <Input.Search
-            placeholder={placeHolder || '请输入关键字'}
-            className="box-content-input"
-            enterButton={suffix}
-            onChange={handleChange}
-            onPressEnter={(e: any) => handleSearch(e.target.value)}
+    <>
+      <div style={{ display: 'flex', width: '100%' }}>
+        <div ref={blurRef}>
+          <Input
+            placeholder="请输入搜索关键词"
+            allowClear
+            value={keyword}
+            onChange={(event) => setKeyword(event.target.value)}
+            onKeyDown={handleKeyDown}
+            style={{ borderTopRightRadius: 0, borderBottomRightRadius: 0 }}
           />
-        </AutoComplete>
+          {isShowList && (
+            <List
+              bordered
+              dataSource={results}
+              renderItem={(item, index) => (
+                <List.Item
+                  onClick={() => handleItemSearch(item)}
+                  style={{ backgroundColor: index === selectedIdx ? '#f0f0f0' : 'transparent' }}
+                >
+                  {item}
+                </List.Item>
+              )}
+            />
+          )}
+        </div>
+        <Button
+          type="primary"
+          style={{ borderTopLeftRadius: 0, borderBottomLeftRadius: 0 }}
+          onClick={() => handleKeyWordSearch(keyword)}
+        >
+          搜索
+        </Button>
       </div>
-    </div>
+    </>
   );
 }
+
+export default SearchBox;
