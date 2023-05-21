@@ -1,16 +1,11 @@
 import { Button, Dropdown } from 'antd';
-import type { MenuProps } from 'antd';
 import React, { useState, useRef, useEffect } from 'react';
 import styles from './index.less';
-
-const MoreButton = () => {
-  return <Button className="more-button">更多</Button>;
-};
 
 const OverflowMenu = ({ menuItems, onItemClick }: { menuItems: any; onItemClick: any }) => {
   const [visibleItems, setVisibleItems] = useState(menuItems);
   const [showMoreButton, setShowMoreButton] = useState(false);
-  const [items, setMoreItem] = useState<MenuProps['items']>([]);
+  const [items, setMoreItem] = useState<any>([]);
   const containerRef = useRef<HTMLDivElement>(null);
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const handleResize = () => {
@@ -29,7 +24,7 @@ const OverflowMenu = ({ menuItems, onItemClick }: { menuItems: any; onItemClick:
       setMoreItem(initItems(menuItems.slice(maxItems)));
       setShowMoreButton(true);
     } else {
-      setVisibleItems(items);
+      setVisibleItems(menuItems);
       setShowMoreButton(false);
     }
   };
@@ -39,13 +34,12 @@ const OverflowMenu = ({ menuItems, onItemClick }: { menuItems: any; onItemClick:
       let obj = { key: '', label: <></> };
       obj.key = index + '';
       obj.label = (
-        <Button key={index} className="menu-item" onClick={() => onItemClick(item)}>
+        <Button key={index} onClick={() => onItemClick(item)}>
           {item}
         </Button>
       );
       return obj;
     });
-    console.log(newData);
     return newData;
   };
 
