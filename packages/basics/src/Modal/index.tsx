@@ -1,9 +1,9 @@
 import { Button } from 'antd';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, ReactNode } from 'react';
 import './index.less';
 
 interface ModalProps {
-  children: any;
+  children: ReactNode | HTMLElement;
   title?: string;
   visible: boolean;
   onOk?: () => void;
@@ -13,8 +13,8 @@ interface ModalProps {
 }
 const Modal = (props: ModalProps) => {
   const { title, children, onOk, onCancel } = props;
-  const [cancelText, setCancelText] = useState(props?.cancelText || '取消');
-  const [okText, setOkText] = useState(props?.okText || '确定');
+  const [cancelText] = useState(props?.cancelText || '取消');
+  const [okText] = useState(props?.okText || '确定');
   const [visible, setVisible] = useState(props?.visible || false);
   useEffect(() => {
     setVisible(props?.visible);
