@@ -1,92 +1,124 @@
-import type { ReactNode } from 'react';
-import React, { useCallback, useState } from 'react';
-import { AutoComplete, Button, Input } from 'antd';
-import { SearchOutlined } from '@ant-design/icons';
+import React, { useState, useEffect, useRef } from 'react';
+import { Button, Input, List, message } from 'antd';
+import useOnBlur from '../../hooks/useOnBlur';
 import './index.less';
-export interface ILenovoSearchProps {
-  dataSource: string[];
-  placeHolder?: string;
-  suffix?: ReactNode | HTMLElement | boolean;
-  renderOption?: (title: string) => ReactNode | HTMLElement;
-  req: (param?: object | string) => void;
-  keyWordsCallBack: (value: string) => void;
+interface ISearchBoxProps {
+  optionList: string[];
+  searchCallback: (value: string) => void;
+  onChange: (value: string) => void;
+  style?: React.CSSProperties;
+  value?: string;
 }
-export default function LenovoSearch(props: ILenovoSearchProps) {
-  const {
-    dataSource,
-    placeHolder,
-    suffix: suffixProps,
-    renderOption,
-    req,
-    keyWordsCallBack,
-  } = props;
-  const [inputValue, setInputValue] = useState('');
-  const [searchLoading] = useState(false);
-  const handleSearch = (value: React.SetStateAction<string>) => {
-    setInputValue(value);
-    req?.(value);
-  };
-  const suffix = suffixProps ? (
-    suffixProps
-  ) : (
-    <Button
-      type="primary"
-      icon={<SearchOutlined />}
-      onClick={() => handleSearch(inputValue)}
-      loading={searchLoading}
-    >
-      搜索
-    </Button>
-  );
-  const handleChange = useCallback(
-    (e: any) => {
-      const keywords = e.target.value;
-      setInputValue(keywords);
-      keyWordsCallBack?.(inputValue);
-    },
-    [inputValue, keyWordsCallBack],
-  );
 
-  const renderItem = (title: string) => {
-    // 自定义联想条目的渲染内容
-    return (
-      renderOption?.(title) || (
-        <div style={{ color: '#fff' }}>
-          <span>
-            <SearchOutlined />
-            {` ${title}`}
-          </span>
-        </div>
-      )
-    );
+function SearchBox({ optionList, searchCallback, onChange, style, value }: ISearchBoxProps) {
+  const [keyword, setKeyword] = useState('');
+  const [selectedIdx, setSelectedIdx] = useState(-1);
+  const [isShowList, setIsShowList] = useState(false);
+  const blurRef = useRef<HTMLDivElement>(null);
+  const [firstRender, setFirstRender] = useState(true);
+  const [listWidth, setListWidth] = useState<string | number>('auto');
+  const handleKeyWordSearch = (value?: string) => {
+    if (value) {
+      searchCallback(value);
+    } else {
+      message.warning({
+        content: '请输入关键字',
+      });
+    }
   };
-  const renderOptions = (data: any) => {
-    let res = [];
-    res = data.map((item: string) => {
-      const obj: any = {};
-      obj.label = renderItem(item);
-      obj.value = item;
-      return obj;
-    });
-    return res;
+
+  const handleItemSearch = (value: string) => {
+    setKeyword(value);
+    handleKeyWordSearch(value);
+    setIsShowList(false);
   };
+
+  useOnBlur(blurRef, {
+    outside: () => {
+      isShowList && setIsShowList(false);
+    },
+    inside: () => {
+      setFirstRender(false);
+      optionList.length > 0 && !isShowList && setIsShowList(true);
+    },
+  });
+
+  const handleKeyDown = (event: { key: string; preventDefault: () => void }) => {
+    if (event.key === 'ArrowUp') {
+      selectedIdx >= 0 && isShowList && setSelectedIdx(selectedIdx - 1);
+      event.preventDefault();
+    } else if (event.key === 'ArrowDown') {
+      selectedIdx == optionList.length - 1
+        ? setSelectedIdx(-1)
+        : isShowList && setSelectedIdx(selectedIdx + 1);
+      event.preventDefault();
+    } else if (event.key === 'Enter') {
+      if (selectedIdx !== -1) {
+        setKeyword(optionList[selectedIdx]);
+      }
+      handleKeyWordSearch(selectedIdx !== -1 ? optionList[selectedIdx] : value);
+      setIsShowList(false);
+    }
+  };
+  useEffect(() => {
+    onChange(keyword);
+  }, [keyword]);
+
+  useEffect(() => {
+    optionList?.length != 0 ? !firstRender && setIsShowList(true) : setIsShowList(false);
+  }, [optionList]);
+  useEffect(() => {
+    if (isShowList) {
+      const { offsetWidth: itemWidth } = (blurRef?.current?.querySelector('.inpstyle') ||
+        {}) as HTMLDivElement;
+      setListWidth(itemWidth);
+    } else {
+      setSelectedIdx(-1);
+    }
+  }, [isShowList]);
+
+  useEffect(() => {
+    value && setKeyword(value);
+  }, [value]);
+
   return (
-    <div className="box">
-      <div className="box-content">
-        <AutoComplete
-          style={{ width: '100%' }}
-          options={renderOptions(dataSource)}
-          onSelect={handleSearch}
-        >
-          <Input.Search
-            placeholder={placeHolder || '请输入关键字'}
-            className="box-content-input"
-            enterButton={suffix}
-            onChange={handleChange}
-            onPressEnter={(e: any) => handleSearch(e.target.value)}
+    <>
+      <div style={{ display: 'flex', ...style }}>
+        <div ref={blurRef}>
+          <Input
+            key={value}
+            className="inpstyle"
+            placeholder="请输入搜索关键词"
+            allowClear
+            value={keyword}
+            onChange={(event) => {
+              setKeyword(event.target.value);
+            }}
+            onKeyDown={handleKeyDown}
+            style={{ borderTopRightRadius: 0, borderBottomRightRadius: 0 }}
           />
-        </AutoComplete>
+          {isShowList && (
+            <List
+              className="liststyle"
+              bordered
+              dataSource={optionList}
+              style={{ width: listWidth }}
+              renderItem={(item, index) => (
+                <List.Item onClick={() => handleItemSearch(item)}>{item}</List.Item>
+              )}
+            />
+          )}
+        </div>
+        <Button
+          type="primary"
+          style={{ borderTopLeftRadius: 0, borderBottomLeftRadius: 0 }}
+          onClick={() => handleKeyWordSearch(keyword)}
+        >
+          搜索
+        </Button>
       </div>
-    </div>
+    </>
   );
 }
+
+export default SearchBox;

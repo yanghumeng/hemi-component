@@ -1,20 +1,25 @@
-import { Button } from 'antd';
+import { Button, Dropdown } from 'antd';
 import React, { useState, useRef, useEffect } from 'react';
 import styles from './index.less';
 
-const MoreButton = ({ onClick }: { onClick: () => void }) => {
-  return (
-    <Button className="more-button" onClick={onClick}>
-      更多
-    </Button>
-  );
-};
+interface IRenderOptionItem {
+  key: string | number;
+  label: React.ReactElement;
+}
 
-const OverflowMenu = ({ items, onItemClick }: { items: any; onItemClick: any }) => {
-  const [visibleItems, setVisibleItems] = useState(items);
+const OverflowMenu = ({
+  menuItems,
+  onItemClick,
+  renderOption,
+}: {
+  menuItems: string[] | IRenderOptionItem[];
+  onItemClick: any;
+  renderOption?: (item: string | IRenderOptionItem) => React.ReactElement;
+}) => {
+  const [visibleItems, setVisibleItems] = useState<IRenderOptionItem[]>([]);
   const [showMoreButton, setShowMoreButton] = useState(false);
+  const [items, setMoreItem] = useState<IRenderOptionItem[]>([]);
   const containerRef = useRef<HTMLDivElement>(null);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   const handleResize = () => {
     let { offsetWidth: containerWidth } = (containerRef?.current || {}) as HTMLDivElement;
     const { offsetWidth: itemWidth } = (containerRef?.current?.querySelector('.menu-item') ||
@@ -26,34 +31,53 @@ const OverflowMenu = ({ items, onItemClick }: { items: any; onItemClick: any }) 
       Math.round(containerWidth / itemWidth) - 1 > 1
         ? Math.round(containerWidth / itemWidth) - 1
         : 1;
-    if (maxItems < items.length) {
-      setVisibleItems(items.slice(0, maxItems));
+    if (maxItems < menuItems.length) {
+      setVisibleItems(iniData(menuItems).slice(0, maxItems));
+      setMoreItem(iniData(menuItems).slice(maxItems));
       setShowMoreButton(true);
     } else {
-      setVisibleItems(items);
+      setVisibleItems(iniData(menuItems));
       setShowMoreButton(false);
     }
   };
+  const iniData = (data: string[] | IRenderOptionItem[]) => {
+    return data.map((item, index) => {
+      if (typeof item === 'string') {
+        let obj: IRenderOptionItem = {
+          key: '',
+          label: <></>,
+        };
+        obj.key = index;
+        obj.label = renderOption ? (
+          renderOption(item)
+        ) : (
+          <Button key={index} className="menu-item" onClick={() => onItemClick(item)}>
+            {item}
+          </Button>
+        );
+        return obj;
+      } else {
+        return item;
+      }
+    });
+  };
+
   useEffect(() => {
     handleResize();
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
-  }, [handleResize, items]);
-
-  const handleMoreClick = () => {
-    setVisibleItems(items);
-    setShowMoreButton(false);
-  };
+  }, [containerRef?.current?.querySelector('.menu-item')]);
 
   return (
     <div className={styles['overflow-menu']} ref={containerRef}>
-      {visibleItems?.map((item: any, index: number) => (
-        // eslint-disable-next-line react/no-array-index-key
-        <Button key={index} className="menu-item" onClick={() => onItemClick(item)}>
-          {item}
-        </Button>
-      ))}
-      {showMoreButton && <MoreButton onClick={handleMoreClick} />}
+      {visibleItems.map((item: IRenderOptionItem) => {
+        return item.label;
+      })}
+      {showMoreButton && (
+        <Dropdown menu={{ items }} placement="top" arrow trigger={['click']}>
+          <Button className="more-button">更多</Button>
+        </Dropdown>
+      )}
     </div>
   );
 };
