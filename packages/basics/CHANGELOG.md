@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.2-alpha.4](https://github.com/yanghumeng/hemi-component/compare/v1.1.2-alpha.3...v1.1.2-alpha.4) (2023-05-28)
+
+### 🐞 Bug Fixes | Bug 修复
+
+- 修复超出菜单不显示 ([105354c](https://github.com/yanghumeng/hemi-component/commit/105354cc66cf3fc9f422ca5eaea31fe5663e8898))
+
+### ✨ Features | 新功能
+
+- 改进超出菜单组件和联想搜索框 ([48bc87d](https://github.com/yanghumeng/hemi-component/commit/48bc87d09a8178a7bcee7264d1879f40287d9e1a))
+- 优化超出菜单栏 ([36f49e1](https://github.com/yanghumeng/hemi-component/commit/36f49e1ec1088997a8446346f16e99bb86524294))
+
 ## [1.1.2-alpha.3](https://github.com/yanghumeng/hemi-component/compare/v1.1.2-alpha.2...v1.1.2-alpha.3) (2023-05-14)
 
 ### ✨ Features | 新功能
