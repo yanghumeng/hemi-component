@@ -1,18 +1,25 @@
 import { Button, Dropdown } from 'antd';
-import type { MenuProps } from 'antd';
 import React, { useState, useRef, useEffect } from 'react';
 import styles from './index.less';
 
-const MoreButton = () => {
-  return <Button className="more-button">更多</Button>;
-};
+interface IRenderOptionItem {
+  key: string | number;
+  label: React.ReactElement;
+}
 
-const OverflowMenu = ({ menuItems, onItemClick }: { menuItems: any; onItemClick: any }) => {
-  const [visibleItems, setVisibleItems] = useState(menuItems);
+const OverflowMenu = ({
+  menuItems,
+  onItemClick,
+  renderOption,
+}: {
+  menuItems: string[] | IRenderOptionItem[];
+  onItemClick: any;
+  renderOption?: (item: string | IRenderOptionItem) => React.ReactElement;
+}) => {
+  const [visibleItems, setVisibleItems] = useState<IRenderOptionItem[]>([]);
   const [showMoreButton, setShowMoreButton] = useState(false);
-  const [items, setMoreItem] = useState<MenuProps['items']>([]);
+  const [items, setMoreItem] = useState<IRenderOptionItem[]>([]);
   const containerRef = useRef<HTMLDivElement>(null);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   const handleResize = () => {
     let { offsetWidth: containerWidth } = (containerRef?.current || {}) as HTMLDivElement;
     const { offsetWidth: itemWidth } = (containerRef?.current?.querySelector('.menu-item') ||
@@ -25,43 +32,47 @@ const OverflowMenu = ({ menuItems, onItemClick }: { menuItems: any; onItemClick:
         ? Math.round(containerWidth / itemWidth) - 1
         : 1;
     if (maxItems < menuItems.length) {
-      setVisibleItems(menuItems.slice(0, maxItems));
-      setMoreItem(initItems(menuItems.slice(maxItems)));
+      setVisibleItems(iniData(menuItems).slice(0, maxItems));
+      setMoreItem(iniData(menuItems).slice(maxItems));
       setShowMoreButton(true);
     } else {
-      setVisibleItems(items);
+      setVisibleItems(iniData(menuItems));
       setShowMoreButton(false);
     }
   };
-
-  const initItems = (data: string[]) => {
-    const newData = data.map((item, index) => {
-      let obj = { key: '', label: <></> };
-      obj.key = index + '';
-      obj.label = (
-        <Button key={index} className="menu-item" onClick={() => onItemClick(item)}>
-          {item}
-        </Button>
-      );
-      return obj;
+  const iniData = (data: string[] | IRenderOptionItem[]) => {
+    return data.map((item, index) => {
+      if (typeof item === 'string') {
+        let obj: IRenderOptionItem = {
+          key: '',
+          label: <></>,
+        };
+        obj.key = index;
+        obj.label = renderOption ? (
+          renderOption(item)
+        ) : (
+          <Button key={index} className="menu-item" onClick={() => onItemClick(item)}>
+            {item}
+          </Button>
+        );
+        return obj;
+      } else {
+        return item;
+      }
     });
-    console.log(newData);
-    return newData;
   };
 
   useEffect(() => {
     handleResize();
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
-  }, []);
+  }, [containerRef?.current?.querySelector('.menu-item')]);
 
   return (
     <div className={styles['overflow-menu']} ref={containerRef}>
-      {visibleItems?.map((item: any, index: number) => (
-        <Button key={index} className="menu-item" onClick={() => onItemClick(item)}>
-          {item}
-        </Button>
-      ))}
+      {visibleItems.map((item: IRenderOptionItem) => {
+        return item.label;
+      })}
       {showMoreButton && (
         <Dropdown menu={{ items }} placement="top" arrow trigger={['click']}>
           <Button className="more-button">更多</Button>
