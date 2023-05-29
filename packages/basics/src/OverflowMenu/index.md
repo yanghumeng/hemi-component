@@ -22,9 +22,13 @@ export default () => {
     console.log(item);
   }
   return (
-    <>
+    <div>
       <OverflowMenu menuItems={items} onItemClick={handleItemClick}></OverflowMenu>
-    </>
+      <h3>父级div宽度不够完全显示时</h3>
+      <div style={{ width: '200px' }}>
+        <OverflowMenu menuItems={items} onItemClick={handleItemClick}></OverflowMenu>
+      </div>
+    </div>
   );
 };
 ```
