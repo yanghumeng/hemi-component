@@ -1,6 +1,20 @@
 import React, { useEffect, useState } from 'react';
 
-const ImageCropper = ({ x = 0, y = 0, width = 100, height = 100, src = '', ...ect }) => {
+export interface IImageCropperProps {
+  /** x坐标 */
+  x: number;
+  /** y坐标 */
+  y: number;
+  /** 宽度 */
+  width: number;
+  /** 高度 */
+  height: number;
+  /** 图片地址 */
+  src: string;
+}
+
+const ImageCropper = (props: IImageCropperProps) => {
+  const { x = 0, y = 0, width = 100, height = 100, src = '', ...ect } = props;
   const [croppedImageSrc, setCroppedImageSrc] = useState('');
   const [styleT, setStyleT] = useState({});
   const [image, setImage] = useState<HTMLElement>();

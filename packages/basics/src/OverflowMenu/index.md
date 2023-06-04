@@ -32,3 +32,5 @@ export default () => {
   );
 };
 ```
+
+<API src='./index.tsx'></API>

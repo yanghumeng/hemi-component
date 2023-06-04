@@ -2,20 +2,21 @@ import { Button, Dropdown } from 'antd';
 import React, { useState, useRef, useEffect } from 'react';
 import styles from './index.less';
 
-interface IRenderOptionItem {
+export interface IRenderOptionItem {
   key: string | number;
   label: React.ReactElement;
 }
 
-const OverflowMenu = ({
-  menuItems,
-  onItemClick,
-  renderOption,
-}: {
+export interface IOverflowMenuProps {
+  /** 菜单项 */
   menuItems: string[] | IRenderOptionItem[];
+  /**点击事件 */
   onItemClick: any;
+  /**自定义渲染项 */
   renderOption?: (item: string | IRenderOptionItem) => React.ReactElement;
-}) => {
+}
+const OverflowMenu = (props: IOverflowMenuProps) => {
+  const { menuItems, onItemClick, renderOption } = props;
   const [visibleItems, setVisibleItems] = useState<IRenderOptionItem[]>([]);
   const [showMoreButton, setShowMoreButton] = useState(false);
   const [items, setMoreItem] = useState<IRenderOptionItem[]>([]);

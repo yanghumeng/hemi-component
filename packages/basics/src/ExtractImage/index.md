@@ -1,11 +1,15 @@
 ---
-title: ExtractImage 截取指定区域图片
+title: ExtractImage 图片截取
 nav:
   path: /basics
 group:
   title: 图片组件
   path: /basic
 ---
+
+# ExtractImage 图片截取组件
+
+- 根据 x,y,width,height 把范围内的图片截取出来
 
 ## 代码演示
 
@@ -52,3 +56,5 @@ export default () => {
   );
 };
 ```
+
+<API src='./index.tsx'></API>
