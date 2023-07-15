@@ -14,11 +14,13 @@ group:
 ## 代码演示
 
 ```tsx
-import React from 'react';
+import React, { useRef } from 'react';
 import { ExtractImage } from '@hemi-component/basics';
 import { Form, Input, Button } from 'antd';
 
 export default () => {
+  const ref = useRef();
+  const ref2 = useRef();
   const imgUrl = 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png';
   return (
     <>
@@ -42,8 +44,8 @@ export default () => {
       图片，从坐标x:10,y:10,截取高度100px，宽度50px
       <div
         style={{
-          height: '150px',
-          width: '150px',
+          height: '240px',
+          width: '240px',
           background: '#000',
           display: 'flex',
           alignItems: 'center',
@@ -51,6 +53,34 @@ export default () => {
         }}
       >
         <ExtractImage x={10} y={10} width={50} height={100} src={imgUrl} />
+      </div>
+      图片超出div大小，从坐标x:10,y:10,截取高度375px，宽度200px
+      <div
+        style={{
+          height: '240px',
+          width: '240px',
+          background: '#000',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
+        ref={ref}
+      >
+        <ExtractImage x={10} y={10} width={200} height={375} src={imgUrl} pRef={ref} />
+      </div>
+      图片超出div大小，从坐标x:10,y:10,截取宽度375px，高度200px
+      <div
+        style={{
+          height: '240px',
+          width: '240px',
+          background: '#000',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
+        ref={ref2}
+      >
+        <ExtractImage x={10} y={10} width={375} height={200} src={imgUrl} pRef={ref2} />
       </div>
     </>
   );

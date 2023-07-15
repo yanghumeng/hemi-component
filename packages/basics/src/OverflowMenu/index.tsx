@@ -1,86 +1,88 @@
-import { Button, Dropdown } from 'antd';
+import { Button } from 'antd';
 import React, { useState, useRef, useEffect } from 'react';
-import styles from './index.less';
+import ReactDOM from 'react-dom/server';
 
-export interface IRenderOptionItem {
-  key: string | number;
-  label: React.ReactElement;
-}
-
-export interface IOverflowMenuProps {
+interface TagGeneratorProps {
   /** 菜单项 */
-  menuItems: string[] | IRenderOptionItem[];
-  /**点击事件 */
-  onItemClick: any;
+  tags: any[];
   /**自定义渲染项 */
-  renderOption?: (item: string | IRenderOptionItem) => React.ReactElement;
+  renderTag: (tag: any) => React.ReactElement;
+  /**自定义渲染更多按钮样式 */
+  renderMore?: (tag: any) => React.ReactElement;
+  /**点击更多函数 */
+  moreClick?: (tag: any) => void;
 }
-const OverflowMenu = (props: IOverflowMenuProps) => {
-  const { menuItems, onItemClick, renderOption } = props;
-  const [visibleItems, setVisibleItems] = useState<IRenderOptionItem[]>([]);
-  const [showMoreButton, setShowMoreButton] = useState(false);
-  const [items, setMoreItem] = useState<IRenderOptionItem[]>([]);
-  const containerRef = useRef<HTMLDivElement>(null);
-  const handleResize = () => {
-    let { offsetWidth: containerWidth } = (containerRef?.current || {}) as HTMLDivElement;
-    const { offsetWidth: itemWidth } = (containerRef?.current?.querySelector('.menu-item') ||
-      {}) as HTMLDivElement;
-    const { offsetWidth: btnWidth } = (containerRef?.current?.querySelector('.more-button') ||
-      {}) as HTMLDivElement;
-    containerWidth += showMoreButton ? btnWidth : 0;
-    const maxItems =
-      Math.round(containerWidth / itemWidth) - 1 > 1
-        ? Math.round(containerWidth / itemWidth) - 1
-        : 1;
-    if (maxItems < menuItems.length) {
-      setVisibleItems(iniData(menuItems).slice(0, maxItems));
-      setMoreItem(iniData(menuItems).slice(maxItems));
-      setShowMoreButton(true);
-    } else {
-      setVisibleItems(iniData(menuItems));
-      setShowMoreButton(false);
-    }
-  };
-  const iniData = (data: string[] | IRenderOptionItem[]) => {
-    return data.map((item, index) => {
-      if (typeof item === 'string') {
-        let obj: IRenderOptionItem = {
-          key: '',
-          label: <></>,
-        };
-        obj.key = index;
-        obj.label = renderOption ? (
-          renderOption(item)
-        ) : (
-          <Button key={index} className="menu-item" onClick={() => onItemClick(item)}>
-            {item}
-          </Button>
-        );
-        return obj;
-      } else {
-        return item;
-      }
-    });
-  };
+
+const TagGenerator: React.FC<TagGeneratorProps> = ({ tags, renderMore, renderTag, moreClick }) => {
+  const divRef = useRef<any>(null);
+  const [showAllTags, setShowAllTags] = useState(false);
+  const [visibleTags, setVisibleTags] = useState<any[]>(tags);
 
   useEffect(() => {
-    handleResize();
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, [containerRef?.current?.querySelector('.menu-item')]);
-
+    if (divRef.current && tags?.length > 0) {
+      adjustVisibleTags();
+      window.addEventListener('resize', adjustVisibleTags);
+    }
+    return () => {
+      window.removeEventListener('resize', adjustVisibleTags);
+    };
+  }, [divRef.current, tags]);
+  const moreComWidth = () => {
+    const moreStr = ReactDOM.renderToStaticMarkup(
+      renderMore ? renderMore(visibleTags) : <Button>更多</Button>,
+    );
+    const tempMore = document.createElement('div');
+    tempMore.style.display = 'inline-block';
+    tempMore.style.visibility = 'hidden';
+    tempMore.innerHTML = moreStr;
+    document.body.appendChild(tempMore);
+    const tempMoreWidth = tempMore.getBoundingClientRect().width;
+    document.body.removeChild(tempMore);
+    return tempMoreWidth;
+  };
+  const adjustVisibleTags = () => {
+    if (divRef.current) {
+      const divWidth = divRef.current.offsetWidth;
+      const moreWidth = moreComWidth();
+      let totalWidth = moreWidth;
+      let updatedVisibleTags: any[] = [];
+      let i = 0;
+      for (i = 0; i < tags?.length; i++) {
+        const tagStr = ReactDOM.renderToStaticMarkup(renderTag(tags[i]));
+        const tempDiv = document.createElement('div');
+        tempDiv.style.display = 'inline-block';
+        tempDiv.style.visibility = 'hidden';
+        tempDiv.innerHTML = tagStr;
+        document.body.appendChild(tempDiv);
+        const tempDivWidth = tempDiv.getBoundingClientRect().width;
+        if (totalWidth + tempDivWidth > divWidth) {
+          break;
+        }
+        updatedVisibleTags.push(tags[i]);
+        totalWidth += tempDivWidth;
+        document.body.removeChild(tempDiv);
+      }
+      setVisibleTags(updatedVisibleTags);
+      setShowAllTags(i < tags?.length);
+    }
+  };
   return (
-    <div className={styles['overflow-menu']} ref={containerRef}>
-      {visibleItems.map((item: IRenderOptionItem) => {
-        return item.label;
-      })}
-      {showMoreButton && (
-        <Dropdown menu={{ items }} placement="top" arrow trigger={['click']}>
-          <Button className="more-button">更多</Button>
-        </Dropdown>
-      )}
+    <div ref={divRef} style={{ width: '100%' }}>
+      {visibleTags?.map((tag, index) => (
+        <React.Fragment key={index}>{renderTag(tag)}</React.Fragment>
+      ))}
+
+      <div style={{ display: 'inline-block' }}>
+        {showAllTags ? (
+          renderMore ? (
+            renderMore(visibleTags)
+          ) : (
+            <Button onClick={() => moreClick?.(visibleTags)}>更多</Button>
+          )
+        ) : null}
+      </div>
     </div>
   );
 };
 
-export default OverflowMenu;
+export default TagGenerator;

@@ -11,15 +11,29 @@ export interface IImageCropperProps {
   height: number;
   /** 图片地址 */
   src: string;
+  /** ref参数 */
+  pRef?: React.RefObject<HTMLDivElement>;
 }
 
 const ImageCropper = (props: IImageCropperProps) => {
-  const { x = 0, y = 0, width = 100, height = 100, src = '', ...ect } = props;
+  const { x = 0, y = 0, width = 100, height = 100, src = '', pRef, ...ect } = props;
   const [croppedImageSrc, setCroppedImageSrc] = useState('');
   const [styleT, setStyleT] = useState({});
   const [image, setImage] = useState<HTMLElement>();
+  const [scale, setScale] = useState(1);
 
   useEffect(() => {
+    if (pRef?.current) {
+      const { offsetHeight, offsetWidth } = (pRef?.current || {}) as HTMLDivElement;
+      if (height > width && height > offsetHeight) {
+        setScale(offsetHeight / height);
+      } else if (height < width && width > offsetWidth) {
+        setScale(offsetWidth / width);
+      } else {
+        console.log(offsetWidth / width);
+        setScale(offsetWidth / width);
+      }
+    }
     const img = new Image();
     img.src = src;
     img.onload = function () {
@@ -35,21 +49,16 @@ const ImageCropper = (props: IImageCropperProps) => {
         image.style.objectPosition = `-${x}px -${y}px`;
         image.style.width = `${width}px`;
         image.style.height = `${height}px`;
+      } else {
+        setStyleT({ height: '100%', width: '100%' });
       }
-    }
-    if (width > height) {
-      setStyleT({ width: '100%' });
-    } else if (width < height) {
-      setStyleT({ height: '100%' });
-    } else {
-      setStyleT({ height: '100%', width: '100%' });
     }
   }, [image, src, x, y, width, height]);
 
   return (
     <img
       src={croppedImageSrc}
-      style={styleT}
+      style={{ ...styleT, transform: `scale(${scale})` }}
       {...ect}
       alt=""
       ref={(ref) => (ref ? setImage(ref) : null)}
