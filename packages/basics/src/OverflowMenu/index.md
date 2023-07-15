@@ -13,18 +13,44 @@ group:
 
 ```tsx
 import React, { useState } from 'react';
-import { Button } from 'antd';
+import { Button, Tag } from 'antd';
 import { OverflowMenu } from '@hemi-component/basics';
 
 export default () => {
-  const [items, setItems] = useState(['button1', 'button2', 'button3', 'button4', 'button5']);
+  const [items, setItems] = useState([
+    { name: 'button1' },
+    { name: 'button2' },
+    { name: 'button3' },
+    { name: 'button4' },
+    { name: 'button5' },
+  ]);
   function handleItemClick(item) {
     console.log(item);
   }
   return (
-    <>
-      <OverflowMenu menuItems={items} onItemClick={handleItemClick}></OverflowMenu>
-    </>
+    <div>
+      <OverflowMenu
+        tags={items}
+        renderTag={(item) => {
+          return <Tag>{item.name}</Tag>;
+        }}
+      ></OverflowMenu>
+      <h3>父级div宽度不够完全显示时</h3>
+      <div style={{ width: '200px' }}>
+        <OverflowMenu
+          tags={items}
+          onItemClick={handleItemClick}
+          renderTag={(item) => {
+            return <Tag color="#2db7f5">{item.name}</Tag>;
+          }}
+          moreClick={(value) => {
+            console.log(value);
+          }}
+        ></OverflowMenu>
+      </div>
+    </div>
   );
 };
 ```
+
+<API src='./index.tsx'></API>
