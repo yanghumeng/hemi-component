@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.2-alpha.0](https://github.com/yanghumeng/hemi-component/compare/v1.2.1...v1.2.2-alpha.0) (2023-07-17)
+
+### ✨ Features | 新功能
+
+- 删除联想搜索组件 ([a523653](https://github.com/yanghumeng/hemi-component/commit/a5236537b54590218e572b0806ae2bc320af33cf))
+- 细节处理 ([975a0d8](https://github.com/yanghumeng/hemi-component/commit/975a0d82e33a70bbf5a39fc9c021e01d62d7cbb2))
+
 ## [1.2.1](https://github.com/yanghumeng/hemi-component/compare/v1.2.0...v1.2.1) (2023-07-17)
 
 ### ✨ Features | 新功能
