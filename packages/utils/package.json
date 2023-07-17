@@ -1,6 +1,6 @@
 {
   "name": "@hemi-component/utils",
-  "version": "1.1.2-alpha.4",
+  "version": "1.2.0",
   "description": "> TODO: description",
   "author": "hemi <1830720944@qq.com>",
   "license": "ISC",
@@ -23,5 +23,5 @@
   "scripts": {
     "test": "node ./__tests__/utils.test.js"
   },
-  "gitHead": "37198087ac3d32114fa91079a9b783a0e657538e"
+  "gitHead": "aa8f075e2002accf385aaf161aa72a24e83b0d2d"
 }

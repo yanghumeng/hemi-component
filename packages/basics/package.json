@@ -1,6 +1,6 @@
 {
   "name": "@hemi-component/basics",
-  "version": "1.1.2-alpha.4",
+  "version": "1.2.2-alpha.0",
   "description": "> TODO: description",
   "author": "hemi <1830720944@qq.com>",
   "homepage": "",
@@ -66,5 +66,5 @@
   "scripts": {
     "test": "node ./__tests__/@hemi-component/basics.test.js"
   },
-  "gitHead": "37198087ac3d32114fa91079a9b783a0e657538e"
+  "gitHead": "aa8f075e2002accf385aaf161aa72a24e83b0d2d"
 }
