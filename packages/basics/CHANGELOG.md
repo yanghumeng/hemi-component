@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.0](https://github.com/yanghumeng/hemi-component/compare/v1.1.2-alpha.4...v1.2.0) (2023-07-17)
+
+### ✨ Features | 新功能
+
+- 案例修改 ([d8935bd](https://github.com/yanghumeng/hemi-component/commit/d8935bd36371958813a838afbd8253355f1c6b7f))
+- 补充使用文档&案例 ([a56d8fe](https://github.com/yanghumeng/hemi-component/commit/a56d8fee160c2131d8a939c0e20f34c54dd2773b))
+- 图片截取组件 ([4b4073e](https://github.com/yanghumeng/hemi-component/commit/4b4073e7a0cb3457f4b9816eb392146b0a4065a7))
+- 新增截取图片组件 ([d20c4f9](https://github.com/yanghumeng/hemi-component/commit/d20c4f9344f0cf18ff33d857be438fabb7e2d041))
+
 ## [1.1.2-alpha.4](https://github.com/yanghumeng/hemi-component/compare/v1.1.2-alpha.3...v1.1.2-alpha.4) (2023-05-28)
 
 ### 🐞 Bug Fixes | Bug 修复
