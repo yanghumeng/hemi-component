@@ -2,13 +2,13 @@ import React, { useEffect, useState } from 'react';
 
 export interface IImageCropperProps {
   /** x坐标 */
-  x: number;
+  x?: number;
   /** y坐标 */
-  y: number;
+  y?: number;
   /** 宽度 */
-  width: number;
+  width?: number;
   /** 高度 */
-  height: number;
+  height?: number;
   /** 图片地址 */
   src: string;
   /** ref参数 */
@@ -16,7 +16,7 @@ export interface IImageCropperProps {
 }
 
 const ImageCropper = (props: IImageCropperProps) => {
-  const { x = 0, y = 0, width = 100, height = 100, src = '', pRef, ...ect } = props;
+  const { x = 0, y = 0, width = 0, height = 0, src = '', pRef, ...ect } = props;
   const [croppedImageSrc, setCroppedImageSrc] = useState('');
   const [styleT, setStyleT] = useState({});
   const [image, setImage] = useState<HTMLElement>();
@@ -24,15 +24,13 @@ const ImageCropper = (props: IImageCropperProps) => {
 
   useEffect(() => {
     if (pRef?.current) {
-      const { offsetHeight, offsetWidth } = (pRef?.current || {}) as HTMLDivElement;
-      if (height > width && height > offsetHeight) {
-        setScale(offsetHeight / height);
-      } else if (height < width && width > offsetWidth) {
-        setScale(offsetWidth / width);
-      } else {
-        console.log(offsetWidth / width);
-        setScale(offsetWidth / width);
-      }
+      const { offsetHeight, offsetWidth } = pRef?.current || {};
+      if (height || width)
+        if (height > width) {
+          setScale(offsetHeight / height);
+        } else if (height <= width) {
+          setScale(offsetWidth / width);
+        }
     }
     const img = new Image();
     img.src = src;
@@ -44,13 +42,25 @@ const ImageCropper = (props: IImageCropperProps) => {
   useEffect(() => {
     if (image) {
       setCroppedImageSrc(`${src}`);
-      if (x && y && width && height) {
+      if (width && height) {
         image.style.objectFit = 'none';
         image.style.objectPosition = `-${x}px -${y}px`;
         image.style.width = `${width}px`;
         image.style.height = `${height}px`;
+        if (pRef?.current) {
+          pRef.current.style.position = 'relative';
+          if (width > height) {
+            image.style.position = 'absolute';
+            image.style.top = '50%';
+            image.style.transform = `translateY(-${(height / 2) * scale}px)  scale(${scale})`;
+          } else {
+            image.style.position = 'absolute';
+            image.style.left = '50%';
+            image.style.transform = `translateX(-${(width / 2) * scale}px)  scale(${scale})`;
+          }
+        }
       } else {
-        setStyleT({ height: '100%', width: '100%' });
+        setStyleT({ height: '100%', width: '100%', objectFit: 'contain', objectPosition: '' });
       }
     }
   }, [image, src, x, y, width, height]);
@@ -58,7 +68,7 @@ const ImageCropper = (props: IImageCropperProps) => {
   return (
     <img
       src={croppedImageSrc}
-      style={{ ...styleT, transform: `scale(${scale})` }}
+      style={{ ...styleT, transformOrigin: 'top left' }}
       {...ect}
       alt=""
       ref={(ref) => (ref ? setImage(ref) : null)}
