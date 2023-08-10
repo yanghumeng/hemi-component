@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.3-alpha.0](https://github.com/yanghumeng/hemi-component/compare/v1.2.2-alpha.0...v1.2.3-alpha.0) (2023-08-10)
+
+### ✨ Features | 新功能
+
+- 回归 lerna5.X ([aa8f075](https://github.com/yanghumeng/hemi-component/commit/aa8f075e2002accf385aaf161aa72a24e83b0d2d))
+- 加 base 和 publickPath ([45b8f7e](https://github.com/yanghumeng/hemi-component/commit/45b8f7ea466c538d60c13679a5e18ddcf2ee6225))
+- 去掉 publicPath ([643a1e0](https://github.com/yanghumeng/hemi-component/commit/643a1e0d6cd0db2de9a99d65e8444eef6e39472d))
+- 新增 github 地址链接 ([14950e2](https://github.com/yanghumeng/hemi-component/commit/14950e211ccb7d3baef81b59edccb1dacffa95fe))
+- 优化图片截取组件&初始化联想搜索框 ([aed094b](https://github.com/yanghumeng/hemi-component/commit/aed094b4135f525d6fe42c3d437b625c31e8560b))
+- lerna 的 v7 版本斌使用 useWorkspcae ([68582b9](https://github.com/yanghumeng/hemi-component/commit/68582b9b32d9d261a910010710b69458da6932ab))
+- publish ([2e502ec](https://github.com/yanghumeng/hemi-component/commit/2e502ec2de79f33717ba1ba8c59efb88635cd4d5))
+- publish ([4b21232](https://github.com/yanghumeng/hemi-component/commit/4b212327e0b7af36662161ef3575f8813359722b))
+
 ## [1.2.2-alpha.0](https://github.com/yanghumeng/hemi-component/compare/v1.2.1...v1.2.2-alpha.0) (2023-07-17)
 
 ### ✨ Features | 新功能

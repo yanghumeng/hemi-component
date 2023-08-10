@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.3-alpha.0](https://github.com/yanghumeng/hemi-component/compare/v1.2.2-alpha.0...v1.2.3-alpha.0) (2023-08-10)
+
+### ✨ Features | 新功能
+
+- publish ([2e502ec](https://github.com/yanghumeng/hemi-component/commit/2e502ec2de79f33717ba1ba8c59efb88635cd4d5))
+- publish ([4b21232](https://github.com/yanghumeng/hemi-component/commit/4b212327e0b7af36662161ef3575f8813359722b))
+
 ## [1.2.0](https://github.com/yanghumeng/hemi-component/compare/v1.1.2-alpha.4...v1.2.0) (2023-07-17)
 
 ### ✨ Features | 新功能
