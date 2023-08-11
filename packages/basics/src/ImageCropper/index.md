@@ -22,13 +22,12 @@ export default () => {
   const ref = useRef();
   const ref2 = useRef();
   const ref3 = useRef();
-  const [data] = useState([
+  const [data, setData] = useState([
     { x: 30, y: 4.51, width: 48, height: 70.53 },
-    { x: 100, y: 47.51, width: 200, height: 20.53 },
-    { x: 85, y: 23.51, width: 148, height: 701.53 },
-    { x: 300, y: 80.51, width: 408, height: 110.53 },
+    { x: 0, y: 100, width: 252, height: 1225 },
   ]);
-  const imgUrl = 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png';
+  const imgUrl =
+    '"http://10.40.88.180:9900/moss/image/v1/fusion/storage/a3YtZnVzaW9uLzRjNjc2NGJhNDQ5YzAwMDAwNDAwMDY0NWVkYjdfMTY4ODYyMzA5My1iMGQ4YjYwYS05ZDhmLTQxZjctOGZmMi1mZjYzZjM4OTVkODQ="';
   return (
     <>
       原始图片
@@ -108,6 +107,16 @@ export default () => {
             </div>
           );
         })}
+        <Button
+          onClick={() =>
+            setData([
+              { x: 85, y: 23.51, width: 148, height: 701.53 },
+              { x: 300, y: 80.51, width: 408, height: 110.53 },
+            ])
+          }
+        >
+          切换
+        </Button>
       </div>
     </>
   );

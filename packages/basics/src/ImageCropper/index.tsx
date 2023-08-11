@@ -20,7 +20,7 @@ const ImageCropper = (props: IImageCropperProps) => {
   const [croppedImageSrc, setCroppedImageSrc] = useState('');
   const [styleT, setStyleT] = useState({});
   const [image, setImage] = useState<HTMLElement>();
-  const [scale, setScale] = useState(1);
+  const [scale, setScale] = useState(0);
 
   useEffect(() => {
     if (pRef?.current) {
@@ -37,12 +37,13 @@ const ImageCropper = (props: IImageCropperProps) => {
     img.onload = function () {
       setImage(img);
     };
-  }, [src]);
+  }, [src, x, y, width, height]);
 
   useEffect(() => {
     if (image) {
       setCroppedImageSrc(`${src}`);
       if (width && height) {
+        image.style.display = 'none';
         image.style.objectFit = 'none';
         image.style.objectPosition = `-${x}px -${y}px`;
         image.style.width = `${width}px`;
@@ -59,6 +60,7 @@ const ImageCropper = (props: IImageCropperProps) => {
             image.style.transform = `translateX(-${(width / 2) * scale}px)  scale(${scale})`;
           }
         }
+        image.style.display = 'block';
       } else {
         setStyleT({ height: '100%', width: '100%', objectFit: 'contain', objectPosition: '' });
       }
