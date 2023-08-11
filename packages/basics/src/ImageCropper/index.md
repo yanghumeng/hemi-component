@@ -27,7 +27,7 @@ export default () => {
     { x: 0, y: 100, width: 252, height: 1225 },
   ]);
   const imgUrl =
-    '"http://10.40.88.180:9900/moss/image/v1/fusion/storage/a3YtZnVzaW9uLzRjNjc2NGJhNDQ5YzAwMDAwNDAwMDY0NWVkYjdfMTY4ODYyMzA5My1iMGQ4YjYwYS05ZDhmLTQxZjctOGZmMi1mZjYzZjM4OTVkODQ="';
+    'http://10.40.88.180:9900/moss/image/v1/fusion/storage/a3YtZnVzaW9uLzRjNjc2NGJhNDQ5YzAwMDAwNDAwMDY0NWVkYjdfMTY4ODYyMzA5My1iMGQ4YjYwYS05ZDhmLTQxZjctOGZmMi1mZjYzZjM4OTVkODQ=';
   return (
     <>
       原始图片
