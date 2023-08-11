@@ -1,5 +1,5 @@
 ---
-title: LenovoSearch 联想搜索框
+title: LenovoSearch 超出菜单
 nav:
   path: /basics
 group:
@@ -7,29 +7,27 @@ group:
   path: /basic
 ---
 
-# LenovoSearch 联想搜索框
+# LenovoSearch 超出菜单
 
 ## 代码演示
 
 ```tsx
-import React, { useState, useCallBack } from 'react';
-import { Button } from 'antd';
+import React, { useState } from 'react';
+import { Button, Tag } from 'antd';
 import { LenovoSearch } from '@hemi-component/basics';
-const request = (params?: object | string): Promise<string> => {
-  console.log('搜索', params);
-};
-export default () => {
-  const [dataSource, setDataSource] = useState([]);
-  const set = (key) => setDataSource(['12', '123', '1234']);
 
+export default () => {
+  const [items, setItems] = useState([
+    "{ name: 'button1' }",
+    "{ name: 'button2' }",
+    "{ name: 'button3' }",
+  ]);
   return (
-    <>
-      <LenovoSearch
-        dataSource={dataSource}
-        req={request}
-        keyWordsCallBack={(key) => set()}
-      ></LenovoSearch>
-    </>
+    <div>
+      <LenovoSearch />
+    </div>
   );
 };
 ```
+
+<API src='./index.tsx'></API>
