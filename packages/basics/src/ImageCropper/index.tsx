@@ -18,7 +18,6 @@ export interface IImageCropperProps {
 const ImageCropper = (props: IImageCropperProps) => {
   const { x = 0, y = 0, width = 0, height = 0, src = '', pRef, ...ect } = props;
   const [croppedImageSrc, setCroppedImageSrc] = useState('');
-  const [styleT, setStyleT] = useState({});
   const [image, setImage] = useState<HTMLElement>();
   const [scale, setScale] = useState(0);
 
@@ -27,9 +26,11 @@ const ImageCropper = (props: IImageCropperProps) => {
       const { offsetHeight, offsetWidth } = pRef?.current || {};
       if (height || width)
         if (height > width) {
-          setScale(offsetHeight / height);
+          if (offsetWidth > offsetHeight) setScale(offsetHeight / height);
+          else setScale(offsetWidth / height);
         } else if (height <= width) {
-          setScale(offsetWidth / width);
+          if (offsetHeight > offsetWidth) setScale(offsetWidth / width);
+          else setScale(offsetHeight / width);
         }
     }
     const img = new Image();
@@ -37,10 +38,11 @@ const ImageCropper = (props: IImageCropperProps) => {
     img.onload = function () {
       setImage(img);
     };
-  }, [src, x, y, width, height]);
+  }, [height, pRef, src, width]);
 
   useEffect(() => {
     if (image) {
+      image.removeAttribute('style');
       setCroppedImageSrc(`${src}`);
       if (width && height) {
         image.style.display = 'none';
@@ -50,32 +52,28 @@ const ImageCropper = (props: IImageCropperProps) => {
         image.style.height = `${height}px`;
         if (pRef?.current) {
           pRef.current.style.position = 'relative';
+          image.style.position = 'absolute';
           if (width > height) {
-            image.style.position = 'absolute';
             image.style.top = '50%';
             image.style.transform = `translateY(-${(height / 2) * scale}px)  scale(${scale})`;
           } else {
-            image.style.position = 'absolute';
             image.style.left = '50%';
             image.style.transform = `translateX(-${(width / 2) * scale}px)  scale(${scale})`;
           }
         }
-        image.style.display = 'block';
+        image.style.display = `block`;
       } else {
-        setStyleT({ height: '100%', width: '100%', objectFit: 'contain', objectPosition: '' });
+        image.style.objectFit = 'contain';
+        image.style.objectPosition = '';
+        image.style.width = '100%';
+        image.style.height = '100%';
       }
+      image.style.transformOrigin = 'top left';
+      image.style.margin = '0 auto';
     }
-  }, [image, src, x, y, width, height]);
+  }, [image, src, x, y, width, height, pRef, scale]);
 
-  return (
-    <img
-      src={croppedImageSrc}
-      style={{ ...styleT, transformOrigin: 'top left' }}
-      {...ect}
-      alt=""
-      ref={(ref) => (ref ? setImage(ref) : null)}
-    />
-  );
+  return <img src={croppedImageSrc} {...ect} alt="" ref={(ref) => (ref ? setImage(ref) : null)} />;
 };
 
 export default ImageCropper;

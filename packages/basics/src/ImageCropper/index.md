@@ -22,12 +22,8 @@ export default () => {
   const ref = useRef();
   const ref2 = useRef();
   const ref3 = useRef();
-  const [data, setData] = useState([
-    { x: 30, y: 4.51, width: 48, height: 70.53 },
-    { x: 0, y: 100, width: 252, height: 1225 },
-  ]);
-  const imgUrl =
-    '"http://10.40.88.180:9900/moss/image/v1/fusion/storage/a3YtZnVzaW9uLzRjNjc2NGJhNDQ5YzAwMDAwNDAwMDY0NWVkYjdfMTY4ODYyMzA5My1iMGQ4YjYwYS05ZDhmLTQxZjctOGZmMi1mZjYzZjM4OTVkODQ="';
+  const [data, setData] = useState([{ x: 30, y: 4.51, width: 650, height: 600.53 }]);
+  const imgUrl = 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png';
   return (
     <>
       原始图片
@@ -90,7 +86,7 @@ export default () => {
             <div
               style={{
                 height: '240px',
-                width: '340px',
+                width: '440px',
                 background: '#000',
                 position: 'relative',
               }}
