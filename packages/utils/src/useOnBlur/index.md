@@ -1,5 +1,5 @@
 ---
-title: 点击区域事件hook | useOnFatherClick
+title: 点击区域事件hook | useOnBlur
 nav:
   path: /utils
 group:
@@ -7,7 +7,7 @@ group:
   path: /hook
 ---
 
-#### useOnFatherClick
+#### useOnBlur
 
 点击区域事件 hook
 

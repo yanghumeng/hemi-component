@@ -79,3 +79,23 @@ export function copyCot(value: any) {
     return false;
   }
 }
+
+/**
+ * 字符串优先级匹配
+ * @param str 匹配字符
+ * @param strArr 匹配数组
+ * @param targetParam 属性目标
+ * @returns
+ */
+export function paramMatching(str: string, strArr: Array<any>, targetParam: string) {
+  let matchName = '';
+  let maxMatchLength = 0;
+  for (let i = 0; i < strArr.length; i++) {
+    if (str.startsWith(strArr[i][targetParam]) && strArr[i][targetParam].length > maxMatchLength) {
+      matchName = strArr[i];
+      maxMatchLength = strArr[i][targetParam].length;
+    }
+  }
+
+  return matchName;
+}
