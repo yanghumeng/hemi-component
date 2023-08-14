@@ -2,6 +2,30 @@
 
 All notable changes to this project will be documented in this file. See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.3](https://github.com/yanghumeng/hemi-component/compare/v1.2.3-alpha.1...v1.2.3) (2023-08-14)
+
+### 🐞 Bug Fixes | Bug 修复
+
+- 删除联想搜索框组件 ([c1604b7](https://github.com/yanghumeng/hemi-component/commit/c1604b7acf0a90b9fbfe2a5f6dde4702d600e23a))
+
+## [1.2.3-alpha.1](https://github.com/yanghumeng/hemi-component/compare/v1.2.3-alpha.0...v1.2.3-alpha.1) (2023-08-14)
+
+### ✨ Features | 新功能
+
+- 优化图片截取组件 ([ff33957](https://github.com/yanghumeng/hemi-component/commit/ff339579b2dfb1197e1c96b3e77848190cf1f419))
+
+### 🐞 Bug Fixes | Bug 修复
+
+- 优化截取组件 ([09311f7](https://github.com/yanghumeng/hemi-component/commit/09311f7988aacda27ac57a83a6be1984c9091076))
+
+## [1.2.3-alpha.0](https://github.com/yanghumeng/hemi-component/compare/v1.2.2-alpha.0...v1.2.3-alpha.0) (2023-08-10)
+
+### ✨ Features | 新功能
+
+- 优化图片截取组件&初始化联想搜索框 ([aed094b](https://github.com/yanghumeng/hemi-component/commit/aed094b4135f525d6fe42c3d437b625c31e8560b))
+- publish ([2e502ec](https://github.com/yanghumeng/hemi-component/commit/2e502ec2de79f33717ba1ba8c59efb88635cd4d5))
+- publish ([4b21232](https://github.com/yanghumeng/hemi-component/commit/4b212327e0b7af36662161ef3575f8813359722b))
+
 ## [1.2.2-alpha.0](https://github.com/yanghumeng/hemi-component/compare/v1.2.1...v1.2.2-alpha.0) (2023-07-17)
 
 ### ✨ Features | 新功能
