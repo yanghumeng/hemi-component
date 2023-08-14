@@ -24,14 +24,18 @@ const ImageCropper = (props: IImageCropperProps) => {
   useEffect(() => {
     if (pRef?.current) {
       const { offsetHeight, offsetWidth } = pRef?.current || {};
-      if (height || width)
+      if (height || width) {
+        const init = height > width ? offsetHeight / height : offsetWidth / width;
         if (height > width) {
-          if (offsetWidth > offsetHeight) setScale(offsetHeight / height);
-          else setScale(offsetWidth / height);
+          init * width > offsetWidth
+            ? setScale((offsetWidth / (init * width)) * init)
+            : setScale(init);
         } else if (height <= width) {
-          if (offsetHeight > offsetWidth) setScale(offsetWidth / width);
-          else setScale(offsetHeight / width);
+          init * height > offsetHeight
+            ? setScale((offsetHeight / (init * height)) * init)
+            : setScale(init);
         }
+      }
     }
     const img = new Image();
     img.src = src;
@@ -51,14 +55,19 @@ const ImageCropper = (props: IImageCropperProps) => {
         image.style.width = `${width}px`;
         image.style.height = `${height}px`;
         if (pRef?.current) {
+          const { offsetHeight, offsetWidth } = pRef?.current;
           pRef.current.style.position = 'relative';
           image.style.position = 'absolute';
           if (width > height) {
             image.style.top = '50%';
-            image.style.transform = `translateY(-${(height / 2) * scale}px)  scale(${scale})`;
+            image.style.transform = `translate(${(offsetWidth - width * scale) / 2}px,-${
+              (height / 2) * scale
+            }px)  scale(${scale})`;
           } else {
             image.style.left = '50%';
-            image.style.transform = `translateX(-${(width / 2) * scale}px)  scale(${scale})`;
+            image.style.transform = `translate(-${(width / 2) * scale}px,${
+              (offsetHeight - height * scale) / 2
+            }px)  scale(${scale})`;
           }
         }
         image.style.display = `block`;
