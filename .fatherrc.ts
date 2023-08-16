@@ -14,7 +14,7 @@ export default {
     [
       require.resolve('babel-plugin-module-resolver'),
       {
-        root: ['.'],
+        root: ['./'],
         extensions: ['.js', '.jsx', '.tsx'],
         alias: {
           '@basics@': '@hemi-component/basics/es',
