@@ -69,10 +69,16 @@ const ImageRectBox: React.FC<Props> = ({
       image.onload = () => {
         const imgWidth = image.width;
         const imgHeight = image.height;
-
+        const parentElement = canvasRef.current?.parentNode;
+        const parentHeight =
+          parentElement instanceof HTMLElement
+            ? parentElement.getBoundingClientRect().height
+            : null;
+        const parentWidth =
+          parentElement instanceof HTMLElement ? parentElement.getBoundingClientRect().width : null;
         // 确定最终展示区域的尺寸
-        const finalWidth = width || imgWidth;
-        const finalHeight = height || imgHeight;
+        const finalWidth = width || parentWidth || imgWidth;
+        const finalHeight = height || parentHeight || imgHeight;
 
         // 根据实际尺寸缩放比例，保持图片比例并完整展示
         const ratio = Math.min(finalWidth / imgWidth, finalHeight / imgHeight);

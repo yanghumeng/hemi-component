@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { Input, List } from 'antd';
 
-interface AutoCompleteProps {
+interface LenovoSearchProps {
   options: string[];
+  showOptions?: boolean;
 }
 
-const AutoComplete: React.FC<AutoCompleteProps> = ({ options }) => {
+const LenovoSearch: React.FC<LenovoSearchProps> = ({ options }) => {
   const [inputValue, setInputValue] = useState('');
   const [filteredOptions, setFilteredOptions] = useState<string[]>([]);
 
@@ -34,4 +35,4 @@ const AutoComplete: React.FC<AutoCompleteProps> = ({ options }) => {
   );
 };
 
-export default AutoComplete;
+export default LenovoSearch;
