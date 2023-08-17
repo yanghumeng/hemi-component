@@ -1,7 +1,7 @@
 {
   "npmClient": "pnpm",
   "useWorkspaces": true,
-  "version": "1.2.3",
+  "version": "1.2.4-alpha.0",
   "command": {
     "version": {
       "conventionalCommits": true,

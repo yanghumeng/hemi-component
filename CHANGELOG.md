@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.4-alpha.0](https://github.com/yanghumeng/hemi-component/compare/v1.2.3...v1.2.4-alpha.0) (2023-08-17)
+
+### ✨ Features | 新功能
+
+- 代码回退 ([792e8b0](https://github.com/yanghumeng/hemi-component/commit/792e8b0dbb5eacada9f4da938d2331cb44bec95e))
+
+### 🐞 Bug Fixes | Bug 修复
+
+- 框选组件重复计算 ([4d908b0](https://github.com/yanghumeng/hemi-component/commit/4d908b0e2bcd26572c38bb02b6098ed5862f3b7d))
+- 优化框选组件，测试打包 ([f5a1c1b](https://github.com/yanghumeng/hemi-component/commit/f5a1c1b357f5b20ccb3787e6a1b3498b1fb4f270))
+
 ## [1.2.3](https://github.com/yanghumeng/hemi-component/compare/v1.2.3-alpha.1...v1.2.3) (2023-08-14)
 
 ### 🐞 Bug Fixes | Bug 修复
