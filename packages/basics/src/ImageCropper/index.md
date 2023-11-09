@@ -41,7 +41,7 @@ export default () => {
           justifyContent: 'center',
         }}
       >
-        <ImageCropper x={10} y={10} width={10} height={50} src={imgUrl} />
+        <ImageCropper x={10} y={10} width={100} height={50} imageUrl={imgUrl} />
       </div>
       图片，从坐标x:10,y:10,截取高度100px，宽度50px
       <div
@@ -54,7 +54,7 @@ export default () => {
           justifyContent: 'center',
         }}
       >
-        <ImageCropper x={10} y={10} width={50} height={100} src={imgUrl} />
+        <ImageCropper x={10} y={10} width={50} height={100} imageUrl={imgUrl} />
       </div>
       图片超出div大小，从坐标x:10,y:10,截取高度375px，宽度200px
       <div
@@ -62,10 +62,12 @@ export default () => {
           height: '240px',
           width: '240px',
           background: '#000',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
         }}
-        ref={ref}
       >
-        <ImageCropper x={10} y={10} width={200} height={400} src={imgUrl} pRef={ref} />
+        <ImageCropper x={10} y={10} width={200} height={400} imageUrl={imgUrl} />
       </div>
       图片超出div大小，从坐标x:10,y:10,截取宽度375px，高度200px
       <div
@@ -73,11 +75,12 @@ export default () => {
           height: '240px',
           width: '240px',
           background: '#000',
-          position: 'relative',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
         }}
-        ref={ref2}
       >
-        <ImageCropper x={10} y={10} width={400} height={200} src={imgUrl} pRef={ref2} />
+        <ImageCropper x={10} y={10} width={400} height={200} imageUrl={imgUrl} />
       </div>
       测试列表数据
       <div style={{ display: 'flex', flexWrap: 'wrap' }}>
@@ -88,18 +91,12 @@ export default () => {
                 height: '240px',
                 width: '440px',
                 background: '#000',
-                position: 'relative',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
               }}
-              ref={ref3}
             >
-              <ImageCropper
-                x={item.x}
-                y={item.y}
-                width={item.width}
-                height={item.height}
-                src={imgUrl}
-                pRef={ref3}
-              />
+              <ImageCropper imageUrl={imgUrl} />
             </div>
           );
         })}
