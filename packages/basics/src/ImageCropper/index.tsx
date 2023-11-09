@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
-export interface IImageCropperProps {
+interface ImageCropperProps {
   /** x坐标 */
   x?: number;
   /** y坐标 */
@@ -10,79 +10,81 @@ export interface IImageCropperProps {
   /** 高度 */
   height?: number;
   /** 图片地址 */
-  src: string;
-  /** ref参数 */
-  pRef?: React.RefObject<HTMLDivElement>;
+  imageUrl: string;
 }
 
-const ImageCropper = (props: IImageCropperProps) => {
-  const { x = 0, y = 0, width = 0, height = 0, src = '', pRef, ...ect } = props;
-  const [croppedImageSrc, setCroppedImageSrc] = useState('');
-  const [image, setImage] = useState<HTMLElement>();
-  const [scale, setScale] = useState(0);
+const ImageCropper: React.FC<ImageCropperProps> = ({
+  x = 0,
+  y = 0,
+  width = 0,
+  height = 0,
+  imageUrl = '',
+}) => {
+  const [croppedImage, setCroppedImage] = useState<string>('');
+  const pRef = useRef<HTMLDivElement>(null);
+  const [scale, setScale] = useState(1);
+  const [sWidth, setSWidth] = useState(width);
+  const [sHeight, setSHeight] = useState(height);
 
   useEffect(() => {
-    if (pRef?.current) {
-      const { offsetHeight, offsetWidth } = pRef?.current || {};
-      if (height || width) {
-        const init = height > width ? offsetHeight / height : offsetWidth / width;
+    const image = new Image();
+    image.src = imageUrl;
+    image.setAttribute('crossOrigin', 'Anonymous');
+    image.onload = () => {
+      const imgWidth = image.width;
+      const imgHeight = image.height;
+      if (pRef?.current) {
+        const parentElement = pRef?.current?.parentNode || {};
+        const parentHeight =
+          parentElement instanceof HTMLElement
+            ? parentElement.getBoundingClientRect().height
+            : height;
+        const parentWidth =
+          parentElement instanceof HTMLElement
+            ? parentElement.getBoundingClientRect().width
+            : width;
+        if (!height && !width) {
+          height = imgHeight;
+          width = imgWidth;
+        }
+
+        const init = height > width ? parentHeight / height : parentWidth / width;
         if (height > width) {
-          init * width > offsetWidth
-            ? setScale((offsetWidth / (init * width)) * init)
+          init * width > parentWidth
+            ? setScale((parentWidth / (init * width)) * init)
             : setScale(init);
         } else if (height <= width) {
-          init * height > offsetHeight
-            ? setScale((offsetHeight / (init * height)) * init)
+          init * height > parentHeight
+            ? setScale((parentHeight / (init * height)) * init)
             : setScale(init);
         }
       }
-    }
-    const img = new Image();
-    img.src = src;
-    img.onload = function () {
-      setImage(img);
-    };
-  }, [height, pRef, src, width]);
+      setSWidth(width);
+      setSHeight(height);
+      const canvas = document.createElement('canvas');
+      const ctx = canvas.getContext('2d');
 
-  useEffect(() => {
-    if (image) {
-      image.removeAttribute('style');
-      setCroppedImageSrc(`${src}`);
-      if (width && height) {
-        image.style.display = 'none';
-        image.style.objectFit = 'none';
-        image.style.objectPosition = `-${x}px -${y}px`;
-        image.style.width = `${width}px`;
-        image.style.height = `${height}px`;
-        if (pRef?.current) {
-          const { offsetHeight, offsetWidth } = pRef?.current;
-          pRef.current.style.position = 'relative';
-          image.style.position = 'absolute';
-          if (width > height) {
-            image.style.top = '50%';
-            image.style.transform = `translate(${(offsetWidth - width * scale) / 2}px,-${
-              (height / 2) * scale
-            }px)  scale(${scale})`;
-          } else {
-            image.style.left = '50%';
-            image.style.transform = `translate(-${(width / 2) * scale}px,${
-              (offsetHeight - height * scale) / 2
-            }px)  scale(${scale})`;
-          }
-        }
-        image.style.display = `block`;
-      } else {
-        image.style.objectFit = 'contain';
-        image.style.objectPosition = '';
-        image.style.width = '100%';
-        image.style.height = '100%';
+      if (ctx) {
+        canvas.width = width;
+        canvas.height = height;
+        ctx.drawImage(image, x, y, width, height, 0, 0, width, height);
+        setCroppedImage(canvas.toDataURL());
       }
-      image.style.transformOrigin = 'top left';
-      image.style.margin = '0 auto';
-    }
-  }, [image, src, x, y, width, height, pRef, scale]);
+    };
+  }, [x, y, width, height, imageUrl]);
 
-  return <img src={croppedImageSrc} {...ect} alt="" ref={(ref) => (ref ? setImage(ref) : null)} />;
+  return (
+    <div ref={pRef} style={{ width: sWidth * scale, height: sHeight * scale }}>
+      <img
+        src={croppedImage}
+        alt="cropped"
+        style={{
+          width: '100%',
+          height: '100%',
+        }}
+      />
+    </div>
+  );
 };
 
 export default ImageCropper;

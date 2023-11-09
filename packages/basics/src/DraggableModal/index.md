@@ -41,7 +41,9 @@ export default () => {
         draggable={true}
         open={visibleM}
         onCancel={() => setVisibleM(false)}
-      ></DraggableModal>
+      >
+        content
+      </DraggableModal>
     </>
   );
 };

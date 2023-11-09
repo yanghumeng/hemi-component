@@ -71,17 +71,14 @@ const DraggableModal: React.FC<React.PropsWithChildren<DraggableModalProps>> = (
 
       // 计算bounds
       const { clientWidth, clientHeight } = document.documentElement;
-      const { width, top, bottom } = modal.getBoundingClientRect();
+      const { top, bottom, left, right } = modal.getBoundingClientRect();
       if (bounds.current.top === 0) {
-        bounds.current = Object.assign(
-          {},
-          {
-            left: (clientWidth - width) / 2,
-            right: (clientWidth - width) / 2,
-            top,
-            bottom: clientHeight - bottom - 1,
-          },
-        );
+        bounds.current = {
+          left,
+          right: clientWidth - right - 1,
+          top,
+          bottom: clientHeight - bottom - 1,
+        };
       }
       // 鼠标按下
       header.addEventListener('mousedown', handleDown);
