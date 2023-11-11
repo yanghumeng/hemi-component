@@ -2,7 +2,7 @@ import { Form, Input, Button, Row, Col } from 'antd';
 import { MinusCircleOutlined, PlusOutlined } from '@ant-design/icons';
 import React from 'react';
 
-interface FormItemProps {
+export interface FormItemProps {
   type?: string;
   name: string;
   label: string;
@@ -11,7 +11,7 @@ interface FormItemProps {
   customRender?: React.ReactNode;
 }
 
-interface TypeProps {
+export interface TypeProps {
   /**初始化表单项，默认值[] */
   initValues: FormItemProps[];
   /**formlist表单项的name */

@@ -28,7 +28,7 @@ const codeSlice = (str: string, num: number) => {
   }
   return code;
 };
-interface IProp extends HTMLProps<HTMLDivElement> {
+export interface IProp extends HTMLProps<HTMLDivElement> {
   /** 文字 */
   value: string;
   /**是否使用CSS实现省略号，默认true */

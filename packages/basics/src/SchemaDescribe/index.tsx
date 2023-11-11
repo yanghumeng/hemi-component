@@ -3,12 +3,12 @@ import { Descriptions, DescriptionsProps, Input, Form, FormItemProps, Row, Col }
 import styleScoped from './index.less';
 import TextArea from 'antd/lib/input/TextArea';
 
-interface DescribeItemProps extends FormItemProps {
+export interface DescribeItemProps extends FormItemProps {
   type?: string;
   customRender?: ReactNode;
   span?: number;
 }
-interface DescribeProps extends DescriptionsProps {
+export interface DescribeProps extends DescriptionsProps {
   itemList: DescribeItemProps[];
   extraComponents?: ReactNode;
   fillLine?: boolean;
