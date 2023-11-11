@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 
-interface ImageCropperProps {
+export interface ImageCropperProps {
   /** x坐标 */
   x?: number;
   /** y坐标 */

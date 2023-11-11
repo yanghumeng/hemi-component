@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Input, List } from 'antd';
 
-interface LenovoSearchProps {
+export interface LenovoSearchProps {
   options: string[];
   showOptions?: boolean;
 }
