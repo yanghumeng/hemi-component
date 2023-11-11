@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.4-alpha.3](https://github.com/yanghumeng/hemi-component/compare/v1.2.4-alpha.2...v1.2.4-alpha.3) (2023-11-11)
+
+### 🐞 Bug Fixes | Bug 修复
+
+- esliint ([e9ef5ed](https://github.com/yanghumeng/hemi-component/commit/e9ef5edf59b9b4c39fc3ed26dbbfaff2c13f789f))
+
+### ✨ Features | 新功能
+
+- doc ([bb27633](https://github.com/yanghumeng/hemi-component/commit/bb276330e83fbdb4e761dd9450fd754fbda2a5d0))
+
 ## [1.2.4-alpha.2](https://github.com/yanghumeng/hemi-component/compare/v1.2.4-alpha.1...v1.2.4-alpha.2) (2023-11-09)
 
 ### ✨ Features | 新功能
