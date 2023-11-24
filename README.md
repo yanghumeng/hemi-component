@@ -2,9 +2,18 @@
 
 - 组件库说明文档：https://yanghumeng.github.io/hemi-component/
 
-## 自动化部署
+## 使用组方法
 
-- 部署触发是在 push 到 test-docs 或 release-docs 分支时执行
+### 基础包
+
+- npm install @hemi-component/basics
+- yarn add @hemi-component/basics
+
+### 工具包
+
+- 主要是一些工具函数
+- npm install @hemi-component/utils
+- yarn add @hemi-component/utils
 
 ## 使用按需打包，需要使用 `babel-plugin-import`
 
