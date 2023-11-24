@@ -8,3 +8,6 @@ nav:
 
 - 基础组件，使用基于 antd4.0 来进行的二次封装，主要是简化开发成本
 - React 版本 16.12
+
+- npm install @hemi-component/basics
+- yarn add @hemi-component/basics

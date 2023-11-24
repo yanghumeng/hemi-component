@@ -2,7 +2,7 @@
 
 - 组件库说明文档：https://yanghumeng.github.io/hemi-component/
 
-## 使用组方法
+## 使用方法
 
 ### 基础包
 

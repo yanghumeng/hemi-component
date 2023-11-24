@@ -18,9 +18,18 @@ features:
 footer: Open-source MIT Licensed | Copyright © 2020<br />Powered by [dumi](https://d.umijs.org)
 ---
 
-## 1. 此项目是自动化部署在 GitHub.Pages 上的
+## 1.使用方法
 
-- 部署触发是在 push 到 test-docs 或 release-docs 分支时，执行
+### 基础包
+
+- npm install @hemi-component/basics
+- yarn add @hemi-component/basics
+
+### 工具包
+
+- 主要是一些工具函数
+- npm install @hemi-component/utils
+- yarn add @hemi-component/utils
 
 ## 2. 使用按需打包，需要使用 `babel-plugin-import`
 
@@ -46,7 +55,7 @@ footer: Open-source MIT Licensed | Copyright © 2020<br />Powered by [dumi](http
   // umi config参考https://v3.umijs.org/zh-CN/config#extrababelincludes
   {
      extraBabelIncludes: [
-      '@dm-component-next/basics'
+      '@hemi-component/basics'
     ],
   }
 ```
