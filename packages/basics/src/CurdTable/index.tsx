@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { Card, FormInstance, Table, TableProps } from 'antd';
 import SearchForm from '../SearchForm';
 import './index.less';
-
+const PREFIX = 'CurdTable';
 /**
  * @params {()=>Promise.resolve/Promise.reject} request 异步请求
  * @params {TableTypes} tableProps table属性
@@ -109,7 +109,7 @@ const CurdTable = (props: tableProps) => {
   };
   const innerHeight = window.innerHeight;
   return (
-    <Card>
+    <Card className={PREFIX}>
       {isSearch && (
         <SearchForm
           linenum={props?.linenum}

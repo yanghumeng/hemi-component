@@ -2,7 +2,7 @@ import React, { ReactNode } from 'react';
 import { Descriptions, DescriptionsProps, Input, Form, FormItemProps, Row, Col } from 'antd';
 import styleScoped from './index.less';
 import TextArea from 'antd/lib/input/TextArea';
-
+const PREFIX = 'SchemaDescribe';
 export interface DescribeItemProps extends FormItemProps {
   type?: string;
   customRender?: ReactNode;
@@ -19,7 +19,7 @@ const SchemaDescribe = (props: DescribeProps) => {
 
   const labelstyle = labelAlign == 'right' ? { justifyContent: 'flex-end', width: '120px' } : {};
   return (
-    <div>
+    <div className={PREFIX}>
       <Row className={styleScoped['ant-row']} style={props?.style}>
         <Col flex="auto">
           <Descriptions size="small" {...props} style={{}}>
