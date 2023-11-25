@@ -18,18 +18,24 @@ features:
 footer: Open-source MIT Licensed | Copyright © 2020<br />Powered by [dumi](https://d.umijs.org)
 ---
 
-## 1.使用方法
+## 1.介绍
+
+这是一个基于 react 的面向业务型的组件库
 
 ### 基础包
 
+```js
 - npm install @hemi-component/basics
 - yarn add @hemi-component/basics
+```
 
 ### 工具包
 
+```js
 - 主要是一些工具函数
 - npm install @hemi-component/utils
 - yarn add @hemi-component/utils
+```
 
 ## 2. 使用按需打包，需要使用 `babel-plugin-import`
 
