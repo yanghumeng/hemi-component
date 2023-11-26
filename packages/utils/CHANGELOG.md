@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file. See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.4-alpha.4](https://github.com/yanghumeng/hemi-component/compare/v1.2.4-alpha.3...v1.2.4-alpha.4) (2023-11-26)
+
+**Note:** Version bump only for package @hemi-component/utils
+
 ## [1.2.4-alpha.3](https://github.com/yanghumeng/hemi-component/compare/v1.2.4-alpha.2...v1.2.4-alpha.3) (2023-11-11)
 
 **Note:** Version bump only for package @hemi-component/utils
