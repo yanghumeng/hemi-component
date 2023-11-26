@@ -2,10 +2,11 @@ import { Button } from 'antd';
 import React, { useState, useRef, useEffect } from 'react';
 import ReactDOM from 'react-dom/server';
 
+const PREFIX = 'OverflowMenu';
 export interface ItagProps {
   /** 必传key */
   key: string;
-  [key: string]: any
+  [key: string]: any;
 }
 export interface TagGeneratorProps {
   /** 菜单项 */
@@ -35,8 +36,8 @@ const TagGenerator: React.FC<TagGeneratorProps> = ({ tags, renderMore, renderTag
   }, [divRef.current, tags]);
 
   useEffect(() => {
-    setVisibleTags(tags)
-  }, [tags])
+    setVisibleTags(tags);
+  }, [tags]);
 
   const moreComWidth = () => {
     const moreStr = ReactDOM.renderToStaticMarkup(
@@ -74,13 +75,15 @@ const TagGenerator: React.FC<TagGeneratorProps> = ({ tags, renderMore, renderTag
         document.body.removeChild(tempDiv);
       }
       setVisibleTags(updatedVisibleTags);
-      const hiddleTagsT = tags.filter(item => updatedVisibleTags.findIndex(itemV => item.key === itemV.key) === -1)
-      setHiddleTags(hiddleTagsT)
+      const hiddleTagsT = tags.filter(
+        (item) => updatedVisibleTags.findIndex((itemV) => item.key === itemV.key) === -1,
+      );
+      setHiddleTags(hiddleTagsT);
       setShowAllTags(i < tags?.length);
     }
   };
   return (
-    <div ref={divRef} style={{ width: '100%' }}>
+    <div className={PREFIX} ref={divRef} style={{ width: '100%' }}>
       {visibleTags?.map((tag: ItagProps, index: number) => (
         <React.Fragment key={index}>{renderTag(tag)}</React.Fragment>
       ))}
