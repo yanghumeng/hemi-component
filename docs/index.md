@@ -22,6 +22,18 @@ footer: Open-source MIT Licensed | Copyright © 2020<br />Powered by [dumi](http
 
 这是一个基于 react 的面向业务型的组件库
 
+## 2.安装
+
+### 注意
+
+需要安装 less-loader，因为项目保留了 less npm 安装
+
+```js
+npm install less-loader
+```
+
+yarn 安装 yarn add less-loader
+
 ### 基础包
 
 ```js
@@ -37,7 +49,7 @@ footer: Open-source MIT Licensed | Copyright © 2020<br />Powered by [dumi](http
 - yarn add @hemi-component/utils
 ```
 
-## 2. 使用按需打包，需要使用 `babel-plugin-import`
+## 3. 使用按需打包，需要使用 `babel-plugin-import`
 
 ```js
 // umi config ，参考https://umijs.org/config/
@@ -53,7 +65,7 @@ footer: Open-source MIT Licensed | Copyright © 2020<br />Powered by [dumi](http
   }
 ```
 
-## 3. 样式生效
+## 4. 样式生效
 
 如果样式不生效，可以配置`extraBabelIncludes`
 

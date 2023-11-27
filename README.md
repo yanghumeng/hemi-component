@@ -2,7 +2,7 @@
 
 - 组件库说明文档：https://yanghumeng.github.io/hemi-component/
 
-## 使用方法
+## 安装
 
 ### 基础包
 
@@ -14,6 +14,10 @@
 - 主要是一些工具函数
 - npm install @hemi-component/utils
 - yarn add @hemi-component/utils
+
+### 注意
+
+需要安装 less-loader，因为项目保留了 less
 
 ## 使用按需打包，需要使用 `babel-plugin-import`
 
