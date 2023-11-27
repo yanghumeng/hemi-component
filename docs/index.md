@@ -26,13 +26,14 @@ footer: Open-source MIT Licensed | Copyright © 2020<br />Powered by [dumi](http
 
 ### 注意
 
-需要安装 less-loader，因为项目保留了 less npm 安装
+- 需要安装 less-loader，因为项目保留了 less
+- npm 安装
 
 ```js
 npm install less-loader
 ```
 
-yarn 安装
+- yarn 安装
 
 ```js
 yarn add less-loader
