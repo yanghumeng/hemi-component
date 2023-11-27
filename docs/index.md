@@ -32,7 +32,11 @@ footer: Open-source MIT Licensed | Copyright © 2020<br />Powered by [dumi](http
 npm install less-loader
 ```
 
-yarn 安装 yarn add less-loader
+yarn 安装
+
+```js
+yarn add less-loader
+```
 
 ### 基础包
 
