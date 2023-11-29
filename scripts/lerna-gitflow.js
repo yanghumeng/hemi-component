@@ -69,12 +69,12 @@ async function signTag() {
   if (!testVersion.includes('alpha')) {
     console.log(
       `\x1B[31m请${
-        currVersion === testVersion ? '' : '合并 master，并'
+        currVersion === testVersion ? '' : '合并 release，并'
       }使用 pnpm lv:patch(minor):change-alpha\x1B[0m`,
     );
     return Promise.reject(
       `❗️请${
-        currVersion === testVersion ? '' : '合并 master，并'
+        currVersion === testVersion ? '' : '合并 release，并'
       }使用 pnpm lv:patch(minor):change-alpha`,
     );
   }

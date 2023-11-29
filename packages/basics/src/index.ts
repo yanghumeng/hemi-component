@@ -8,4 +8,3 @@ export { default as OverflowMenu } from './OverflowMenu';
 export { default as Modal } from './Modal';
 export { default as ImageCropper } from './ImageCropper';
 export { default as ImageRectBox } from './ImageRectBox';
-export { default as LenovoSearch } from './LenovoSearch';
