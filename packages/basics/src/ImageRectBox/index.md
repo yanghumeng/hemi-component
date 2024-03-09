@@ -9,7 +9,7 @@ group:
 
 # ImageRectBox 图片区域框选组件
 
-- 根据 x,y,width,height 把范围内的图片截取出来
+- 根据 x,y,w,h 把范围内的图片截取出来
 - 图片，从坐标{ x: 10, y: 10, w: 100, h: 50 } { x: 100, y: 100, w: 100, h: 50 }截取
 
 ## 代码演示
@@ -24,7 +24,7 @@ export default () => {
   const ref2 = useRef();
   const rects = [
     { x: 10, y: 10, w: 100, h: 50, color: '#000' },
-    { x: 100, y: 100, w: 100, h: 50 },
+    { x: 100, y: 100, w: 100, h: 50, context: '内容' },
   ];
   const circles = [
     { x: 100, y: 100, radius: 20 },
@@ -45,17 +45,6 @@ export default () => {
       <div>
         <ImageRectBox
           rects={rects}
-          imageUrl={imgUrl}
-          width={500}
-          height={300}
-          lineStyle={{ width: 2, color: '#2db7f5', mode: 'dashed' }}
-        />
-      </div>
-      设置线框现状圆形
-      <div>
-        <ImageRectBox
-          type="circle"
-          circles={circles}
           imageUrl={imgUrl}
           width={500}
           height={300}
