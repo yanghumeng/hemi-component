@@ -1,15 +1,17 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 
 export interface IRect {
   x: number;
   y: number;
   w: number;
   h: number;
+  color?: string;
 }
 export interface ICircle {
   x: number;
   y: number;
   radius: number;
+  color?: string;
 }
 
 export interface ILineProps {
@@ -43,6 +45,7 @@ export interface IProps {
 const ImageRectBox: React.FC<IProps> = (props: IProps) => {
   const { lineStyle, type = 'rect', rects = [], circles = [], imageUrl, width, height } = props;
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const [imageLoaded, setImageLoaded] = useState(false);
 
   const drawCircleStroke = (ctx: any, x: number, y: number, radius: number) => {
     ctx.beginPath();
@@ -50,15 +53,12 @@ const ImageRectBox: React.FC<IProps> = (props: IProps) => {
     ctx.stroke();
   };
 
-  const loadImageAndDraw = () => {
+  const loadImageAndDraw = useCallback(() => {
     const canvas = canvasRef.current;
     const ctx = canvas?.getContext('2d');
-
     if (!canvas || !ctx) return;
-
     const image = new Image();
     image.src = imageUrl;
-
     image.onload = () => {
       const imgWidth = image.width;
       const imgHeight = image.height;
@@ -85,35 +85,48 @@ const ImageRectBox: React.FC<IProps> = (props: IProps) => {
       // 绘制图片
       ctx.drawImage(image, offsetX, offsetY, displayWidth, displayHeight);
 
-      // 绘制红色线框
-      ctx.strokeStyle = lineStyle?.color || 'red';
       lineStyle?.mode === 'dashed' && ctx.setLineDash(lineStyle?.dashLine ?? [5, 5]);
       ctx.lineWidth = lineStyle?.width || 1;
 
       if (type === 'circle')
         circles?.forEach((rect) => {
-          const { x, y, radius } = rect;
+          // 绘制线框
+          ctx.strokeStyle = lineStyle?.color || 'red';
+          const { x, y, radius, color } = rect;
           const scaledX = x * ratio + offsetX;
           const scaledY = y * ratio + offsetY;
+          if (color) ctx.strokeStyle = color;
           drawCircleStroke(ctx, scaledX, scaledY, radius);
         });
       else
         rects?.forEach((rect) => {
-          const { x, y, w, h } = rect;
+          // 绘制线框
+          ctx.strokeStyle = lineStyle?.color || 'red';
+          const { x, y, w, h, color } = rect;
           const scaledX = x * ratio + offsetX;
           const scaledY = y * ratio + offsetY;
           const scaledW = w * ratio;
           const scaledH = h * ratio;
+          if (color) ctx.strokeStyle = color;
           ctx.strokeRect(scaledX, scaledY, scaledW, scaledH);
         });
+      setImageLoaded(true);
     };
-  };
+  }, [circles, height, imageUrl, lineStyle, rects, type, width]);
 
   useEffect(() => {
     loadImageAndDraw();
-  }, []);
-
-  return <canvas ref={canvasRef} />;
+  }, [loadImageAndDraw]);
+  useEffect(() => {
+    if (imageLoaded) {
+      setImageLoaded(false); // 重设为未加载状态
+    }
+  }, [imageLoaded]);
+  return (
+    <React.Fragment>
+      <canvas ref={canvasRef} />
+    </React.Fragment>
+  );
 };
 
-export default React.memo(ImageRectBox);
+export default ImageRectBox;

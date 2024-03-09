@@ -23,7 +23,7 @@ export default () => {
   const ref = useRef();
   const ref2 = useRef();
   const rects = [
-    { x: 10, y: 10, w: 100, h: 50 },
+    { x: 10, y: 10, w: 100, h: 50, color: '#000' },
     { x: 100, y: 100, w: 100, h: 50 },
   ];
   const circles = [
