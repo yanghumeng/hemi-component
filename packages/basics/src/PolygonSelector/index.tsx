@@ -1,8 +1,24 @@
 import React, { useRef, useState, useEffect } from 'react';
 
+enum POSITION_TYPE {
+  STAY_INSIDE = 'STAY_INSIDE',
+  STAY_OUTSIDE = 'STAY_OUTSIDE',
+  ENTER = 'ENTER',
+  EXIT = 'EXIT',
+  CROSS = 'CROSS',
+  FORWARD = 'FORWARD',
+  BACKWARD = 'BACKWARD',
+}
+
 interface Point {
   x: number;
   y: number;
+}
+export interface IShape {
+  type: 'line' | 'polygon';
+  points: [number, number][];
+  color?: string;
+  direction?: POSITION_TYPE;
 }
 
 interface PolygonSelectorProps {
@@ -11,6 +27,7 @@ interface PolygonSelectorProps {
   imageSrc?: string;
   fillColor?: string;
   actionType: 'mark' | 'menu';
+  shapes?: IShape[];
 }
 
 const PolygonSelector: React.FC<PolygonSelectorProps> = ({
@@ -19,6 +36,7 @@ const PolygonSelector: React.FC<PolygonSelectorProps> = ({
   imageSrc,
   fillColor = 'rgba(255, 0, 0, 0.3)',
   actionType,
+  shapes,
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -110,6 +128,69 @@ const PolygonSelector: React.FC<PolygonSelectorProps> = ({
           ctx.fillStyle = selectedPolygons.includes(index) ? 'rgba(0, 0, 255, 0.3)' : fillColor;
           ctx.fill();
         });
+        shapes?.forEach((shape) => {
+          ctx.beginPath();
+          ctx.strokeStyle = shape.color || '#00FF00'; // 默认使用绿色
+          ctx.lineWidth = 2;
+
+          shape.points.forEach((point, index) => {
+            if (index === 0) {
+              ctx.moveTo(point[0], point[1]);
+            } else {
+              ctx.lineTo(point[0], point[1]);
+            }
+          });
+
+          if (shape.type === 'polygon') {
+            ctx.closePath();
+          }
+
+          ctx.stroke();
+
+          // 如果是线条且有方向，绘制箭头
+          if (shape.type === 'line' && shape.direction && shape.points.length >= 2) {
+            const [startX, startY] = shape.points[0];
+            const [endX, endY] = shape.points[shape.points.length - 1];
+            const midX = (startX + endX) / 2;
+            const midY = (startY + endY) / 2;
+
+            // 计算线的角度
+            const angle = Math.atan2(endY - startY, endX - startX);
+
+            // 计算垂直于线的方向
+            const perpAngle =
+              angle + (shape.direction === POSITION_TYPE.FORWARD ? Math.PI / 2 : -Math.PI / 2);
+
+            // 箭头大小
+            const arrowLength = 20; // 增加箭头长度
+            const arrowWidth = 10; // 箭头宽度
+
+            // 计算箭头的点
+            const arrowX = midX + Math.cos(perpAngle) * arrowLength;
+            const arrowY = midY + Math.sin(perpAngle) * arrowLength;
+
+            // 绘制箭头
+            ctx.beginPath();
+            ctx.moveTo(midX, midY);
+            ctx.lineTo(arrowX, arrowY);
+            ctx.stroke();
+
+            // 绘制箭头的两个边
+            ctx.beginPath();
+            ctx.moveTo(arrowX, arrowY);
+            ctx.lineTo(
+              arrowX - Math.cos(perpAngle - Math.PI / 6) * arrowWidth,
+              arrowY - Math.sin(perpAngle - Math.PI / 6) * arrowWidth,
+            );
+            ctx.lineTo(
+              arrowX - Math.cos(perpAngle + Math.PI / 6) * arrowWidth,
+              arrowY - Math.sin(perpAngle + Math.PI / 6) * arrowWidth,
+            );
+            ctx.closePath();
+            ctx.fillStyle = shape.color || '#00FF00';
+            ctx.fill();
+          }
+        });
 
         if (actionType === 'mark' && currentPolygon.length > 0) {
           ctx.beginPath();
@@ -152,6 +233,7 @@ const PolygonSelector: React.FC<PolygonSelectorProps> = ({
     imageScale,
     actionType,
     selectedPolygons,
+    shapes,
   ]);
 
   const getRelativeCoordinates = (e: React.MouseEvent<HTMLCanvasElement>): Point => {

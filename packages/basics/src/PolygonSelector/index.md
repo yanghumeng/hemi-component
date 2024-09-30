@@ -29,6 +29,35 @@ export default () => {
           }}
           imageSrc={imgUrl}
           actionType={action}
+          shapes={[
+            {
+              type: 'line',
+              points: [
+                [10, 10],
+                [100, 100],
+              ],
+              color: '#FF0000',
+              direction: 'clockwise',
+            },
+            {
+              type: 'line',
+              points: [
+                [50, 150],
+                [200, 150],
+              ],
+              color: '#0000FF',
+            }, // 这条线不会有箭头
+            {
+              type: 'polygon',
+              points: [
+                [50, 50],
+                [100, 50],
+                [100, 100],
+                [50, 100],
+              ],
+              color: '#00FF00',
+            },
+          ]}
         />
       </div>
     </>
