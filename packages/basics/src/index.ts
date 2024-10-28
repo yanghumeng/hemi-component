@@ -9,3 +9,4 @@ export { default as Modal } from './Modal';
 export { default as ImageCropper } from './ImageCropper';
 export { default as ImageRectBox } from './ImageRectBox';
 export { default as PolygonSelector } from './PolygonSelector';
+export { default as DrawingTool } from './Test';
